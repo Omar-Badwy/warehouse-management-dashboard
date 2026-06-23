@@ -63,7 +63,7 @@ The project focuses on:
 * Edit Customers
 * Delete Customers
 
-## Inventory Management
+## Inventory Management (optional)
 
 * View Inventory
 * Update Product Quantity
@@ -135,8 +135,9 @@ src
 │   ├── store.js
 │   └── slices
 │
-├── routes
-│
+├── routes (optional)
+│   ├── appRoutes.js
+│   └── protectedRoute.js
 └── styles
 ```
 
@@ -152,7 +153,7 @@ src
 * Buttons
 * Modals
 * Search Bar
-* Pagination
+* Pagination (optional)
 
 ----------------------------------------------
 
@@ -164,9 +165,9 @@ store
 ├── authSlice
 ├── productsSlice
 ├── categoriesSlice
-├── suppliersSlice
+├── customersSlice
 ├── ordersSlice
-└── inventorySlice
+└── inventorySlice (optional)
 ```
 
 ----------------------------------------------
@@ -175,11 +176,11 @@ store
 
 ### Phase 1
 
-* Create Project
-* Install Dependencies
-* Configure Folder Structure
-* Setup Routing
+* Create Project                                                                       ✅
+* Install Dependencies                                                                 ✅
+* Configure Folder Structure                                                           ✅
 * Setup Redux Store
+* Setup Routing
 
 ### Phase 2
 
@@ -247,4 +248,5 @@ Junior Front-End Developer
 * React
 * Redux Toolkit
 
-This project is built as a learning journey to apply front-end development concepts through a real-world Warehouse Management Dashboard.
+This project is built as a learning journey to apply front-end development concepts through
+a real-world Warehouse Management Dashboard.
