@@ -179,11 +179,12 @@ store
 * Create Project                                                                       ✅
 * Install Dependencies                                                                 ✅
 * Configure Folder Structure                                                           ✅
-* Setup Redux Store
-* Setup Routing
+* Setup Redux Store                                                                    ✅
+* Setup Routing                                                                        ✅
 
 ### Phase 2
 
+* Build Login Layout and auth                                                          ✅
 * Build Dashboard Layout
 * Create Sidebar
 * Create Navbar
@@ -201,7 +202,7 @@ store
 
 ### Phase 5
 
-* Build Inventory Module
+* Build Inventory Module (optional)
 * Build Orders Module
 
 ### Phase 6

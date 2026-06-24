@@ -1,12 +1,14 @@
 import { Routes, Route } from "react-router-dom";
 
-import Login from "../pages/Login";
-import Dashboard from "../pages/Dashboard";
-import Products from "../pages/Products";
-import Categories from "../pages/Categories";
-import Customers from "../pages/Customers";
-import Orders from "../pages/Orders";
-import Settings from "../pages/Settings";
+import Login from "../pages/login";
+import Dashboard from "../pages/dashboard";
+import Products from "../pages/products";
+import Categories from "../pages/categories";
+import Customers from "../pages/customers";
+import Orders from "../pages/orders";
+import Settings from "../pages/settings";
+
+import ProtectedRoute from "./protectedRoute";
 
 function AppRoutes() {
   return (
@@ -15,34 +17,57 @@ function AppRoutes() {
 
       <Route
         path="/dashboard"
-        element={ <Dashboard /> }
+        element={
+          <ProtectedRoute>
+            <Dashboard />
+          </ProtectedRoute>
+        }
       />
 
       <Route
         path="/products"
-        element={ <Products /> }
+        element={
+          <ProtectedRoute>
+            <Products />
+          </ProtectedRoute>
+        }
       />
 
       <Route
         path="/categories"
-        element={ <Categories /> }
+        element={
+          <ProtectedRoute>
+            <Categories />
+          </ProtectedRoute>
+        }
       />
 
       <Route
         path="/customers"
-        element={ <Customers /> }
+        element={
+          <ProtectedRoute>
+            <Customers />
+          </ProtectedRoute>
+        }
       />
 
       <Route
         path="/orders"
-        element={ <Orders /> }
-      />
-      
-      <Route
-        path="/Settings"
-        element={ <Settings /> }
+        element={
+          <ProtectedRoute>
+            <Orders />
+          </ProtectedRoute>
+        }
       />
 
+      <Route
+        path="/settings"
+        element={
+          <ProtectedRoute>
+            <Settings />
+          </ProtectedRoute>
+        }
+      />
     </Routes>
   );
 }
