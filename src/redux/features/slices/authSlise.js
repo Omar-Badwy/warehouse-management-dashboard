@@ -20,7 +20,7 @@ export const authSlice  = createSlice({
             localStorage.setItem("user",JSON.stringify(action.payload))
         },
 
-        logout: (state,action) => {
+        logout: (state) => {
 
             state.user = null
             state.isAuth = false

@@ -12,8 +12,8 @@ export default function Login () {
     // ? Variables
 
     const user = {
-        name: "omar badwy",
-        email: "admin@gmail.com",
+        name: "omar",
+        email: "admin.com",
         password: "123456"
     }
 
