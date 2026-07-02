@@ -11,6 +11,7 @@
     background-color: #005b8c;
     /* background-color: #020216ec; */
     /* background-color: #2f4050; */
+    /* background-image: linear-gradient(to right, #005b8c); */
     display: flex;
     flex-direction: column;
 }
@@ -66,4 +67,8 @@
 
 .logout:hover {
     background-color: #ff0000aa;
+}
+
+i {
+    color: white;
 }

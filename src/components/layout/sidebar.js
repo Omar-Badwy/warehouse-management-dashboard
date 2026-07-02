@@ -1,7 +1,4 @@
 // import { v4 as uuidv4 } from 'uuid';
-import { useState } from 'react';
-import {  Button, Drawer, Space } from 'antd';
-
 import '../../styles/sidebar.css'
 import { Link, useLocation } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
@@ -9,8 +6,6 @@ import { logout } from '../../redux/features/slices/authSlise';
 
 
 function SideBar () {
-
-    const [open, setOpen] = useState(false);
 
     const location = useLocation()
 
@@ -49,20 +44,9 @@ function SideBar () {
     <>
       
 
-      <Drawer
-        title="Resizable Drawer"
-        placement={"left"}
-        onClose={() => setOpen(false)}
-        open={open}
-        key={"left"}
-        size={256}
-        
-      >
-        <p>Drag the edge to resize the drawer</p>
-        <p>Current size: {256}px</p>
-      </Drawer>
+      
 
-      <div className='sidebar' style={{display: open ? "none" : false}}>
+      <div className='sidebar'>
             <div className='div-inputs' >
 
               {sidebarLinksMap}
@@ -81,13 +65,7 @@ function SideBar () {
             </div>
       </div>
 
-      <Space style={{ marginBottom: 16 }}>
-        
-        <Button type="primary" style={{width:"100px"}} onClick={ () => setOpen(true) }>
-          Open Drawer
-        </Button>
-
-      </Space>
+    
     </>
   );
 };

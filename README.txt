@@ -185,9 +185,9 @@ store
 ### Phase 2
 
 * Build Login Layout and auth                                                          ✅
-* Build Dashboard Layout
-* Create Sidebar
+* Create Sidebar                                                                       ✅
 * Create Navbar
+* Build Dashboard Layout
 
 ### Phase 3
 
