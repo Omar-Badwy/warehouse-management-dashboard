@@ -186,12 +186,20 @@ store
 
 * Build Login Layout and auth                                                          ✅
 * Create Sidebar                                                                       ✅
-* Create Navbar
-* Build Dashboard Layout
+* Create Navbar                                                                        ✅
+* Build Dashboard Layout                                                               ✅
 
 ### Phase 3
 
 * Build Products Module
+    │
+    ├── Product Design 
+    |     |
+    |     ├── Product Card
+    |     ├── add Product and modal
+    |     ├── Table 
+    └── Products CRUD Operations
+    
 * Implement CRUD Operations
 * Search and Filter Functionality
 

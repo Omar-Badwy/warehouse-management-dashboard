@@ -1,0 +1,127 @@
+.dashboard {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    gap: 20px;
+}
+
+.dashContent{
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 20px;
+}
+
+.card , .recentOrders , .topClients {
+    box-shadow: 0px 0px 2px 0px black;
+    border-radius: 20px;
+}
+
+/* ! Cards */
+
+.card {
+    display: flex;
+    padding: 15px;
+    align-items: center;
+    justify-content: space-around;
+    width: 25%;
+    height: 125px;
+    font-size: 33px;
+    font-weight: 600;
+    flex: 1 1 250px;
+}
+
+/* ! Recent Orders */
+
+.recentOrders , .topClients{
+    border-radius: 20px;
+    /* background-color: red; */
+    padding: 20px;
+}
+
+ .recentOrders div , 
+ .topClients div {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+ }
+
+.recentOrders div span , 
+.topClients div span {
+    color: #005b8c;
+    font-size: 25px;
+    font-weight: 700;
+}
+
+.recentOrders div button , 
+.topClients div button {
+    font-size: 15px;
+    text-transform: capitalize;
+    padding: 10px;
+    width: fit-content;
+}
+
+.recentOrders table , 
+.topClients table {
+    width: 100%;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 400;
+    border-collapse:collapse;
+}
+
+.recentOrders table thead , 
+.topClients table thead {
+    font-size: 20px;
+    font-weight: 600;
+    background: #F8FAFC;
+}
+
+.recentOrders table thead th, 
+.topClients table thead th {
+    color: #64748B;
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.recentOrders table tbody tr td , 
+.topClients table tbody tr td {
+    border-bottom: 1px solid #E5E7EB;
+    padding: 18px;
+    color: #374151;
+}
+
+.recentOrders table tbody tr:nth-child(even) , 
+.topClients table tbody tr:nth-child(even){
+    background:#FAFAFA;
+}
+
+/* ! Top Clients */
+
+.topClients {
+    /* background-color: blue; */
+}
+
+/* ! Responsive Design */
+
+
+@media screen and (max-width: 930px) {
+    .dashContent{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+        grid-template-areas: 
+        "orders orders"
+        "clients clients";
+    }
+
+    .recentOrders {
+        grid-area: orders;
+    }
+
+    .topClients {
+        grid-area: clients;
+    }
+}

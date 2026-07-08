@@ -1,0 +1,23 @@
+
+.app {
+  display: grid;
+  grid-template-columns: 70px 1fr 1fr;
+  grid-template-rows: 70px 1fr 1fr;
+  grid-template-areas: 
+  "sidebar navbar navbar"
+  "sidebar main main"
+  "sidebar main main";
+}
+
+.sidebar {
+  grid-area: sidebar;
+}
+
+.navbar {
+  grid-area: navbar;
+}
+
+.main {
+  grid-area: main;
+  padding: 20px;
+}
