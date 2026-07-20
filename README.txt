@@ -191,17 +191,17 @@ store
 
 ### Phase 3
 
-* Build Products Module
+* Build Products Module                                                                ✅
     │
-    ├── Product Design 
+    ├── Product Design                                                                 ✅
     |     |
-    |     ├── Product Card
-    |     ├── add Product and modal
-    |     ├── Table 
-    └── Products CRUD Operations
+    |     ├── Product Card                                                             ✅
+    |     ├── add Product and modal                                                    ✅
+    |     ├── Table                                                                    ✅
+    └── Products CRUD Operations                                                       ✅
     
 * Implement CRUD Operations
-* Search and Filter Functionality
+* Search and Filter Functionality                                                      ✅
 
 ### Phase 4
 

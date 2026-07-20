@@ -1,4 +1,4 @@
-import '../styles/login.css'
+import  styles from '../styles/login.module.css'
 
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
@@ -42,37 +42,37 @@ export default function Login () {
     }
 
     return (
-        <div className='body'>
+        <div className={styles.body}>
 
-            <div className='contanier'>
+            <div className={styles.contanier}>
             
-                <div className='header'>
+                <div className={styles.header}>
                     <h1>login</h1>
-                    <div className='underLine'/>
+                    <div className='styles.underLine'/>
                 </div>
                 
-                <div className='inputs'>
-                    <div className='div-input'>
+                <div className={styles.inputs}>
+                    <div className={styles.divInput}>
                         <i class="fa-solid fa-user"></i>
-                        <input type='text' placeholder='Name' value={name} 
+                        <input type='text' placeholder='Name' value={name} className={styles.inp}
                         onChange={ (e) => setName(e.target.value) }/>
                     </div>
                     
-                    <div className='div-input'>
+                    <div className={styles.divInput}>
                         <i class="fa-solid fa-envelope"></i>
-                        <input type='email' placeholder='Email'value={email} 
+                        <input type='email' placeholder='Email'value={email} className={styles.inp}
                         onChange={ (e) => setEmail(e.target.value) }/>
                     </div>
                     
-                    <div className='div-input'>
+                    <div className={styles.divInput}>
                         <i class="fa-solid fa-lock"></i>
-                        <input type='number' placeholder='Password' value={password} 
+                        <input type='number' placeholder='Password' value={password} className={styles.inp}
                         onChange={ (e) => setPassword(e.target.value) }/>
                     </div>
 
                 </div>
 
-                <button type='submit' onClick={handleLogin}
+                <button type='submit' onClick={handleLogin} className={styles.btn}
                 >login </button>
 
             </div>

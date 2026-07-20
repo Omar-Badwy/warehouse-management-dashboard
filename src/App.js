@@ -1,12 +1,15 @@
-import AppRoutes from './routes/routes';
 import { MantineProvider } from '@mantine/core';
+import AppRoutes from './routes/routes';
+import ModalsProvider from './providers/modalsProvider';
 
 
 function App() {
   return (
-      <MantineProvider>
+    <MantineProvider>
+      <ModalsProvider>
         <AppRoutes/>
-      </MantineProvider>
+      </ModalsProvider>
+    </MantineProvider>
   );
 }
 

@@ -1,0 +1,159 @@
+
+/* ! Recent Orders */
+
+.products {
+    box-shadow: 0px 0px 2px 0px black;
+    border-radius: 20px;
+}
+
+.products {
+    border-radius: 20px;
+    padding: 20px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.tableTitle {
+    /* width: 100%; */
+    color: #005b8c;
+    font-size: 25px;
+    font-weight: 700;
+    text-transform: capitalize;
+}
+
+.add {
+    background: #2563EB;
+    font-size: 15px;
+    text-transform: capitalize;
+    padding: 15px;
+    width: fit-content;
+    color: white;
+
+}
+
+.toolbar {
+   width: 100%;
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   margin: 20px 0;
+   gap: 10px;
+}
+
+.searchSection {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 20px;
+    box-shadow: 0px 0px 2px 0px black;
+    padding: 10px;
+    width: 90%;
+}
+
+.inpSearch {
+    font-size: 19px;
+    color: black;
+    width: 70%;
+
+}
+
+.searchInputs {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.searchInputs button {
+    font-size: 15px;
+    text-transform: lowercase;
+    padding: 10px;
+    width: 50%;
+    box-shadow: 0px 0px 2px 0px black;
+    background: #F3F4F6;
+    color: #374151;
+}
+
+.searchInputs button:hover{
+    background: #E5E7EB;
+}
+
+.searchInputs .active {
+    background: #7C3AED;
+    color: white;
+}
+
+.searchInputs .active:hover{
+    background: #7c3aedc0;
+}
+
+.dltAll{
+    font-size: 15px;
+    text-transform: capitalize;
+    padding: 15px;
+    width: fit-content;
+    background: #DC2626;
+    color: white;
+}
+
+.dltAll:hover {
+    background: #B91C1C;
+}
+
+.table {
+    width: 100%;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 400;
+    border-collapse:collapse;
+}
+
+.table thead {
+    font-size: 20px;
+    font-weight: 600;
+    background: #F8FAFC;
+}
+
+.table thead th {
+    color: #64748B;
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.table tbody tr td {
+    border-bottom: 1px solid #E5E7EB;
+    padding: 18px;
+    color: #374151;
+}
+
+.table tbody tr:nth-child(even) {
+    background:#FAFAFA;
+}
+
+.actions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.dltIcon {
+    background-color: #DC2626;
+    border-radius: 50px;
+    color: black;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.editIcon {
+    background-color: #0062ff;
+    border-radius: 50px;
+    color: black;
+    padding: 10px;
+    cursor: pointer;
+}

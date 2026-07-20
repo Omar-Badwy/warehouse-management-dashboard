@@ -1,0 +1,97 @@
+.container {
+    width: 100%;
+    height: 100%;
+    background-color: #24242439;
+    z-index: 99;
+    position: absolute;
+}
+
+.modal {
+    background-color: #242424;
+    position: absolute;
+    z-index: 100;
+    left: 400px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 20px;
+    width: 500px;
+    gap: 20px;
+    box-shadow: 0 12px 35px #0f172a1f;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 0;
+}
+
+.header span {
+    font-size: 19px;
+    font-weight: 800;
+    /* color: #000dff; */
+    color: white;
+
+}
+
+.header i{
+    transition:.5s;
+    color: white;
+
+}
+
+.header i:hover{
+    transform:rotate(90deg);
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+}
+
+.label {
+    font-size: 20px;
+    font-weight: 600;
+    text-transform: capitalize;
+    color: white;
+}
+
+.error {
+    color:#EF4444;
+    font-size:13px;
+    margin-top:5px;
+}
+
+.input {
+    background-color: #3B3B3B;
+    border-radius: 10px;
+    padding: 7px;
+    color: white;
+    width: 100%;
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    border: 1px solid #8ebffbe1;
+    transition:.2s;
+}
+
+.input input{
+    width: 100%;
+    color: #ffffffad;
+
+}
+
+.btn {
+    text-align: right;
+}
+
+.btn button {
+    background: #1864AB;
+    width: fit-content;
+    padding: 10px;
+    font-size: 18px;
+}

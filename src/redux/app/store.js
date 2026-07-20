@@ -7,10 +7,10 @@ import authReducer from '../features/slices/authSlise'
 
 export const store = configureStore({
   reducer: {
+    auth: authReducer,
     products: productsReducer,
     categories: categoriesReducer,
     orders: ordersReducer,
-    auth: authReducer,
   },
 
 })

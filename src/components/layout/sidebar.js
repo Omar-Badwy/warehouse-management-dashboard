@@ -12,12 +12,12 @@ function SideBar () {
 
     // ? variables
     const sidebarLinks = [
-        { id: 1, title: "Dashboard", path: "/dashboard", icon: <i class="fa-solid fa-house-user"></i> },
-        { id: 2, title: "Products", path: "/products", icon: <i class="fa-solid fa-cubes"></i>},
-        { id: 3, title: "Categories", path: "/categories", icon: <i class="fa-solid fa-table-cells-large"></i>},
-        { id: 4, title: "Customers", path: "/customers", icon: <i class="fa-solid fa-users"></i>},
-        { id: 5, title: "Orders", path: "/orders", icon: <i class="fa-solid fa-cart-flatbed"></i>},
-        { id: 6, title: "Settings", path: "/settings", icon: <i class="fa-solid fa-gear"></i>},
+        { id: 1, title: "Dashboard", path: "/dashboard", icon: <i className="fa-solid fa-house-user"></i> },
+        { id: 2, title: "Products", path: "/products", icon: <i className="fa-solid fa-cubes"></i>},
+        { id: 3, title: "Categories", path: "/categories", icon: <i className="fa-solid fa-table-cells-large"></i>},
+        { id: 4, title: "Customers", path: "/customers", icon: <i className="fa-solid fa-users"></i>},
+        { id: 5, title: "Orders", path: "/orders", icon: <i className="fa-solid fa-cart-flatbed"></i>},
+        { id: 6, title: "Settings", path: "/settings", icon: <i className="fa-solid fa-gear"></i>},
     ];
 
     const sidebarLinksMap = sidebarLinks.map( (item) => {
@@ -50,7 +50,7 @@ function SideBar () {
 
               <div className="div logout" onClick={() => dispatch(logout())}>
                   <div className='div-icon'>
-                      <i class="fa-solid fa-right-from-bracket"></i>
+                      <i className="fa-solid fa-right-from-bracket"></i>
                   </div>
               </div>
                 
