@@ -10,6 +10,7 @@ import Settings from "../pages/settings";
 
 import ProtectedRoute from "./protectedRoute";
 import DashboardLayout from "../dashboardLayout";
+import CategoryProductsPage from "../pages/categoryProductsPage";
 
 function AppRoutes() {
   return (
@@ -46,6 +47,15 @@ function AppRoutes() {
               <ProtectedRoute>
                 <Categories />
               </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="categories/:categoryId"
+            element={
+                <ProtectedRoute>
+                    <CategoryProductsPage />
+                </ProtectedRoute>
             }
           />
 

@@ -10,11 +10,14 @@ const ModalsProvider = ({children}) => {
   const [modalType,setModalType] = useState("")
 
   const [modalData,setModalData] = useState(null)
+  
+  const [modalOption,setModalOption] = useState({})
 
-  function openModal (type,data) {
+  function openModal (type,data,option) {
     setOpened(true)
     setModalType(type)
     setModalData(data)
+    setModalOption(option)
   }
 
   function closeModal () {
@@ -27,6 +30,7 @@ const ModalsProvider = ({children}) => {
       closeModal,
       modalType,
       modalData,
+      modalOption,
       }}>
 
       <Modals/>

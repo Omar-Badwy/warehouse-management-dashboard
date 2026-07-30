@@ -1,12 +1,8 @@
 
 /* ! Recent Orders */
 
-.products {
+.container {
     box-shadow: 0px 0px 2px 0px black;
-    border-radius: 20px;
-}
-
-.products {
     border-radius: 20px;
     padding: 20px;
 }
@@ -18,7 +14,6 @@
 }
 
 .tableTitle {
-    /* width: 100%; */
     color: #005b8c;
     font-size: 25px;
     font-weight: 700;
@@ -142,18 +137,21 @@
     gap: 10px;
 }
 
-.dltIcon {
-    background-color: #DC2626;
+.dltIcon,.editIcon,.viewIcon {
     border-radius: 50px;
     color: black;
     padding: 10px;
     cursor: pointer;
 }
 
+.dltIcon {
+    background-color: #DC2626;
+}
+
 .editIcon {
     background-color: #0062ff;
-    border-radius: 50px;
-    color: black;
-    padding: 10px;
-    cursor: pointer;
+}
+
+.viewIcon {
+    background-color: #0062ff;
 }

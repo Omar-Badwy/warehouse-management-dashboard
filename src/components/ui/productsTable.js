@@ -7,7 +7,9 @@ function ProductsTable () {
 
     // ? Variables
 
-    let products = useSelector( (state) => state.products.products )
+    const products = useSelector( (state) => state.products.products )
+
+    const categories = useSelector( (state) => state.categories.categories )
 
     const { openModal } = useContext(ModalsContext)
 
@@ -15,7 +17,7 @@ function ProductsTable () {
 
     const [searchWay,setSearchWay] = useState("name")
 
-    let filteredProducts
+    let filteredProducts;
     
     if(searchWay === "name") {
 
@@ -25,25 +27,34 @@ function ProductsTable () {
         
 
     }else if(searchWay === "category") {
-
+        
             filteredProducts = search.trim() === "" ? products : products.filter( (product) => {
-            return product.category.includes(search.toLowerCase())
+
+                const category = categories.find( (cat) => {
+                    return product.categoryId === cat.id
+                })
+            return category?.name.toLowerCase().includes(search.toLowerCase())
+            
         })
 
     }
 
-    const rows = filteredProducts.map( (row) => {
+    const rows = filteredProducts.map( (product) => {
+
+        const category = categories.find(
+            (cat) => cat.id === product.categoryId
+        );
 
         return(
-            <tr key={row.id}>
-                <td style={{textAlign:"start"}}>{row.name}</td>
-                <td>{row.category}</td>
-                <td>{row.price}</td>
-                <td>{row.count}</td>
+            <tr key={product.id}>
+                <td style={{textAlign:"start"}}>{product.name}</td>
+                <td>{category.name}</td>
+                <td>{product.price}</td>
+                <td>{product.count}</td>
                 <td>
                     <div className={styles.actions}>
-                        <div className={styles.editIcon} onClick={ () => openModal("edit",row) }> <i class="fa-solid fa-pen"></i> </div>
-                        <div className={styles.dltIcon} onClick={ () => openModal("delete",row) }> <i class="fa-solid fa-trash"></i> </div>
+                        <div className={styles.editIcon} onClick={ () => openModal("editProduct",product) }> <i class="fa-solid fa-pen"></i> </div>
+                        <div className={styles.dltIcon} onClick={ () => openModal("deleteProduct",product) }> <i class="fa-solid fa-trash"></i> </div>
                     </div>
                 </td>
             </tr>
@@ -53,18 +64,18 @@ function ProductsTable () {
 
     return (
         <>
-            <div className={styles.products}>
+            <div className={styles.container}>
 
                 <div className={styles.header}>
                     <span className={styles.tableTitle}>products</span>
-                    <button className={styles.add} onClick={() => openModal("add") }>add product</button>
+                    <button className={styles.add} onClick={() => openModal("addProduct") }>add product</button>
                 </div>
 
                 <div className={styles.toolbar}>
 
                     <div className={styles.searchSection}>
                         <input type='search' placeholder='search' className={styles.inpSearch} 
-                         value={search.value} onChange={(e) => setSearch(e.target.value)}/>
+                         value={search} onChange={(e) => setSearch(e.target.value)}/>
 
                         <div className={styles.searchInputs}>
                             <button className={searchWay === "name" ? styles.active : ""}
@@ -74,16 +85,18 @@ function ProductsTable () {
                             className={searchWay === "category" ? styles.active : ""}>category</button>
                         </div>
                     </div>
-                    <button className={styles.dltAll} onClick={() => openModal("deleteAll")}>delete all</button>
+                    <button className={styles.dltAll} onClick={() => openModal("deleteAllProduct")}>delete all</button>
                 </div>
 
                 <table className={styles.table}>
                     <thead>
-                        <th style={{textAlign:"start",padding:"0 20px"}}>name</th>
-                        <th>Category</th>
-                        <th>Price</th>
-                        <th>Count</th>
-                        <th>actions</th>
+                        <tr>
+                            <th style={{textAlign:"start",padding:"0 20px"}}>name</th>
+                            <th>Category</th>
+                            <th>Price</th>
+                            <th>Count</th>
+                            <th>actions</th>
+                        </tr>
                     </thead>
                     <tbody>
                         {rows}

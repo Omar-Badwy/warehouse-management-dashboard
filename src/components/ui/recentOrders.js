@@ -33,10 +33,12 @@ function RecentOrders() {
 
             <table>
                 <thead>
-                    <th>Client</th>
-                    <th>Products Count</th>
-                    <th>Price</th>
-                    <th>Orders Count</th>
+                    <tr>
+                        <th>Client</th>
+                        <th>Products Count</th>
+                        <th>Price</th>
+                        <th>Orders Count</th>
+                    </tr>
                 </thead>
                 <tbody>
                     {rows}

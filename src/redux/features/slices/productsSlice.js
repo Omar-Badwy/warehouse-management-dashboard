@@ -1,4 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { v4 as uuidv4 } from 'uuid';
+
 
 const initialState = {
     products: JSON.parse(localStorage.getItem("proData")) || []
@@ -12,8 +14,9 @@ export const productSlice  = createSlice({
 
         add: (state,action) => {
 
-            const {name,category,count,price} = action.payload.data
-            state.products.push({id: Date.now(), name: name, category: category, count: count, price: price,})
+            const { name,category,count,price } = action.payload.data
+
+            state.products.push({id: uuidv4(), name: name, categoryId: category, count: count, price: price,})
             localStorage.setItem("proData",JSON.stringify(state.products))
             
         },
@@ -23,9 +26,8 @@ export const productSlice  = createSlice({
 
             for(let product of state.products){
                 if(editProduct.id === product.id){
-                    console.log("the id is correct")
                     product.name = editProduct.name
-                    product.category = editProduct.category
+                    product.categoryId = editProduct.category
                     product.count = editProduct.count
                     product.price = editProduct.price
                 }
@@ -43,10 +45,19 @@ export const productSlice  = createSlice({
         dltAll: (state) => {
             state.products = []
             localStorage.setItem("proData",JSON.stringify(state.products))
-        }
+        },
+
+        dltAllWithCatId: (state,action) => {
+            const categoryId = action.payload
+
+            state.products = state.products
+                .filter( (pro) => pro.categoryId !== categoryId)
+            localStorage.setItem("proData",JSON.stringify(state.products))
+
+        },
     },
 })
 
-export const {add, edit , dlt , dltAll} = productSlice.actions
+export const {add, edit , dlt , dltAll, dltAllWithCatId, } = productSlice.actions
 
 export default productSlice.reducer

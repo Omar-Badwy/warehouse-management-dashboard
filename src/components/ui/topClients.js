@@ -31,9 +31,11 @@ function TopoClients() {
 
             <table>
                 <thead>
-                    <th>ID</th>
-                    <th>Client</th>
-                    <th>Orders Count</th>
+                    <tr>
+                        <th>ID</th>
+                        <th>Client</th>
+                        <th>Orders Count</th>
+                    </tr>
                 </thead>
                 <tbody>
                     {rows}

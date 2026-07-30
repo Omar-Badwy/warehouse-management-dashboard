@@ -1,10 +1,23 @@
+import { useSelector } from 'react-redux'
 import styles from '../../styles/dashboard.module.css'
 
 function Cards() {
 
+    const products = useSelector( (state) => state.products.products )
+    
+    const productsCount = products.reduce( (acc, current) => {
+
+        return acc + Number(current.count)
+    },0 )
+
+    const totalInventoryValue = products.reduce( (acc, current) => {
+
+        return acc + Number(current.count * current.price)
+    },0 )
+
     const card = [
-        {id: 1, title: "Pound", icon: <i style={{color:"white"}} class="fa-solid fa-coins"></i>, count: "$23257", bgColor: "#005b8c", color:"white"},
-        {id: 2, title: "Products", icon: <i style={{color:"gray"}} class="fa-solid fa-cubes"></i>, count: 1346, bgColor: "white", color:"#005b8c"},
+        {id: 1, title: "Pound", icon: <i style={{color:"white"}} class="fa-solid fa-coins"></i>, count: `${totalInventoryValue}$`, bgColor: "#005b8c", color:"white"},
+        {id: 2, title: "Products", icon: <i style={{color:"gray"}} class="fa-solid fa-cubes"></i>, count: productsCount, bgColor: "white", color:"#005b8c"},
         {id: 3, title: "clints", icon: <i style={{color:"gray"}} class="fa-solid fa-users"></i>, count: 112, bgColor: "white", color:"#005b8c"},
         {id: 4, title: "orders", icon: <i style={{color:"gray"}} class="fa-solid fa-cart-flatbed"></i>, count: 24, bgColor: "white", color:"#005b8c",},
     ]

@@ -3,18 +3,45 @@ import styles from '../../styles/modals.module.css'
 import { useContext, useEffect, useState } from 'react';
 import { ModalsContext } from '../../providers/modalsProvider';
 import { useDispatch, useSelector } from 'react-redux';
-import { add, dlt, dltAll, edit } from '../../redux/features/slices/productsSlice';
+import { add, dlt, dltAll, dltAllWithCatId, edit } from '../../redux/features/slices/productsSlice';
+import { addCat, dltCat, editCat } from '../../redux/features/slices/categoriesSlice';
 import InputModal from './inputModal';
+import { validateProduct } from '../../utils/validation/productValidation';
+import { validateCategory } from '../../utils/validation/categoryValidation';
+import { useParams } from 'react-router-dom';
 
 function Modals () {
 
     // ? Variables
 
+    // const { categoryId } = useParams()
+    // console.log(categoryId)
+
     const products = useSelector( (state) => state.products.products)
 
     const dispatch = useDispatch()
 
-    const { opened, closeModal , modalType, modalData } = useContext(ModalsContext)
+    const { opened, closeModal , modalType, modalData, modalOption } = useContext(ModalsContext)
+
+    // ? UseEffect
+
+    useEffect(() => {
+
+        if(modalData){
+            setInputValue(modalData)
+        }
+    },[modalData])
+
+    useEffect(() => {
+        if (modalType === "addProduct" && modalOption?.categoryId) {
+            setInputValue((inputValue) => ({
+                ...inputValue,
+                category: modalOption.categoryId,
+            }));
+        }
+    }, [modalOption, modalType]);
+
+    // ? States
 
     const [inputValue,setInputValue] = useState({
         name: "",
@@ -29,79 +56,32 @@ function Modals () {
         count: "",
         price: "",
     })
+
+    let editConfig;
     
     // ? Functions
-    
-    function validate () {
-        
-        const newErrors = {}
 
-        const name = inputValue.name.trim()
-        const category = inputValue.category
-        const count = inputValue.count
-        const price = inputValue.price
-        
-
-        if(name !== "" ){
-
-            for(let product of products){
-
-                if(name === product.name){
-
-                    newErrors.name = "This product is already added"
-
-                } else if(name.length < 3) {
-
-                    newErrors.name = "Name must be at least 3 characters."
-                }
-            }
-
-        }else{
-            newErrors.name = "Name is required"
-        }
-
-        if(category === ""){
-
-            newErrors.category = "Category is required"
-        }
-
-        if(count === ""){
-
-            newErrors.count = "Count is required"
-
-        }else if( !isNaN(count)) {
-            if(count <=  0){
-                newErrors.count = "Count must be greater than 0."
-            }
-        }
-
-        if(price === ""){
-            
-            newErrors.price = "Price is required"
-
-        }else if( !isNaN(price)) {
-            if(price <=  0){
-                newErrors.price = "Price must be greater than 0."
-            }
-        }
-        
-        setErrors(newErrors)
-        return newErrors;
-    }
+    // # product handle
 
     function handleAddProduct () {
 
-        let validationErrors = validate()
+        let type = "add"
+        let validationErrors = validateProduct(inputValue,setErrors,products,type)
         if(Object.keys(validationErrors).length === 0){
 
-            dispatch(add({data: inputValue,}))
+            dispatch(add({
+                data: inputValue,
+            }))
+
             setInputValue({name: "",category: "",count: "",price: "",})
             closeModal()
         }
     }
 
-    function handleEditProduct () {
-        let validationErrors = validate()
+    function handleEditProduct () { 
+
+        let type = "edit"
+        let validationErrors = validateProduct(inputValue,setErrors,products,type)
         if(Object.keys(validationErrors).length === 0){
 
             dispatch(edit({data: inputValue}))
@@ -112,11 +92,17 @@ function Modals () {
 
     function handleDltProduct () {
         dispatch(dlt({id: modalData.id}))
+
         closeModal()
     }
 
     function handleDltAllProduct () {
         dispatch(dltAll())
+        closeModal()
+    }
+    
+    function handleDltAllProductWidthCatId () {
+        dispatch(dltAllWithCatId(modalData))
         closeModal()
     }
 
@@ -130,100 +116,121 @@ function Modals () {
         setInputValue({...inputValue, [e.target.name] : e.target.value})
     }
 
-    useEffect(() => {
+    // # category handle
 
-        if(modalData){
-            setInputValue(modalData)
+    function handleAddCategory () {
+
+        let validationErrors = validateCategory(inputValue,setErrors)
+        if(Object.keys(validationErrors).length === 0){
+
+            dispatch(addCat({data: inputValue,}))
+            setInputValue({name: "",category: "",count: "",price: "",})
+            closeModal()
         }
-    },[modalData])
+    }
+
+    function handleEditCategory () {
+
+        // setInputValue({...inputValue, category: modalData.id})
+        
+        let validationErrors = validateCategory(inputValue,setErrors)
+        if(Object.keys(validationErrors).length === 0){
+
+            dispatch(editCat({data: inputValue,}))
+            setInputValue({name: "",category: "",count: "",price: "",})
+            closeModal()
+        }
+    }
+
+    function handleDltCategory () {
+        dispatch(dltCat({id: modalData.id}))
+        closeModal()
+    }
+
+
 
     function renderModalContent () {
 
         switch(modalType){
 
-            case "add":
-                 return(
-                    <>
-                    <div className={styles.header}>
-                        <span>Add product</span>
-                        <div onClick={handleCloseMOdal}>
-                            <i style={{color:"white",fontSize:"22px",cursor:"pointer"}} className="fa-solid fa-xmark"></i>
-                        </div>
-                    </div>
+            case "addProduct":
+                editConfig= {
+                    title: "Add product",
+                    content: <InputModal inputValue={inputValue} handleOnChange={handleOnChange} errors={errors} type="productPage"/>,
+                    button: "Add product",
+                    function: handleAddProduct,
+                }
+                break;
 
-                    <div className={styles.content}>
+            case "editProduct":
+                editConfig= {
+                    title: "Edit product",
+                    content: <InputModal inputValue={inputValue} handleOnChange={handleOnChange} errors={errors} type="productPage"/>,
+                    button: "Edit product",
+                    function: handleEditProduct,
+                }
+                break;
 
-                        <InputModal inputValue={inputValue} handleOnChange={handleOnChange} errors={errors}/>
-                    </div>
+            case "deleteProduct":
 
-                    <div className={styles.btn}>
-                        <Button variant="filled" onClick={handleAddProduct}>Add product</Button>
-                    </div>
-                    </>
-            )
+                editConfig= {
+                    title: "Delete product",
+                    content: <p style={{color:"white",fontSize:"20px"}}>Are you sure you want to delete this product?</p>,
+                    button: "Delete product",
+                    function: handleDltProduct,
+                }
+                break;
 
-            case "edit":
-                return (
-                    <>
-                    <div className={styles.header}>
-                        <span>Edit product</span>
-                        <div onClick={handleCloseMOdal}>
-                            <i style={{color:"white",fontSize:"22px",cursor:"pointer"}} className="fa-solid fa-xmark"></i>
-                        </div>
-                    </div>
+            case "deleteAllProduct":
 
-                    <div className={styles.content}>
+                editConfig= {
+                    title: "Delete All",
+                    content: <p style={{color:"white",fontSize:"20px"}}>This action will delete all products. Are you sure you want to delete all products?</p>,
+                    button: "Delete All",
+                    function: handleDltAllProduct,
+                }
+                break;
 
-                        <InputModal inputValue={inputValue} handleOnChange={handleOnChange} errors={errors}/>
-                    </div>
+            case "deleteAllProductWithCatId":
 
-                    <div className={styles.btn}>
-                        <Button variant="filled" onClick={handleEditProduct}>Edit product</Button>
-                    </div>
-                    </>
-                )
+                editConfig= {
+                    title: "Delete All",
+                    content: <p style={{color:"white",fontSize:"20px"}}>This action will delete all products that related with this category. Are you sure you want to delete all products?</p>,
+                    button: "Delete All",
+                    function: handleDltAllProductWidthCatId,
+                }
+                break;
 
-            case "delete":
- 
-                return(
-                    <>
-                    <div className={styles.header} style={{padding: "20px 0 0 0"}}>
-                        <span>Delete product</span>
-                        <div onClick={handleCloseMOdal}>
-                            <i style={{color:"white",fontSize:"22px",cursor:"pointer"}} className="fa-solid fa-xmark"></i>
-                        </div>
-                    </div>
+            case "addCategory":
 
-                    <div className={styles.content}>
-                        <p style={{color:"white",fontSize:"20px"}}>Are you sure you want to delete this product?</p>
-                    </div>
+                editConfig= {
+                    title: "Add Category",
+                    content: <InputModal inputValue={inputValue} handleOnChange={handleOnChange} errors={errors} type="categoryPage"/>,
+                    button: "Add Category",
+                    function: handleAddCategory,
+                }
+                break;
 
-                    <div className={styles.btn}>
-                        <Button variant="filled" onClick={handleDltProduct}>Delete</Button>
-                    </div>
-                    </>
-                )
+            case "editCategory":
 
-            case "deleteAll":
+                editConfig= {
+                    title: "Edit Category",
+                    content: <InputModal inputValue={inputValue} handleOnChange={handleOnChange} errors={errors} type="categoryPage"/>,
+                    button: "Edit Category",
+                    function: handleEditCategory,
+                }
+                break;
 
-            return(
-                <>
-                <div className={styles.header} style={{padding: "20px 0 0 0"}}>
-                    <span>Delete product</span>
-                    <div onClick={handleCloseMOdal}>
-                        <i style={{color:"white",fontSize:"22px",cursor:"pointer"}} className="fa-solid fa-xmark"></i>
-                    </div>
-                </div>
+            case "deleteCategory":
 
-                <div className={styles.content}>
-                    <p style={{color:"white",fontSize:"20px"}}>This action will delete all products. Are you sure you want to delete all products?</p>
-                </div>
-
-                <div className={styles.btn}>
-                    <Button variant="filled" onClick={handleDltAllProduct}>Delete All</Button>
-                </div>
-                </>
-            )
+                editConfig= {
+                    title: "Delete category",
+                    content: <p style={{color:"white",fontSize:"20px"}}>Are you sure you want to delete this category?
+                     This means deleting all products related with this category. </p>,
+                    button: "Delete category",
+                    function: handleDltCategory,
+                }
+                break;
                 
             default:
                 return null;
@@ -239,6 +246,22 @@ function Modals () {
 
                 <div className={styles.modal}>
                     {renderModalContent()}
+                    <div className={styles.header}>
+
+                        <span>{editConfig.title}</span>
+
+                        <div onClick={handleCloseMOdal}>
+                            <i style={{color:"white",fontSize:"22px",cursor:"pointer"}} className="fa-solid fa-xmark"></i>
+                        </div>
+                    </div>
+
+                    <div className={styles.content}>
+                        {editConfig.content}
+                    </div>
+
+                    <div className={styles.btn}>
+                        <Button variant="filled" onClick={editConfig.function}>{editConfig.button}</Button>
+                    </div>
                 </div>
             </div>
         )

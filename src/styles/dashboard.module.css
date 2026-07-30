@@ -56,10 +56,16 @@
 
 .recentOrders div button , 
 .topClients div button {
+    background: linear-gradient(#5b08a9e4,#1d13a6e4);
     font-size: 15px;
     text-transform: capitalize;
     padding: 10px;
     width: fit-content;
+}
+
+.recentOrders div button:hover , 
+.topClients div button:hover {
+    scale: 1.01;
 }
 
 .recentOrders table , 
