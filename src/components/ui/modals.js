@@ -3,19 +3,18 @@ import styles from '../../styles/modals.module.css'
 import { useContext, useEffect, useState } from 'react';
 import { ModalsContext } from '../../providers/modalsProvider';
 import { useDispatch, useSelector } from 'react-redux';
-import { add, dlt, dltAll, dltAllWithCatId, edit } from '../../redux/features/slices/productsSlice';
+import { add, deleteProductsByCategory, dlt, dltAll, dltAllWithCatId, edit } from '../../redux/features/slices/productsSlice';
 import { addCat, dltCat, editCat } from '../../redux/features/slices/categoriesSlice';
 import InputModal from './inputModal';
 import { validateProduct } from '../../utils/validation/productValidation';
 import { validateCategory } from '../../utils/validation/categoryValidation';
-import { useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 function Modals () {
 
     // ? Variables
 
-    // const { categoryId } = useParams()
-    // console.log(categoryId)
+    const navigate = useNavigate()
 
     const products = useSelector( (state) => state.products.products)
 
@@ -27,28 +26,48 @@ function Modals () {
 
     useEffect(() => {
 
-        if(modalData){
-            setInputValue(modalData)
+    switch(modalType){
+
+            case "editProduct":
+                setProductInput(modalData);
+                break;
+
+            case "editCategory" :
+                setCategoryInput(modalData);
+                break;
+
+            case "deleteAllProductWithCatId" :
+                setCategoryInput(modalData);
+                break;
+
+            default: 
+                
         }
-    },[modalData])
+
+    }, [modalData]);
 
     useEffect(() => {
         if (modalType === "addProduct" && modalOption?.categoryId) {
-            setInputValue((inputValue) => ({
-                ...inputValue,
-                category: modalOption.categoryId,
+            setProductInput((productInput) => ({
+                ...productInput,
+                categoryId: modalOption.categoryId,
             }));
         }
     }, [modalOption, modalType]);
 
     // ? States
 
-    const [inputValue,setInputValue] = useState({
+    const [productInput, setProductInput] = useState({
         name: "",
-        category: "",
+        categoryId: "",
         count: "",
         price: "",
     })
+
+    const [categoryInput, setCategoryInput] = useState({
+        id: "",
+        name: "",
+    });
 
     const [errors,setErrors] = useState({
         name: "",
@@ -66,14 +85,14 @@ function Modals () {
     function handleAddProduct () {
 
         let type = "add"
-        let validationErrors = validateProduct(inputValue,setErrors,products,type)
+        let validationErrors = validateProduct(productInput,setErrors,products,type)
         if(Object.keys(validationErrors).length === 0){
 
             dispatch(add({
-                data: inputValue,
+                data: productInput,
             }))
 
-            setInputValue({name: "",category: "",count: "",price: "",})
+            setProductInput({name: "",categoryId: "",count: "",price: "",})
             closeModal()
         }
     }
@@ -81,18 +100,18 @@ function Modals () {
     function handleEditProduct () { 
 
         let type = "edit"
-        let validationErrors = validateProduct(inputValue,setErrors,products,type)
+        let validationErrors = validateProduct(productInput,setErrors,products,type)
         if(Object.keys(validationErrors).length === 0){
 
-            dispatch(edit({data: inputValue}))
-            setInputValue({name: "",category: "",count: "",price: "",})
+            dispatch(edit({data: productInput}))
+            setProductInput({name: "",categoryId: "",count: "",price: "",})
             closeModal()
         }
     }
 
     function handleDltProduct () {
-        dispatch(dlt({id: modalData.id}))
 
+        dispatch(dlt({id: modalData.id}))
         closeModal()
     }
 
@@ -107,43 +126,49 @@ function Modals () {
     }
 
     function handleCloseMOdal () {
-            setInputValue({name: "",category: "",count: "",price: "",})
-            setErrors({name: "",category: "",count: "",price: "",})
-            closeModal()
+        setProductInput({name: "",categoryId: "",count: "",price: "",})
+        setCategoryInput({id: "", name: ""})
+        setErrors({name: "",category: "",count: "",price: "",})
+        closeModal()
     }
 
-    function handleOnChange (e) {
-        setInputValue({...inputValue, [e.target.name] : e.target.value})
+    function productInputOnChange (e) {
+        setProductInput({...productInput, [e.target.name] : e.target.value})
+    }
+
+    function categoryInputOnChange (e) {
+        setCategoryInput({...categoryInput, [e.target.name] : e.target.value})
     }
 
     // # category handle
 
     function handleAddCategory () {
 
-        let validationErrors = validateCategory(inputValue,setErrors)
+        let validationErrors = validateCategory(categoryInput,setErrors)
         if(Object.keys(validationErrors).length === 0){
 
-            dispatch(addCat({data: inputValue,}))
-            setInputValue({name: "",category: "",count: "",price: "",})
+            dispatch(addCat({data: categoryInput,}))
+            setCategoryInput({id: "", name: ""})
             closeModal()
         }
     }
 
     function handleEditCategory () {
 
-        // setInputValue({...inputValue, category: modalData.id})
-        
-        let validationErrors = validateCategory(inputValue,setErrors)
+        let validationErrors = validateCategory(categoryInput,setErrors)
         if(Object.keys(validationErrors).length === 0){
 
-            dispatch(editCat({data: inputValue,}))
-            setInputValue({name: "",category: "",count: "",price: "",})
+            dispatch(editCat({data: categoryInput,}))
+            setCategoryInput({id: "", name: ""})
             closeModal()
         }
     }
 
     function handleDltCategory () {
+
         dispatch(dltCat({id: modalData.id}))
+        dispatch(deleteProductsByCategory({id: modalData.id}))
+        navigate("/categories");
         closeModal()
     }
 
@@ -156,7 +181,7 @@ function Modals () {
             case "addProduct":
                 editConfig= {
                     title: "Add product",
-                    content: <InputModal inputValue={inputValue} handleOnChange={handleOnChange} errors={errors} type="productPage"/>,
+                    content: <InputModal inputValue={productInput} handleOnChange={productInputOnChange} errors={errors} type="productPage"/>,
                     button: "Add product",
                     function: handleAddProduct,
                 }
@@ -165,7 +190,7 @@ function Modals () {
             case "editProduct":
                 editConfig= {
                     title: "Edit product",
-                    content: <InputModal inputValue={inputValue} handleOnChange={handleOnChange} errors={errors} type="productPage"/>,
+                    content: <InputModal inputValue={productInput} handleOnChange={productInputOnChange} errors={errors} type="productPage"/>,
                     button: "Edit product",
                     function: handleEditProduct,
                 }
@@ -205,7 +230,7 @@ function Modals () {
 
                 editConfig= {
                     title: "Add Category",
-                    content: <InputModal inputValue={inputValue} handleOnChange={handleOnChange} errors={errors} type="categoryPage"/>,
+                    content: <InputModal inputValue={categoryInput} handleOnChange={categoryInputOnChange} errors={errors} type="categoryPage"/>,
                     button: "Add Category",
                     function: handleAddCategory,
                 }
@@ -215,7 +240,7 @@ function Modals () {
 
                 editConfig= {
                     title: "Edit Category",
-                    content: <InputModal inputValue={inputValue} handleOnChange={handleOnChange} errors={errors} type="categoryPage"/>,
+                    content: <InputModal inputValue={categoryInput} handleOnChange={categoryInputOnChange} errors={errors} type="categoryPage"/>,
                     button: "Edit Category",
                     function: handleEditCategory,
                 }
@@ -225,8 +250,12 @@ function Modals () {
 
                 editConfig= {
                     title: "Delete category",
-                    content: <p style={{color:"white",fontSize:"20px"}}>Are you sure you want to delete this category?
-                     This means deleting all products related with this category. </p>,
+                    content:
+                    <>
+                        <p style={{color:"#c2c2c2",fontSize:"17px"}}>Are you sure you want to delete this category?</p>
+                        <p style={{color:"#c2c2c2",fontSize:"17px"}}>This action will permanently delete the category and all products inside it.</p>
+                        <p style={{color:"#c2c2c2",fontSize:"17px"}}>This action cannot be undone. </p>
+                    </>,
                     button: "Delete category",
                     function: handleDltCategory,
                 }

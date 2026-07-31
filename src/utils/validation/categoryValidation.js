@@ -1,9 +1,9 @@
 
-export function validateCategory (inputValue,setErrors) {
+export function validateCategory (categoryInput,setErrors) {
     
         const newErrors = {}
 
-        const category = inputValue.category.trim()
+        const category = categoryInput.name.trim()
 
         if(category === ""){
 

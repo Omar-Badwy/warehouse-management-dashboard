@@ -120,7 +120,7 @@ function CategoryProductsPage () {
                 <table className={styles.table}>
                     <thead>
                         <tr>
-                            <th style={{textAlign:"start",padding:"0 20px"}}>name</th>
+                            <th style={{textAlign:"start",padding:"0 20px"}}>product name</th>
                             <th>Price</th>
                             <th>Count</th>
                             <th>total value</th>

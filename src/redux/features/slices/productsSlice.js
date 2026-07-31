@@ -14,22 +14,22 @@ export const productSlice  = createSlice({
 
         add: (state,action) => {
 
-            const { name,category,count,price } = action.payload.data
+            const { name,categoryId,count,price } = action.payload.data
 
-            state.products.push({id: uuidv4(), name: name, categoryId: category, count: count, price: price,})
+            state.products.push({id: uuidv4(), name: name, categoryId: categoryId, count: count, price: price,})
             localStorage.setItem("proData",JSON.stringify(state.products))
             
         },
 
         edit: (state, action) => {
-            const editProduct = action.payload.data
+            const productInput = action.payload.data
 
             for(let product of state.products){
-                if(editProduct.id === product.id){
-                    product.name = editProduct.name
-                    product.categoryId = editProduct.category
-                    product.count = editProduct.count
-                    product.price = editProduct.price
+                if(productInput.id === product.id){
+                    product.name = productInput.name
+                    product.categoryId = productInput.categoryId
+                    product.count = productInput.count
+                    product.price = productInput.price
                 }
             }
             localStorage.setItem("proData",JSON.stringify(state.products))
@@ -55,9 +55,15 @@ export const productSlice  = createSlice({
             localStorage.setItem("proData",JSON.stringify(state.products))
 
         },
+
+        deleteProductsByCategory: (state,action) => {
+            const id = action.payload.id
+            state.products = state.products.filter( (product) => product.categoryId !== id);
+            localStorage.setItem("proData",JSON.stringify(state.products))
+        },
     },
 })
 
-export const {add, edit , dlt , dltAll, dltAllWithCatId, } = productSlice.actions
+export const {add, edit , dlt , dltAll, dltAllWithCatId, deleteProductsByCategory, } = productSlice.actions
 
 export default productSlice.reducer

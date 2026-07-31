@@ -13,25 +13,25 @@ export const categorySlice  = createSlice({
 
          addCat: (state,action) => {
 
-            const {category} = action.payload.data
+            const {name} = action.payload.data
 
             const date = new Date()
             const options = { year: '2-digit', month: '2-digit', day: '2-digit', hour: 'numeric', minute: 'numeric', hour12: true }
 
-            state.categories.push({id: uuidv4(), name: category, created: date.toLocaleTimeString('en-US', options), updated: null,})
+            state.categories.push({id: uuidv4(), name: name, created: date.toLocaleTimeString('en-US', options), updated: null,})
             localStorage.setItem("catData",JSON.stringify(state.categories))
             
         },
 
         editCat: (state, action) => {
-            const editCategory = action.payload.data
+            const categoryInput = action.payload.data
 
             for(let category of state.categories){
-                if(editCategory.id === category.id){
+                if(categoryInput.id === category.id){
                     const date = new Date()
                     const options = { year: '2-digit', month: '2-digit', day: '2-digit', hour: 'numeric', minute: 'numeric', hour12: true }
 
-                    category.name = editCategory.name
+                    category.name = categoryInput.name
                     category.updated = date.toLocaleTimeString('en-US', options)
                 }
             }

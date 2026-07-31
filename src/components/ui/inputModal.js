@@ -25,15 +25,16 @@ function InputModal ({inputValue,handleOnChange,errors,type}) {
 
                     {modalOption?.categoryId ? (
 
-                        <input name='category' className={styles.input} style={{marginLeft:"0",padding:"10px"}}
+                        <input name='categoryId' className={styles.input} style={{marginLeft:"0",padding:"10px"}}
                             value={categories.find(cat => cat.id === modalOption.categoryId)?.name || ""}
                             disabled/>
-                            
+
                     ) : (
 
-                        <select name="category" className={styles.input} style={{padding:"10px"}}
-                         value={inputValue.category} onChange={handleOnChange}>
+                        <select name="categoryId" className={styles.input} style={{padding:"10px"}}
+                         value={inputValue.categoryId} onChange={handleOnChange}>
 
+                            <option key={"select category"} value="select category" selected>{"select category"}</option>
                             {categories.map(cat => <option key={cat.id} value={cat.id}>{cat.name}</option> )}
                         </select>
 
@@ -65,8 +66,8 @@ function InputModal ({inputValue,handleOnChange,errors,type}) {
             renderContent = <Input.Wrapper key={"1"} classNames={{label: styles.label, error: styles.error}} 
             label={"category"} error={errors.category}>
 
-                <Input type={"text"} name={"category"} className={styles.input} placeholder={"your category name"}  
-                value={inputValue.category} onChange={handleOnChange}/>
+                <Input type={"text"} name={"name"} className={styles.input} placeholder={"your category name"}  
+                value={inputValue.name} onChange={handleOnChange}/>
             </Input.Wrapper>
             break;
         default :
