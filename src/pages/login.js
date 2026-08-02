@@ -53,19 +53,19 @@ export default function Login () {
                 
                 <div className={styles.inputs}>
                     <div className={styles.divInput}>
-                        <i class="fa-solid fa-user"></i>
+                        <i className="fa-solid fa-user"></i>
                         <input type='text' placeholder='Name' value={name} className={styles.inp}
                         onChange={ (e) => setName(e.target.value) }/>
                     </div>
                     
                     <div className={styles.divInput}>
-                        <i class="fa-solid fa-envelope"></i>
+                        <i className="fa-solid fa-envelope"></i>
                         <input type='email' placeholder='Email'value={email} className={styles.inp}
                         onChange={ (e) => setEmail(e.target.value) }/>
                     </div>
                     
                     <div className={styles.divInput}>
-                        <i class="fa-solid fa-lock"></i>
+                        <i className="fa-solid fa-lock"></i>
                         <input type='number' placeholder='Password' value={password} className={styles.inp}
                         onChange={ (e) => setPassword(e.target.value) }/>
                     </div>

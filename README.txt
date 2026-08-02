@@ -200,12 +200,12 @@ store
     |     ├── Table                                                                    ✅
     └── Products CRUD Operations                                                       ✅
     
-* Implement CRUD Operations
+* Implement CRUD Operations                                                            ✅
 * Search and Filter Functionality                                                      ✅
 
 ### Phase 4
 
-* Build Categories Module
+* Build Categories Module                                                              ✅
 * Build Customers Module
 
 ### Phase 5

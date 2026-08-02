@@ -45,7 +45,6 @@ function CategoryCards () {
 
     }, [categoriesWithCount]);
 
-
     const cards = [
         {id: 1, title: "Total Categories", icon: <i style={{color:"white"}} className="fa-solid fa-table-cells-large"></i>, value: categoryCount, bgColor: "#005b8c", color:"white"},
         {id: 2, title: "Total Products", icon: <i style={{color:"gray"}} className="fa-solid fa-cubes"></i>, value: productsCount, bgColor: "white", color:"#005b8c"},
@@ -58,7 +57,6 @@ function CategoryCards () {
             style={{
                 backgroundColor:`${card.bgColor}`,
                 color:`${card.color}`,
-                width:"50%"
             }}>
 
                 <div style={{display:"flex",flexDirection:"column",justifyContent:"center"}}>
@@ -74,21 +72,14 @@ function CategoryCards () {
     
 
     return(
-        <div style={{
-            width:"100%",
-            display:"flex",
-            alignItems:"center",
-            justifyContent:"start",
-            gap:"15px",
-            flexWrap:"wrap"
-        }}>
+        <div className={styles.cards}>
             {CardElements}
 
             <div className={styles.card}
             style={{
                 backgroundColor:`white`,
                 color:`#005b8c`,
-                width:"50%"
+                width: "calc(200% + 20px)"
             }}>
 
                 <div style={{display:"flex",flexDirection:"column",justifyContent:"center"}}>

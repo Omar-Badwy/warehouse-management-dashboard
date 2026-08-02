@@ -5,6 +5,7 @@ import style from '../styles/dashboard.module.css'
 import { useParams } from "react-router-dom";
 import { useContext, useState } from 'react';
 import { ModalsContext } from '../providers/modalsProvider'
+import { formatNumber } from '../utils/formatNumber';
 
 function CategoryProductsPage () {
 
@@ -31,6 +32,11 @@ function CategoryProductsPage () {
     const totalPrice = CategoryProducts
         .reduce((total, product) => (Number(product.price) * Number(product.count)) + total, 0);
     
+    const MostExpensiveProduct = CategoryProducts
+        .reduce( (most,current) => {
+            return current.price > most.price ? current : most
+        } )
+
     let filteredProducts;
 
     filteredProducts = search.trim() === "" ? CategoryProducts : CategoryProducts.filter( (product) => {
@@ -42,23 +48,23 @@ function CategoryProductsPage () {
         return(
             <tr key={product.id}>
                 <td style={{textAlign:"start"}}>{product.name}</td>
-                <td>{product.price}</td>
+                <td>{ formatNumber(product.price) }</td>
                 <td>{product.count}</td>
-                <td>{(Number(product.price) * Number(product.count))}</td>
+                <td>{((Number(product.price) * Number(product.count))).toLocaleString()}</td>
                 <td>
                     <div className={styles.actions}>
-                        <div className={styles.editIcon} onClick={ () => openModal("editProduct",product) }> <i class="fa-solid fa-pen"></i> </div>
-                        <div className={styles.dltIcon} onClick={ () => openModal("deleteProduct",product) }> <i class="fa-solid fa-trash"></i> </div>
+                        <div className={styles.editIcon} onClick={ () => openModal("editProduct",product) }> <i className="fa-solid fa-pen"></i> </div>
+                        <div className={styles.dltIcon} onClick={ () => openModal("deleteProduct",product) }> <i className="fa-solid fa-trash"></i> </div>
                     </div>
                 </td>
             </tr>
             )
-        } )
-    
+        } )    
 
     const cards = [
-        {id: 1, title: "Total Value", icon: <i style={{color:"white"}} className="fa-solid fa-dollar"></i>, value: totalPrice, bgColor: "#005b8c", color:"white"},
+        {id: 1, title: "Total Value", icon: <i style={{color:"white"}} className="fa-solid fa-dollar"></i>, value: totalPrice.toLocaleString(), bgColor: "#005b8c", color:"white"},
         {id: 2, title: "Total Products", icon: <i style={{color:"gray"}} className="fa-solid fa-cubes"></i>, value: productsCount, bgColor: "white", color:"#005b8c"},
+        {id: 3, title: "most expensive product", icon: <i style={{color:"gray"}} className="fa-solid fa-cubes"></i>, value: MostExpensiveProduct.price, bgColor: "white", color:"#005b8c"},
     ]
 
     const CardElements = cards.map( (card) => {
@@ -68,7 +74,6 @@ function CategoryProductsPage () {
             style={{
                 backgroundColor:`${card.bgColor}`,
                 color:`${card.color}`,
-                width:"50%"
             }}>
 
                 <div style={{display:"flex",flexDirection:"column",justifyContent:"center"}}>
@@ -89,15 +94,7 @@ function CategoryProductsPage () {
                 <span style={{fontSize:"15px",color:"#3d4143db"}}>{productsCount} products</span>
             </div>
 
-            <div style={{
-                width:"100%",
-                display:"flex",
-                alignItems:"center",
-                justifyContent:"start",
-                gap:"15px",
-                flexWrap:"wrap",
-                marginBottom:"40px"
-            }}>
+            <div className={style.cards} style={{marginBottom:"50px"}}>
                 {CardElements}
             </div>
 

@@ -22,10 +22,10 @@ export default function Navbar () {
 
                 <div className="icons">
                     <Link to={"/settings"}>
-                        <i style={{color:"black", fontSize:"20px"}} class="fa-solid fa-gear"></i>
+                        <i style={{color:"black", fontSize:"20px"}} className="fa-solid fa-gear"></i>
                     </Link>
 
-                    <i style={{color:"black", fontSize:"20px"}} class="fa-solid fa-moon"></i>
+                    <i style={{color:"black", fontSize:"20px"}} className="fa-solid fa-moon"></i>
                 </div>
             </div>
 

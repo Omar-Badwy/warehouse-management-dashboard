@@ -1,5 +1,5 @@
 import { createContext, useState } from 'react';
-import Modals from '../components/ui/modals';
+import Modals from '../components/modals/mainModal';
 
 export const ModalsContext = createContext()
 
@@ -23,6 +23,26 @@ const ModalsProvider = ({children}) => {
   function closeModal () {
     setOpened(false)
   }
+
+  const [productInput, setProductInput] = useState({
+        name: "",
+        categoryId: "",
+        count: "",
+        price: "",
+    })
+
+    const [categoryInput, setCategoryInput] = useState({
+        id: "",
+        name: "",
+    });
+
+    const [errors,setErrors] = useState({
+        name: "",
+        category: "",
+        count: "",
+        price: "",
+    })
+
   return (
     <ModalsContext.Provider value={{
       opened,
@@ -31,6 +51,12 @@ const ModalsProvider = ({children}) => {
       modalType,
       modalData,
       modalOption,
+      productInput,
+      setProductInput,
+      categoryInput,
+      setCategoryInput,
+      errors,
+      setErrors,
       }}>
 
       <Modals/>

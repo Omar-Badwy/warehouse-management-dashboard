@@ -18,16 +18,20 @@
 
 /* ! Cards */
 
+.cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
 .card {
     display: flex;
-    padding: 15px;
     align-items: center;
     justify-content: space-around;
-    width: 25%;
     height: 125px;
+    padding: 20px;
     font-size: 33px;
     font-weight: 600;
-    flex: 1 1 250px;
 }
 
 /* ! Recent Orders */
@@ -127,4 +131,12 @@
     .topClients {
         grid-area: clients;
     }
+}
+
+@media (max-width: 768px){
+
+    .cards{
+        grid-template-columns: 1fr;
+    }
+
 }

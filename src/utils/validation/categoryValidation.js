@@ -1,15 +1,42 @@
 
-export function validateCategory (categoryInput,setErrors) {
+export function validateCategory (categoryInput,categories,setErrors,type) {
     
-        const newErrors = {}
+    const newErrors = {}
 
-        const category = categoryInput.name.trim()
+    const category = categoryInput.name.trim()
 
-        if(category === ""){
+    if(type === "add"){
 
-            newErrors.category = "Category is required"
+            if(category !== ""){
+    
+                for(let cat of categories){
+    
+                    if(category === cat.name){
+    
+                        newErrors.category = "This category is already added"
+    
+                    } else if(category.length <= 1) {
+    
+                        newErrors.category = "Name must be at least two character."
+                    }
+                }
+    
+            }else{
+                newErrors.category = "Category is required"
+            }
+        }
+        else {
+            if(category !== ""){
+    
+                    if(category.length <= 1) {
+                        newErrors.category = "Category must be at least two character."
+                    }
+    
+            }else{
+                newErrors.category = "Category is required"
+            }
         }
 
-        setErrors(newErrors)
-        return newErrors;
-    }
+    setErrors(newErrors)
+    return newErrors;
+}

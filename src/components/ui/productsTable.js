@@ -2,6 +2,7 @@ import styles from '../../styles/products.module.css'
 import { useSelector } from 'react-redux'
 import { useContext, useState } from 'react'
 import { ModalsContext } from '../../providers/modalsProvider'
+import { formatNumber } from '../../utils/formatNumber'
 
 function ProductsTable () {
 
@@ -49,12 +50,12 @@ function ProductsTable () {
             <tr key={product.id}>
                 <td style={{textAlign:"start"}}>{product.name}</td>
                 <td>{category.name}</td>
-                <td>{product.price}</td>
+                <td>{ formatNumber(product.price) }</td>
                 <td>{product.count}</td>
                 <td>
                     <div className={styles.actions}>
-                        <div className={styles.editIcon} onClick={ () => openModal("editProduct",product) }> <i class="fa-solid fa-pen"></i> </div>
-                        <div className={styles.dltIcon} onClick={ () => openModal("deleteProduct",product) }> <i class="fa-solid fa-trash"></i> </div>
+                        <div className={styles.editIcon} onClick={ () => openModal("editProduct",product) }> <i className="fa-solid fa-pen"></i> </div>
+                        <div className={styles.dltIcon} onClick={ () => openModal("deleteProduct",product) }> <i className="fa-solid fa-trash"></i> </div>
                     </div>
                 </td>
             </tr>

@@ -1,14 +1,8 @@
 
 
 export function validateProduct (productInput,setErrors,products,type) {
-
         
         const newErrors = {}
-
-        // const name = productInput.name.trim()
-        // const category = productInput.category
-        // const count = productInput.count
-        // const price = productInput.price
 
         const { name, categoryId, count, price} = productInput
         
@@ -43,8 +37,9 @@ export function validateProduct (productInput,setErrors,products,type) {
                 newErrors.name = "Name is required"
             }
         }
+        
 
-        if(categoryId === "select category"){
+        if(categoryId === "select category" || categoryId === ""){
 
             newErrors.category = "Category is required"
         }

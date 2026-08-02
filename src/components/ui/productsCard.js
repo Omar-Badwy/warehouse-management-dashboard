@@ -1,5 +1,6 @@
 import { useSelector } from 'react-redux'
 import styles from '../../styles/dashboard.module.css'
+import { formatNumber } from '../../utils/formatNumber'
 
 
 function ProductsCard () {
@@ -20,7 +21,7 @@ function ProductsCard () {
 
     const cards = [
         {id: 2, title: "Products", icon: <i style={{color:"white"}} className="fa-solid fa-cubes"></i>, value: productsCount, bgColor: "#005b8c", color:"white"},
-        {id: 1, title: "Pound", icon: <i style={{color:"gray"}} className="fa-solid fa-coins"></i>, value: `${totalInventoryValue}$`, bgColor: "white", color:"#005b8c"},
+        {id: 1, title: "Pound", icon: <i style={{color:"gray"}} className="fa-solid fa-dollar"></i>, value: formatNumber(totalInventoryValue) , bgColor: "white", color:"#005b8c"},
     ]
 
     const CardElements = cards.map( (card) => {
@@ -30,7 +31,6 @@ function ProductsCard () {
             style={{
                 backgroundColor:`${card.bgColor}`,
                 color:`${card.color}`,
-                width:"50%"
             }}>
 
                 <div style={{display:"flex",flexDirection:"column",justifyContent:"center"}}>
@@ -46,14 +46,7 @@ function ProductsCard () {
     
 
     return(
-        <div style={{
-            width:"100%",
-            display:"flex",
-            alignItems:"center",
-            justifyContent:"start",
-            gap:"15px",
-            flexWrap:"wrap"
-        }}>
+        <div className={styles.cards}>
             {CardElements}
         </div>
     )
