@@ -1,4 +1,5 @@
 import styles from '../../styles/dashboard.module.css'
+import Table from '../table/table';
 
 function RecentOrders() {
 
@@ -14,7 +15,7 @@ function RecentOrders() {
 
         return(
             <tr key={row.clint}>
-                <td>{row.clint}</td>
+                <td style={{textAlign:"start"}}>{row.clint}</td>
                 <td>{row.products}</td>
                 <td>{row.price}</td>
                 <td>{row.orders}</td>
@@ -31,19 +32,13 @@ function RecentOrders() {
                 <button>view all</button>
             </div>
 
-            <table>
-                <thead>
-                    <tr>
-                        <th>Client</th>
-                        <th>Products Count</th>
-                        <th>Price</th>
-                        <th>Orders Count</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {rows}
-                </tbody>
-            </table>
+            <Table columns={[
+                {name: "Client"},
+                {name: "Products Count"},
+                {name: "Price"},
+                {name: "Orders Count"},
+                ]} rows={rows}/>
+
 
         </div>
     );

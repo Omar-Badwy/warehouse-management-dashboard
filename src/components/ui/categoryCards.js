@@ -1,7 +1,6 @@
 import { useSelector } from 'react-redux'
 import styles from '../../styles/dashboard.module.css'
-import { useMemo } from 'react'
-
+import useLargesCategory from '../../hooks/useLargestCategory'
 
 function CategoryCards () {
 
@@ -10,40 +9,12 @@ function CategoryCards () {
     const categories = useSelector( (state) => state.categories.categories )
 
     const productsCount = products.reduce( (acc, current) => {
-
         return acc + Number(current.count)
     },0 )
 
     const categoryCount = categories.length
 
-    const categoriesWithCount = useMemo(() => {
-
-        return categories.map((category) => {
-
-                const productsCount = products
-                    .filter((product) => product.categoryId === category.id)
-                    .reduce((total, product) => total + Number(product.count), 0);
-
-                return {
-                    ...category,
-                    productsCount,
-                };
-            });
-
-    }, [categories, products]);
-
-
-    const largestCategory = useMemo(() => {
-
-        if (categoriesWithCount.length === 0) return null;
-
-        return categoriesWithCount.reduce((largest, current) => {
-
-        return current.productsCount > largest.productsCount ? current : largest;
-
-        });
-
-    }, [categoriesWithCount]);
+    const largestCategory = useLargesCategory(products)
 
     const cards = [
         {id: 1, title: "Total Categories", icon: <i style={{color:"white"}} className="fa-solid fa-table-cells-large"></i>, value: categoryCount, bgColor: "#005b8c", color:"white"},

@@ -3,9 +3,12 @@ import styles from '../styles/products.module.css'
 import style from '../styles/dashboard.module.css'
 
 import { useParams } from "react-router-dom";
-import { useContext, useState } from 'react';
+import { useContext, useMemo, useState } from 'react';
 import { ModalsContext } from '../providers/modalsProvider'
 import { formatNumber } from '../utils/formatNumber';
+import useFilter from '../hooks/useFilter';
+import useSort from '../hooks/useSort';
+import SearchInput from '../components/ui/searchInput';
 
 function CategoryProductsPage () {
 
@@ -19,8 +22,16 @@ function CategoryProductsPage () {
     
     const { openModal } = useContext(ModalsContext)
     
+    // # search / sort / filter states
+
     const [search,setSearch] = useState("")
 
+    const [filterBy,setFilterBy] = useState("name")
+
+    const [sortBy,setSortBy] = useState("Name (A-Z)")
+
+    // # cards
+    
     const category = categories.find( (cat) => categoryId === cat.id );
 
     const CategoryProducts = products
@@ -32,18 +43,48 @@ function CategoryProductsPage () {
     const totalPrice = CategoryProducts
         .reduce((total, product) => (Number(product.price) * Number(product.count)) + total, 0);
     
-    const MostExpensiveProduct = CategoryProducts
-        .reduce( (most,current) => {
-            return current.price > most.price ? current : most
-        } )
+    // const MostExpensiveProduct = CategoryProducts
+    //     .reduce( (most,current) => {
+    //         return current.price > most.price ? current : most
+    //     } )
 
-    let filteredProducts;
+    const displayedProducts =
 
-    filteredProducts = search.trim() === "" ? CategoryProducts : CategoryProducts.filter( (product) => {
-        return product.name.toLowerCase().includes(search.toLowerCase())
-        })
+    useMemo( () => {
+            let result = [...CategoryProducts]
     
-    const rows = filteredProducts.map( (product) => {
+            // # filter
+    
+            switch(filterBy) {
+                case "name":
+                     result = search.trim() === "" ? result : result.filter( (product) => {
+                        return product.name.toLowerCase().includes(search.toLowerCase())
+                    })
+                    break
+    
+                case "category":
+    
+                     result = search.trim() === "" ? result : result.filter( (product) => {
+    
+                        const category = categories.find( (cat) => {
+                            return product.categoryId === cat.id
+                        })
+                        return category?.name.toLowerCase().includes(search.toLowerCase())
+    
+                    })
+                    break
+    
+                default: 
+                    break
+            }
+            
+            return result
+        }, [search,categories,CategoryProducts,filterBy])
+        
+        const filteredProducts = useFilter(displayedProducts, filterBy);
+        const sortedProducts = useSort(filteredProducts, sortBy);
+    
+    const rows = sortedProducts.map( (product) => {
         
         return(
             <tr key={product.id}>
@@ -64,7 +105,7 @@ function CategoryProductsPage () {
     const cards = [
         {id: 1, title: "Total Value", icon: <i style={{color:"white"}} className="fa-solid fa-dollar"></i>, value: totalPrice.toLocaleString(), bgColor: "#005b8c", color:"white"},
         {id: 2, title: "Total Products", icon: <i style={{color:"gray"}} className="fa-solid fa-cubes"></i>, value: productsCount, bgColor: "white", color:"#005b8c"},
-        {id: 3, title: "most expensive product", icon: <i style={{color:"gray"}} className="fa-solid fa-cubes"></i>, value: MostExpensiveProduct.price, bgColor: "white", color:"#005b8c"},
+        // {id: 3, title: "most expensive product", icon: <i style={{color:"gray"}} className="fa-solid fa-cubes"></i>, value: MostExpensiveProduct.price, bgColor: "white", color:"#005b8c"},
     ]
 
     const CardElements = cards.map( (card) => {
@@ -107,10 +148,16 @@ function CategoryProductsPage () {
 
                 <div className={styles.toolbar}>
 
-                    <div className={styles.searchSection}>
-                        <input type='search' placeholder='search' className={styles.inpSearch} 
-                         value={search} onChange={(e) => setSearch(e.target.value)}/>
-                    </div>
+                    <SearchInput
+                        search={search}
+                        setSearch={setSearch}
+                        setFilter={setFilterBy}
+                        setSort={setSortBy}
+                        filterBy={filterBy}
+                        sortBy={sortBy}
+                        type="twoInputs"
+                    />
+
                     <button className={styles.dltAll} onClick={() => openModal("deleteAllProductWithCatId",categoryId,null)}>delete all</button>
                 </div>
 

@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import TextInput from "../inputs/textInput";
 import { ModalsContext } from "../../providers/modalsProvider";
-import SelectInput from "../inputs/selectIput";
+import SelectInput from "../inputs/selectIputModal";
 
 
 function ProductForm () {

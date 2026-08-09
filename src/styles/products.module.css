@@ -53,7 +53,6 @@
     font-size: 19px;
     color: black;
     width: 70%;
-
 }
 
 .searchInputs {
@@ -84,6 +83,16 @@
 
 .searchInputs .active:hover{
     background: #7c3aedc0;
+}
+
+.select {
+    background-color: #F3F4F6;
+    padding: 10px;
+    outline: none;
+    border-radius: 10px;
+    max-width: 130px;
+    border: none;
+    box-shadow: 0 0 2px 0px black;
 }
 
 .dltAll{
@@ -118,6 +127,11 @@
     font-size: 14px;
     font-weight: 600;
     text-transform: uppercase;
+}
+
+.table thead th:first-child {
+    text-align: start;
+    padding: 0 20px;
 }
 
 .table tbody tr td {
