@@ -1,6 +1,6 @@
 import styles from '../../styles/products.module.css'
 import { useSelector } from 'react-redux'
-import { useContext, useMemo, useState } from 'react'
+import { useContext, useState } from 'react'
 import { ModalsContext } from '../../providers/modalsProvider'
 import { formatNumber } from '../../utils/formatNumber'
 import Table from '../table/table'
@@ -23,49 +23,15 @@ function ProductsTable () {
 
     const [filterBy,setFilterBy] = useState("name")
 
-    const [sortBy,setSortBy] = useState("Name (A-Z)")
-
-
-    const displayedProducts =
+    const [sortBy,setSortBy] = useState("newest")
     
-    useMemo( () => {
-        let result = [...products]
-
-        // # filter
-
-        switch(filterBy) {
-            case "name":
-                 result = search.trim() === "" ? result : result.filter( (product) => {
-                    return product.name.toLowerCase().includes(search.toLowerCase())
-                })
-                break
-
-            case "category":
-
-                 result = search.trim() === "" ? result : result.filter( (product) => {
-
-                    const category = categories.find( (cat) => {
-                        return product.categoryId === cat.id
-                    })
-                    return category?.name.toLowerCase().includes(search.toLowerCase())
-
-                })
-                break
-
-            default: 
-                break
-        }
-        
-        return result
-    }, [search,categories,products,filterBy])
-    
-    const filteredProducts = useFilter(displayedProducts, filterBy);
+    const filteredProducts = useFilter(products, filterBy,search);
     const sortedProducts = useSort(filteredProducts, sortBy);
 
     let rows;
     let emptyState
 
-    if(displayedProducts.length === 0){
+    if(filteredProducts.length === 0){
         if(products.length > 0){
 
             emptyState = 
@@ -115,7 +81,6 @@ function ProductsTable () {
     return (
         <>
             <div className={styles.container}>
-
                 <div className={styles.header}>
                     <span className={styles.tableTitle}>products</span>
                     <button className={styles.add} onClick={() => openModal("addProduct") }>add product</button>
@@ -130,23 +95,25 @@ function ProductsTable () {
                             setSort={setSortBy}
                             filterBy={filterBy}
                             sortBy={sortBy}
-                            type="twoInputs"
+                            type="twoInputsPro"
                         />
 
                     <button className={styles.dltAll} onClick={() => openModal("deleteAllProduct")}>delete all</button>
                 </div>
-                {emptyState ? emptyState : 
-                    <Table columns={[
-                    {name: "name"},
-                    {name: "Category"},
-                    {name: "Price"},
-                    {name: "Count"},
-                    {name: "actions"},
-                    ]} rows={rows}/>
-                }
+                <div className={styles.tableWrap}>
+                    {emptyState ? emptyState : 
+                        <Table columns={[
+                        {name: "name"},
+                        {name: "Category"},
+                        {name: "Price"},
+                        {name: "Count"},
+                        {name: "actions"},
+                        ]} rows={rows}/>
+                    }
+                </div>
             </div>
         </>
-    );
+    )
 }
 
 export default ProductsTable;

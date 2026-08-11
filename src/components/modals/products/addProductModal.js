@@ -17,7 +17,7 @@ function AddProductModal () {
 
     function handleCloseMOdal () {
         setProductInput({name: "",categoryId: "",count: "",price: "",})
-        setErrors({name: "",category: "",count: "",price: "",})
+        setErrors({name: "",category: "",count: "",price: "",phone: "",email: "",address: "",})
         closeModal()
     }
 

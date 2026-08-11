@@ -2,13 +2,9 @@ import { useContext } from "react";
 import BaseModal from "../baseModal";
 import { ModalsContext } from "../../../providers/modalsProvider";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { deleteProductsByCategory, dlt, dltAll, dltAllWithCatId } from "../../../redux/features/slices/productsSlice";
-import { dltCat } from "../../../redux/features/slices/categoriesSlice";
+import { dlt, dltAll, dltAllWithCatId } from "../../../redux/features/slices/productsSlice";
 
 function DltProductModal ({type}) {
-
-    const navigate = useNavigate()
 
     const dispatch = useDispatch()
 
@@ -16,7 +12,7 @@ function DltProductModal ({type}) {
 
     function handleCloseMOdal () {
         setCategoryInput({id: "", name: ""})
-        setErrors({name: "",category: "",count: "",price: "",})
+        setErrors({name: "",category: "",count: "",price: "",phone: "",email: "",address: "",})
         closeModal()
     }
 

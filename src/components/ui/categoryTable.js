@@ -6,6 +6,8 @@ import { useNavigate } from 'react-router-dom'
 import Table from '../table/table'
 import EmptyState from '../empty/emptyState'
 import SearchInput from './searchInput'
+import useFilter from '../../hooks/useFilter'
+import useSort from '../../hooks/useSort'
 
 function CategoryTable () {
 
@@ -21,10 +23,13 @@ function CategoryTable () {
 
     const [search,setSearch] = useState("")
 
-    const  filteredCategory = search.trim() === "" ? categories : categories.filter( (category) => {
-            return category.name.toLowerCase().includes(search.toLowerCase())
-        })
-        
+    const [filterBy,setFilterBy] = useState("name")
+
+    const [sortBy,setSortBy] = useState("newest")
+
+    const filteredCategory = useFilter(categories, filterBy, search);
+    const sortedCategory = useSort(filteredCategory, sortBy);
+
     let rows;
     let emptyState
 
@@ -53,7 +58,7 @@ function CategoryTable () {
     else{
 
         emptyState = null
-        rows = filteredCategory.map( (cat) => {
+        rows = sortedCategory.map( (cat) => {
     
             const totalProducts = products
             .filter((product) => product.categoryId === cat.id)
@@ -63,8 +68,8 @@ function CategoryTable () {
                 <tr key={cat.id}>
                     <td style={{textAlign:"start"}}>{cat.name}</td>
                     <td>{totalProducts}</td>
-                    <td>{cat.created}</td>
-                    <td>{cat.updated ? cat.updated : "No updated"}</td>
+                    <td>{cat.createdAt}</td>
+                    <td>{cat.updatedAt ? cat.updatedAt : "No updated"}</td>
                     <td>
                         <div className={styles.actions}>
                             <div className={styles.editIcon} onClick={ () => openModal("editCategory",cat,{}) }> <i className="fa-solid fa-pen"></i> </div>
@@ -78,8 +83,6 @@ function CategoryTable () {
         } )
     }
 
-
-console.log(emptyState,rows)
     return (
         <>
             <div className={styles.container}>
@@ -90,18 +93,29 @@ console.log(emptyState,rows)
                 </div>
 
                 <div className={styles.toolbar}>
-                    <SearchInput search={search} setSearch={setSearch} />
+                    <SearchInput
+                        search={search}
+                        setSearch={setSearch}
+                        setFilter={setFilterBy}
+                        setSort={setSortBy}
+                        filterBy={filterBy}
+                        sortBy={sortBy}
+                        type="sort"
+                    />
+
                 </div>
 
-                { emptyState  ? emptyState : 
-                    <Table columns={[
-                        {name: "Category"},
-                        {name: "Products"},
-                        {name: "Created"},
-                        {name: "Updated"},
-                        {name: "actions"},
-                        ]} rows={rows}/>
-                }
+                <div className={styles.tableWrap}>
+                    { emptyState  ? emptyState : 
+                        <Table columns={[
+                            {name: "Category"},
+                            {name: "Products"},
+                            {name: "Created"},
+                            {name: "Updated"},
+                            {name: "actions"},
+                            ]} rows={rows}/>
+                    }
+                </div>
 
             </div>
         </>

@@ -9,36 +9,44 @@ export default function useSort(data, sortBy){
 
         switch(sortBy){
 
-            case "Name (A-Z)":
+            case "name (A-Z)":
                 result.sort((a,b)=>a.name.localeCompare(b.name));
                 break;
 
-            case "Name (Z-A)":
+            case "name (Z-A)":
                 result.sort((a,b)=>b.name.localeCompare(a.name));
                 break;
 
-            case "Highest Price":
+            case "highest price":
                 result.sort((a,b)=>b.price-a.price);
                 break;
 
-            case "Lowest Price":
+            case "lowest price":
                 result.sort((a,b)=>a.price-b.price);
                 break;
 
-            case "Highest Quantity":
+            case "highest quantity":
                 result.sort((a,b)=>b.count-a.count);
                 break;
 
-            case "Lowest Quantity":
+            case "lowest quantity":
                 result.sort((a,b)=>a.count-b.count);
                 break;
 
-            case "Category (A-Z)":
+            case "category (A-Z)":
                 result.sort((a,b)=>a.categoryId.localeCompare(b.categoryId));
                 break;
 
-            case "Category (Z-A)":
+            case "category (Z-A)":
                 result.sort((a,b)=>b.categoryId.localeCompare(a.categoryId));
+                break;
+
+            case "newest": 
+                result.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt) );
+                break;
+
+            case "oldest": 
+                result.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt) );
                 break;
 
             default:

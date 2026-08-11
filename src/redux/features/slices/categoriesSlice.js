@@ -18,7 +18,7 @@ export const categorySlice  = createSlice({
             const date = new Date()
             const options = { year: '2-digit', month: '2-digit', day: '2-digit', hour: 'numeric', minute: 'numeric', hour12: true }
 
-            state.categories.push({id: uuidv4(), name: name, created: date.toLocaleTimeString('en-US', options), updated: null,})
+            state.categories.push({id: uuidv4(), name: name, createdAt: date.toLocaleTimeString('en-US', options), updatedAt: null,})
             localStorage.setItem("catData",JSON.stringify(state.categories))
             
         },
@@ -32,7 +32,7 @@ export const categorySlice  = createSlice({
                     const options = { year: '2-digit', month: '2-digit', day: '2-digit', hour: 'numeric', minute: 'numeric', hour12: true }
 
                     category.name = categoryInput.name
-                    category.updated = date.toLocaleTimeString('en-US', options)
+                    category.updatedAt = date.toLocaleTimeString('en-US', options)
                 }
             }
             localStorage.setItem("catData",JSON.stringify(state.categories))

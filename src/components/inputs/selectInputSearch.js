@@ -5,7 +5,7 @@ export default function SelectInputSearch ({data,value,onChange,children}) {
 
     const dataOptions = data.map( (option) => {
         return(
-            <option key={option.id} value={option.name}>{option.name}</option>
+            <option key={option.id} value={option.name} style={{textTransform:"capitalize"}}>{option.name}</option>
         )
     })
 

@@ -5,22 +5,29 @@ import SelectInputSearch from '../inputs/selectInputSearch'
 
 export default function SearchInput ({search,setSearch,setFilter,setSort,filterBy,sortBy,type}) {
 
-    const filterData = [
+    const filterProData = [
         {id: 1, name: "name"},
         {id: 2, name: "category"},
         {id: 3, name: "low stock"},
         {id: 4, name: "out of stock"},
     ]
 
-    const SortData = [
-        {id: 1, name: "Name (A-Z)"},
-        {id: 2, name: "Name (Z-A)"},
-        {id: 3, name: "Lowest Price"},
-        {id: 4, name: "Highest Price"},
-        {id: 5, name: "Lowest Quantity"},
-        {id: 6, name: "Highest Quantity"},
-        {id: 8, name: "Category (A-Z)"},
-        {id: 9, name: "Category (Z-A)"},
+    const SortProData = [
+        {id: 1, name: "name (A-Z)"},
+        {id: 2, name: "name (Z-A)"},
+        {id: 3, name: "newest"},
+        {id: 4, name: "oldest"},
+        {id: 5, name: "highest price"},
+        {id: 6, name: "lowest price"},
+        {id: 7, name: "highest quantity"},
+        {id: 8, name: "lowest quantity"},
+    ]
+
+    const SortClientData = [
+        {id: 1, name: "name (A-Z)"},
+        {id: 2, name: "name (Z-A)"},
+        {id: 3, name: "newest"},
+        {id: 4, name: "oldest"},
     ]
 
     function handleFilterChange (e) {
@@ -36,20 +43,20 @@ export default function SearchInput ({search,setSearch,setFilter,setSort,filterB
         useMemo( () => {
 
             switch(type) {
-                case "twoInputs":
+                case "twoInputsPro":
                     return <>
-                        <SelectInputSearch data={filterData} value={filterBy} onChange={handleFilterChange} >
+                        <SelectInputSearch data={filterProData} value={filterBy} onChange={handleFilterChange} >
                             <option value="search by">{"search by"}</option>
                         </SelectInputSearch>
 
-                        <SelectInputSearch data={SortData} value={sortBy} onChange={handleSortChange} >
+                        <SelectInputSearch data={SortProData} value={sortBy} onChange={handleSortChange} >
                             <option value="sort by">{"sort by"}</option>
                         </SelectInputSearch>
                     </>
 
                 case "filter":
                     return <>
-                        <SelectInputSearch data={filterData} value={filterBy} onChange={handleFilterChange} >
+                        <SelectInputSearch data={filterProData} value={filterBy} onChange={handleFilterChange} >
                             <option value="search by">{"search by"}</option>
                         </SelectInputSearch>
 
@@ -57,7 +64,7 @@ export default function SearchInput ({search,setSearch,setFilter,setSort,filterB
 
                 case "sort":
                     return <>
-                        <SelectInputSearch data={SortData} value={sortBy} onChange={handleSortChange} >
+                        <SelectInputSearch data={SortClientData} value={sortBy} onChange={handleSortChange} >
                             <option value="sort by">{"sort by"}</option>
                         </SelectInputSearch>
                     </>

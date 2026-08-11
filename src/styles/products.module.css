@@ -1,16 +1,25 @@
 
-/* ! Recent Orders */
+body{
+  margin:0;
+  background:#f5f7fb;
+  font-family:Arial,Helvetica,sans-serif;
+  color:#172033;
+}
 
 .container {
-    box-shadow: 0px 0px 2px 0px black;
-    border-radius: 20px;
-    padding: 20px;
+    background: #fff;
+    border: 1px solid #e6e9ef;
+    border-radius: 16px;
+    padding: 22px;
+    box-shadow: 0 8px 30px rgba(25, 35, 55, 0.06);
+    overflow: hidden;
 }
 
 .header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 16px;
 }
 
 .tableTitle {
@@ -21,151 +30,239 @@
 }
 
 .add {
-    background: #2563EB;
+    background: #2563eb;
     font-size: 15px;
     text-transform: capitalize;
-    padding: 15px;
-    width: fit-content;
-    color: white;
+    padding: 11px 16px;
+    color: #fff;
+    border: 1px solid #2563eb;
+    border-radius: 9px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
 
+.add:hover {
+    background: #1d4ed8;
+    transform: translateY(-1px);
 }
 
 .toolbar {
-   width: 100%;
-   display: flex;
-   justify-content: space-between;
-   align-items: center;
-   margin: 20px 0;
-   gap: 10px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    margin: 22px 0;
+    gap: 12px;
 }
 
 .searchSection {
+    min-width: 0;
+    flex: 1;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    border-radius: 20px;
-    box-shadow: 0px 0px 2px 0px black;
-    padding: 10px;
-    width: 90%;
+    gap: 12px;
+    border-radius: 14px;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+    padding: 8px 10px;
+    transition: 0.2s ease;
+}
+
+.searchSection:focus-within {
+    border-color: #93c5fd;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.08);
 }
 
 .inpSearch {
-    font-size: 19px;
-    color: black;
-    width: 70%;
+    font-size: 16px;
+    color: #111827;
+    width: 100%;
+    border: 0;
+    outline: 0;
+    background: transparent;
+    padding: 8px;
+}
+
+.inpSearch::placeholder {
+    color: #9ca3af;
 }
 
 .searchInputs {
     display: flex;
     align-items: center;
-    justify-content: center;
-    gap: 10px;
-}
-
-.searchInputs button {
-    font-size: 15px;
-    text-transform: lowercase;
-    padding: 10px;
-    width: 50%;
-    box-shadow: 0px 0px 2px 0px black;
-    background: #F3F4F6;
-    color: #374151;
-}
-
-.searchInputs button:hover{
-    background: #E5E7EB;
-}
-
-.searchInputs .active {
-    background: #7C3AED;
-    color: white;
-}
-
-.searchInputs .active:hover{
-    background: #7c3aedc0;
+    gap: 8px;
+    flex-shrink: 0;
 }
 
 .select {
-    background-color: #F3F4F6;
-    padding: 10px;
+    background: #f8fafc;
+    padding: 9px 12px;
     outline: none;
-    border-radius: 10px;
-    max-width: 130px;
-    border: none;
-    box-shadow: 0 0 2px 0px black;
+    border-radius: 9px;
+    border: 1px solid #e5e7eb;
+    color: #374151;
+    cursor: pointer;
+    transition: 0.2s ease;
 }
 
-.dltAll{
+.select:focus {
+    border-color: #93c5fd;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.08);
+}
+
+.dltAll {
+    background: #dc2626;
+    border: 1px solid #dc2626;
+    color: #fff;
+    padding: 11px 15px;
     font-size: 15px;
+    font-weight: 600;
+    border-radius: 9px;
     text-transform: capitalize;
-    padding: 15px;
-    width: fit-content;
-    background: #DC2626;
-    color: white;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: 0.2s ease;
 }
 
 .dltAll:hover {
-    background: #B91C1C;
+    background: #b91c1c;
+    transform: translateY(-1px);
+}
+
+.tableWrap {
+    width: 100%;
+    overflow-x: auto;
+    scrollbar-width: thin;
 }
 
 .table {
     width: 100%;
+    min-width: 760px;
+    min-width: 800px;
     text-align: center;
-    font-size: 18px;
-    font-weight: 400;
-    border-collapse:collapse;
+    font-size: 16px;
+    border-collapse: separate;
+    border-spacing: 0;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    overflow: hidden;
 }
 
 .table thead {
-    font-size: 20px;
-    font-weight: 600;
-    background: #F8FAFC;
+    background: #f8fafc;
 }
 
 .table thead th {
-    color: #64748B;
-    font-size: 14px;
-    font-weight: 600;
+    color: #64748b;
+    font-size: 12px;
+    font-weight: 700;
     text-transform: uppercase;
+    letter-spacing: 0.04em;
+    padding: 15px 14px;
+    border-bottom: 1px solid #e5e7eb;
+    white-space: nowrap;
 }
 
 .table thead th:first-child {
-    text-align: start;
-    padding: 0 20px;
+    text-align: left;
+    padding-left: 20px;
 }
 
-.table tbody tr td {
-    border-bottom: 1px solid #E5E7EB;
-    padding: 18px;
-    color: #374151;
+.table tbody tr {
+    transition: background-color 0.18s ease;
+}
+
+.table tbody tr:hover {
+    background: #f8fafc;
 }
 
 .table tbody tr:nth-child(even) {
-    background:#FAFAFA;
+    background: #fcfcfd;
+}
+
+.table tbody tr:nth-child(even):hover {
+    background: #f8fafc;
+}
+
+.table tbody td {
+    border-bottom: 1px solid #eef0f3;
+    padding: 17px 14px;
+    color: #374151;
+}
+
+.table tbody tr:last-child td {
+    border-bottom: 0;
+}
+
+.table tbody td:first-child {
+    text-align: left;
+    padding-left: 20px;
+    font-weight: 600;
+    color: #273247;
 }
 
 .actions {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 10px;
+    gap: 8px;
 }
 
-.dltIcon,.editIcon,.viewIcon {
-    border-radius: 50px;
-    color: black;
-    padding: 10px;
+.dltIcon,
+.editIcon,
+.viewIcon {
+    border: 0;
+    border-radius: 9px;
+    color: #fff;
+    width: 34px;
+    height: 34px;
+    display: grid;
+    place-items: center;
     cursor: pointer;
+    transition: 0.18s ease;
 }
 
 .dltIcon {
-    background-color: #DC2626;
+    background: #dc2626;
 }
 
-.editIcon {
-    background-color: #0062ff;
+.dltIcon:hover {
+    background: #b91c1c;
+    transform: translateY(-1px);
 }
 
+.editIcon,
 .viewIcon {
-    background-color: #0062ff;
+    background: #0062ff;
+}
+
+.editIcon:hover,
+.viewIcon:hover {
+    background: #0052d6;
+    transform: translateY(-1px);
+}
+
+@media (max-width: 760px) {
+    .toolbar {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .searchSection {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .searchInputs {
+        width: 100%;
+    }
+
+    .searchInputs .select {
+        flex: 1;
+    }
+
+    .dltAll {
+        width: 100%;
+    }
 }

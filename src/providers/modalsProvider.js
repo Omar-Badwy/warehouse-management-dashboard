@@ -36,11 +36,21 @@ const ModalsProvider = ({children}) => {
         name: "",
     });
 
+    const [clientInput, setClientInput] = useState({
+        name: "",
+        phone: "",
+        email: "",
+        address: "",
+    });
+
     const [errors,setErrors] = useState({
         name: "",
         category: "",
         count: "",
         price: "",
+        phone: "",
+        email: "",
+        address: "",
     })
 
   return (
@@ -55,6 +65,8 @@ const ModalsProvider = ({children}) => {
       setProductInput,
       categoryInput,
       setCategoryInput,
+      clientInput,
+      setClientInput,
       errors,
       setErrors,
       }}>

@@ -6,11 +6,14 @@ import EditProductModal from './products/editProductModal';
 import AddCategoryModal from './categories/addCatModal';
 import EditCategoryModal from './categories/editCatModal';
 import DltCategoryModal from './categories/deleteCatModal';
+import AddClientModal from './clients/addClientModal';
+import EditClientModal from './clients/editClientModal';
+import DltClientModal from './clients/dltClientModal';
 
 function Modals () {
 
     const { opened,modalType, modalData, modalOption,
-        setProductInput,setCategoryInput,} = useContext(ModalsContext)
+        setProductInput,setCategoryInput,setClientInput} = useContext(ModalsContext)
 
     useEffect(() => {
 
@@ -25,6 +28,10 @@ function Modals () {
 
             case "deleteAllProductWithCatId" :
                 setCategoryInput(modalData);
+                break;
+
+            case "editClient" :
+                setClientInput(modalData);
                 break;
 
             default:         
@@ -71,6 +78,15 @@ function Modals () {
             case "deleteCategory":
                 return <DltCategoryModal/>
                 
+            case "addClient":
+                return <AddClientModal/>
+
+            case "editClient":
+                return <EditClientModal/>
+
+            case "dltClient":
+                return <DltClientModal/>
+
             default:
                 return null;
         }

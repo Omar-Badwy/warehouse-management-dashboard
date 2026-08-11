@@ -15,7 +15,7 @@ function SideBar () {
         { id: 1, title: "Dashboard", path: "/dashboard", icon: <i className="fa-solid fa-house-user"></i> },
         { id: 2, title: "Products", path: "/products", icon: <i className="fa-solid fa-cubes"></i>},
         { id: 3, title: "Categories", path: "/categories", icon: <i className="fa-solid fa-table-cells-large"></i>},
-        { id: 4, title: "Customers", path: "/customers", icon: <i className="fa-solid fa-users"></i>},
+        { id: 4, title: "Clients", path: "/clients", icon: <i className="fa-solid fa-users"></i>},
         { id: 5, title: "Orders", path: "/orders", icon: <i className="fa-solid fa-cart-flatbed"></i>},
         { id: 6, title: "Settings", path: "/settings", icon: <i className="fa-solid fa-gear"></i>},
     ];
@@ -38,9 +38,6 @@ function SideBar () {
 
   return (
     <>
-      
-
-      
 
       <div className='sidebar'>
             <div className='div-inputs' >

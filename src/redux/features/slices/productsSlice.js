@@ -2,9 +2,9 @@ import { createSlice } from "@reduxjs/toolkit";
 import { v4 as uuidv4 } from 'uuid';
 
 
-const initialState = {
-    products: JSON.parse(localStorage.getItem("proData")) || []
-}
+    const initialState = {
+        products: JSON.parse(localStorage.getItem("proData")) || []
+    }
 
 export const productSlice  = createSlice({
     name:"products",
@@ -16,13 +16,18 @@ export const productSlice  = createSlice({
 
             const { name,categoryId,count,price } = action.payload.data
 
-            state.products.push({id: uuidv4(), name: name, categoryId: categoryId, count: count, price: price,})
+            const date = new Date()
+
+            state.products.push({id: uuidv4(), name: name, categoryId: categoryId, count: count, 
+                price: price, createdAt: date, updatedAt: null,})
             localStorage.setItem("proData",JSON.stringify(state.products))
             
         },
 
         edit: (state, action) => {
             const productInput = action.payload.data
+            
+            const date = new Date()
 
             for(let product of state.products){
                 if(productInput.id === product.id){
@@ -30,6 +35,7 @@ export const productSlice  = createSlice({
                     product.categoryId = productInput.categoryId
                     product.count = productInput.count
                     product.price = productInput.price
+                    product.updatedAt = date
                 }
             }
             localStorage.setItem("proData",JSON.stringify(state.products))

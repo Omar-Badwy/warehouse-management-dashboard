@@ -16,7 +16,7 @@ function EditCategoryModal () {
 
     function handleCloseMOdal () {
         setCategoryInput({id: "", name: ""})
-        setErrors({name: "",category: "",count: "",price: "",})
+        setErrors({name: "",category: "",count: "",price: "",phone: "",email: "",address: "",})
         closeModal()
     }
 

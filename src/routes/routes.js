@@ -4,13 +4,15 @@ import Login from "../pages/login";
 import Dashboard from "../pages/dashboard";
 import Products from "../pages/products";
 import Categories from "../pages/categories";
-import Customers from "../pages/customers";
 import Orders from "../pages/orders";
 import Settings from "../pages/settings";
 
 import ProtectedRoute from "./protectedRoute";
 import DashboardLayout from "../dashboardLayout";
 import CategoryProductsPage from "../pages/categoryProductsPage";
+import Clients from "../pages/clients";
+import ClientPage from "../pages/clientPage";
+import ErrorPage from "../pages/errorPage";
 
 function AppRoutes() {
   return (
@@ -60,11 +62,20 @@ function AppRoutes() {
           />
 
           <Route
-            path="customers"
+            path="clients"
             element={
               <ProtectedRoute>
-                <Customers />
+                <Clients />
               </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="clients/:clientId"
+            element={
+                <ProtectedRoute>
+                    <ClientPage />
+                </ProtectedRoute>
             }
           />
 
@@ -82,6 +93,15 @@ function AppRoutes() {
             element={
               <ProtectedRoute>
                 <Settings />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="error"
+            element={
+              <ProtectedRoute>
+                <ErrorPage />
               </ProtectedRoute>
             }
           />

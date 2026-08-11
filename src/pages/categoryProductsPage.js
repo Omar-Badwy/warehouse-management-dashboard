@@ -2,8 +2,8 @@ import { useSelector } from 'react-redux';
 import styles from '../styles/products.module.css'
 import style from '../styles/dashboard.module.css'
 
-import { useParams } from "react-router-dom";
-import { useContext, useMemo, useState } from 'react';
+import { useNavigate, useParams } from "react-router-dom";
+import { useContext, useEffect, useState } from 'react';
 import { ModalsContext } from '../providers/modalsProvider'
 import { formatNumber } from '../utils/formatNumber';
 import useFilter from '../hooks/useFilter';
@@ -22,20 +22,32 @@ function CategoryProductsPage () {
     
     const { openModal } = useContext(ModalsContext)
     
+    const navigate =  useNavigate()
+
     // # search / sort / filter states
 
     const [search,setSearch] = useState("")
 
     const [filterBy,setFilterBy] = useState("name")
 
-    const [sortBy,setSortBy] = useState("Name (A-Z)")
+    const [sortBy,setSortBy] = useState("newest")
 
     // # cards
+
     
     const category = categories.find( (cat) => categoryId === cat.id );
 
-    const CategoryProducts = products
-        .filter((product) => product.categoryId === category.id)
+    useEffect(() => {
+        if (!category) {
+            navigate("/error?type=categories");
+        }
+    }, [category, navigate]);
+
+    const CategoryProducts = category ? products
+    .filter((product) => product.categoryId === category.id) : []
+
+    const filteredProducts = useFilter(CategoryProducts, filterBy, search);
+    const sortedProducts = useSort(filteredProducts, sortBy);
 
     const productsCount = CategoryProducts
         .reduce((total, product) => total + Number(product.count), 0);
@@ -47,42 +59,6 @@ function CategoryProductsPage () {
     //     .reduce( (most,current) => {
     //         return current.price > most.price ? current : most
     //     } )
-
-    const displayedProducts =
-
-    useMemo( () => {
-            let result = [...CategoryProducts]
-    
-            // # filter
-    
-            switch(filterBy) {
-                case "name":
-                     result = search.trim() === "" ? result : result.filter( (product) => {
-                        return product.name.toLowerCase().includes(search.toLowerCase())
-                    })
-                    break
-    
-                case "category":
-    
-                     result = search.trim() === "" ? result : result.filter( (product) => {
-    
-                        const category = categories.find( (cat) => {
-                            return product.categoryId === cat.id
-                        })
-                        return category?.name.toLowerCase().includes(search.toLowerCase())
-    
-                    })
-                    break
-    
-                default: 
-                    break
-            }
-            
-            return result
-        }, [search,categories,CategoryProducts,filterBy])
-        
-        const filteredProducts = useFilter(displayedProducts, filterBy);
-        const sortedProducts = useSort(filteredProducts, sortBy);
     
     const rows = sortedProducts.map( (product) => {
         
@@ -131,7 +107,7 @@ function CategoryProductsPage () {
     return(
         <>
             <div style={{display:"flex",flexDirection:"column",justifyContent:"center",alignItems:"center",marginBottom:"40px"}}>
-                <span style={{fontSize:"50px",color:"#005B8C",fontWeight:"600"}}>{category.name}</span>
+                <span style={{fontSize:"50px",color:"#005B8C",fontWeight:"600"}}>{category ? category.name : null}</span>
                 <span style={{fontSize:"15px",color:"#3d4143db"}}>{productsCount} products</span>
             </div>
 
@@ -142,7 +118,7 @@ function CategoryProductsPage () {
             <div className={styles.container}>
 
                 <div className={styles.header}>
-                    <span className={styles.tableTitle}>{category.name}</span>
+                    <span className={styles.tableTitle}>{category ? category.name : null}</span>
                     <button className={styles.add} onClick={() => openModal("addProduct",null,{categoryId,}) }>add product</button>
                 </div>
 
@@ -155,7 +131,7 @@ function CategoryProductsPage () {
                         setSort={setSortBy}
                         filterBy={filterBy}
                         sortBy={sortBy}
-                        type="twoInputs"
+                        type="twoInputsPro"
                     />
 
                     <button className={styles.dltAll} onClick={() => openModal("deleteAllProductWithCatId",categoryId,null)}>delete all</button>
