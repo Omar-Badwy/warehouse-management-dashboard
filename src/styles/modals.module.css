@@ -19,6 +19,7 @@
     width: 500px;
     gap: 20px;
     box-shadow: 0 12px 35px #0f172a1f;
+    overflow: hidden;
 }
 
 .header {

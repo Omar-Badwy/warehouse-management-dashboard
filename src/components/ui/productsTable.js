@@ -81,10 +81,6 @@ function ProductsTable () {
     return (
         <>
             <div className={styles.container}>
-                <div className={styles.header}>
-                    <span className={styles.tableTitle}>products</span>
-                    <button className={styles.add} onClick={() => openModal("addProduct") }>add product</button>
-                </div>
 
                 <div className={styles.toolbar}>
 

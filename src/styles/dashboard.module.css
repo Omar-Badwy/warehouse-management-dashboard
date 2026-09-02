@@ -18,6 +18,43 @@
 
 /* ! Cards */
 
+.header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 24px;
+    /* margin-bottom: 26px; */
+}
+
+.eyebrow {
+    margin: 0 0 6px;
+    color: #2563eb;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .12em;
+}
+
+.header h1 {
+    margin: 0;
+    font-size: 32px;
+}
+
+.subtitle {
+    margin: 8px 0 0;
+    color: #64748b;
+    font-size: 14px;
+}
+
+.addButton {
+    border: 0;
+    border-radius: 9px;
+    padding: 12px 17px;
+    background: #2563eb;
+    color: #fff;
+    font-weight: 700;
+    cursor: pointer;
+}
+
 .cards {
     display: grid;
     grid-template-columns: repeat(2, 1fr);

@@ -1,9 +1,13 @@
 import { useSelector } from 'react-redux'
 import styles from '../../styles/dashboard.module.css'
 import useLargesCategory from '../../hooks/useLargestCategory'
+import { useContext } from 'react'
+import { ModalsContext } from '../../providers/modalsProvider'
 
 function CategoryCards () {
 
+    const { openModal } = useContext(ModalsContext)
+    
     const products = useSelector( (state) => state.products.products )
     
     const categories = useSelector( (state) => state.categories.categories )
@@ -43,28 +47,39 @@ function CategoryCards () {
     
 
     return(
-        <div className={styles.cards}>
-            {CardElements}
-
-            <div className={styles.card}
-            style={{
-                backgroundColor:`white`,
-                color:`#005b8c`,
-                width: "calc(200% + 20px)"
-            }}>
-
-                <div style={{display:"flex",flexDirection:"column",justifyContent:"center"}}>
-                    <span style={{fontSize:"25px",marginBottom:"3px"}}>
-                        {largestCategory ? largestCategory.name : "No Categories"} 
-                        ({largestCategory ? largestCategory.productsCount : 0})
-                    </span>
-                    <span style={{fontSize:"15px",color:"gray"}}>Largest Category</span>
+        <>
+            <header className={styles.header}>
+                <div>
+                    <p className={styles.eyebrow}>WAREHOUSE</p>
+                    <h1>Categories</h1>
+                    <p className={styles.subtitle}>Manage and track categories.</p>
                 </div>
+                <button className={styles.addButton} onClick={() => openModal("addCategory") }>+ Add Category</button>
+            </header>
 
-                <span style={{fontSize:"35px"}}><i style={{color:"gray"}} className="fa-solid fa-cubes"></i></span>
+            <div className={styles.cards}>
+                {CardElements}
 
+                <div className={styles.card}
+                style={{
+                    backgroundColor:`white`,
+                    color:`#005b8c`,
+                    width: "calc(200% + 20px)"
+                }}>
+
+                    <div style={{display:"flex",flexDirection:"column",justifyContent:"center"}}>
+                        <span style={{fontSize:"25px",marginBottom:"3px"}}>
+                            {largestCategory ? largestCategory.name : "No Categories"} 
+                            ({largestCategory ? largestCategory.productsCount : 0})
+                        </span>
+                        <span style={{fontSize:"15px",color:"gray"}}>Largest Category</span>
+                    </div>
+
+                    <span style={{fontSize:"35px"}}><i style={{color:"gray"}} className="fa-solid fa-cubes"></i></span>
+
+                </div>
             </div>
-        </div>
+        </>
     )
 }
 

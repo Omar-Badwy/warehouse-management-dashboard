@@ -1,5 +1,3 @@
-
-
 export function validateProduct (productInput,setErrors,products,type) {
         
         const newErrors = {}

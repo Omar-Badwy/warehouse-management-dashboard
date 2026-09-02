@@ -25,6 +25,10 @@ export default function Navbar () {
             return "categories/ category details";
         }
 
+        if (pathname.startsWith("/orders/")) {
+            return "orders/ order details";
+        }
+
         return pageTitles[pathname] || "";
     };
 

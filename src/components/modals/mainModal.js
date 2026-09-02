@@ -9,6 +9,7 @@ import DltCategoryModal from './categories/deleteCatModal';
 import AddClientModal from './clients/addClientModal';
 import EditClientModal from './clients/editClientModal';
 import DltClientModal from './clients/dltClientModal';
+import AddOrderModal from './ordersModal/addOrderModal';
 
 function Modals () {
 
@@ -86,6 +87,15 @@ function Modals () {
 
             case "dltClient":
                 return <DltClientModal/>
+
+            case "addOrder":
+                return <AddOrderModal/>
+
+            // case "editOrder":
+            //     return <EditOrderModal/>
+
+            // case "dltOrder":
+            //     return <DltOrderModal/>
 
             default:
                 return null;

@@ -5,6 +5,8 @@ import { useSelector } from "react-redux";
 export default function useFilter(data, filterBy,search){
 
     const categories = useSelector( (state) => state.categories.categories )
+
+    const clients = useSelector( (state) => state.clients.clients )
     
     const filteredData = useMemo(()=>{
 
@@ -15,6 +17,21 @@ export default function useFilter(data, filterBy,search){
             case "name":
                  result = search.trim() === "" ? result : result.filter( (client) => {
                     return client.name.toLowerCase().includes(search.toLowerCase())
+                })
+                break
+
+            case "client":
+                 result = search.trim() === "" ? result : result.filter( (order) => {
+                    const client = clients.find(
+                        (client) => client.id === order.clientId
+                    )
+                    return client?.name?.toLowerCase().includes(search.toLowerCase())
+                })
+                break
+
+            case "order-id":
+                 result = search.trim() === "" ? result : result.filter( (order) => {
+                    return order?.id?.toLowerCase().includes(search.toLowerCase())
                 })
                 break
 

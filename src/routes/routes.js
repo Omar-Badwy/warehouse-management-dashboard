@@ -13,6 +13,7 @@ import CategoryProductsPage from "../pages/categoryProductsPage";
 import Clients from "../pages/clients";
 import ClientPage from "../pages/clientPage";
 import ErrorPage from "../pages/errorPage";
+import OrderPage from "../pages/orderPage";
 
 function AppRoutes() {
   return (
@@ -84,6 +85,15 @@ function AppRoutes() {
             element={
               <ProtectedRoute>
                 <Orders />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="orders/:orderId"
+            element={
+              <ProtectedRoute>
+                <OrderPage />
               </ProtectedRoute>
             }
           />

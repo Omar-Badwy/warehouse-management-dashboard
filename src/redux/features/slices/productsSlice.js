@@ -41,6 +41,21 @@ export const productSlice  = createSlice({
             localStorage.setItem("proData",JSON.stringify(state.products))
         },
 
+        decreasePro: (state, action) => {
+            
+            for (const orderProduct of action.payload) {
+
+            const product = state.products.find(
+                (product) => product.id === orderProduct.productId
+            )
+
+            if (product) {
+                product.count -= orderProduct.quantity
+            }
+        }
+            // localStorage.setItem("proData",JSON.stringify(state.products))
+        },
+
         dlt: (state, action) => {
             const id = action.payload.id
             state.products = state.products.filter( (product) => product.id !== id);
@@ -70,6 +85,6 @@ export const productSlice  = createSlice({
     },
 })
 
-export const {add, edit , dlt , dltAll, dltAllWithCatId, deleteProductsByCategory, } = productSlice.actions
+export const {add, edit , dlt , dltAll, dltAllWithCatId, deleteProductsByCategory, decreasePro,} = productSlice.actions
 
 export default productSlice.reducer

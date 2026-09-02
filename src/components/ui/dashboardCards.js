@@ -5,22 +5,28 @@ import { formatNumber } from '../../utils/formatNumber'
 function Cards() {
 
     const products = useSelector( (state) => state.products.products )
+
+    const orders = useSelector( (state) => state.orders.orders )
+
+    const clients = useSelector( (state) => state.clients.clients )
     
     const productsCount = products.reduce( (acc, current) => {
-
         return acc + Number(current.count)
     },0 )
 
-    const totalInventoryValue = products.reduce( (acc, current) => {
+    const totalOrders = orders.length
 
+    const totalClients = clients.length
+
+    const totalInventoryValue = products.reduce( (acc, current) => {
         return acc + Number(current.count * current.price)
     },0 )
 
     const card = [
         {id: 1, title: "Inventory Value", icon: <i style={{color:"white"}} className="fa-solid fa-dollar"></i>, count: formatNumber( totalInventoryValue ), bgColor: "#005b8c", color:"white"},
         {id: 2, title: "Total Products", icon: <i style={{color:"gray"}} className="fa-solid fa-cubes"></i>, count: productsCount, bgColor: "white", color:"#005b8c"},
-        {id: 3, title: "Total Clints", icon: <i style={{color:"gray"}} className="fa-solid fa-users"></i>, count: 112, bgColor: "white", color:"#005b8c"},
-        {id: 4, title: "Orders", icon: <i style={{color:"gray"}} className="fa-solid fa-cart-flatbed"></i>, count: 24, bgColor: "white", color:"#005b8c",},
+        {id: 3, title: "Total Clints", icon: <i style={{color:"gray"}} className="fa-solid fa-users"></i>, count: totalClients, bgColor: "white", color:"#005b8c"},
+        {id: 4, title: "Orders", icon: <i style={{color:"gray"}} className="fa-solid fa-cart-flatbed"></i>, count: totalOrders, bgColor: "white", color:"#005b8c",},
     ]
 
     const mapCard = card.map( (card) => {
@@ -44,16 +50,6 @@ function Cards() {
     })
 
     return(
-        // <div style={{
-        //     width:"100%",
-        //     display:"flex",
-        //     alignItems:"center",
-        //     justifyContent:"start",
-        //     gap:"15px",
-        //     flexWrap:"wrap"
-        // }}>
-        //     {mapCard}
-        // </div>
         <div className={styles.cards}>
             {mapCard}
         </div>

@@ -87,11 +87,6 @@ function CategoryTable () {
         <>
             <div className={styles.container}>
 
-                <div className={styles.header}>
-                    <span className={styles.tableTitle}>category</span>
-                    <button className={styles.add} onClick={() => openModal("addCategory") }>add category</button>
-                </div>
-
                 <div className={styles.toolbar}>
                     <SearchInput
                         search={search}

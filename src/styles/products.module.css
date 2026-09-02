@@ -10,7 +10,7 @@ body{
     background: #fff;
     border: 1px solid #e6e9ef;
     border-radius: 16px;
-    padding: 22px;
+    /* padding: 15px; */
     box-shadow: 0 8px 30px rgba(25, 35, 55, 0.06);
     overflow: hidden;
 }
@@ -19,6 +19,7 @@ body{
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin: 15px 15px 0 15px;
     gap: 16px;
 }
 
@@ -48,68 +49,32 @@ body{
 }
 
 .toolbar {
-    width: 100%;
     display: flex;
-    align-items: center;
-    margin: 22px 0;
-    gap: 12px;
+    gap: 10px;
+    padding: 16px;
+    border-bottom: 1px solid #e2e8f0;
 }
 
-.searchSection {
-    min-width: 0;
+.search,
+.select {
+    height: 40px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    background: #fff;
+    outline: none;
+}
+
+.search {
     flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 12px;
-    border-radius: 14px;
-    border: 1px solid #e5e7eb;
-    box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
-    padding: 8px 10px;
-    transition: 0.2s ease;
-}
-
-.searchSection:focus-within {
-    border-color: #93c5fd;
-    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.08);
-}
-
-.inpSearch {
-    font-size: 16px;
-    color: #111827;
-    width: 100%;
-    border: 0;
-    outline: 0;
-    background: transparent;
-    padding: 8px;
-}
-
-.inpSearch::placeholder {
-    color: #9ca3af;
-}
-
-.searchInputs {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    flex-shrink: 0;
+    min-width: 220px;
+    padding: 0 12px;
 }
 
 .select {
-    background: #f8fafc;
-    padding: 9px 12px;
-    outline: none;
-    border-radius: 9px;
-    border: 1px solid #e5e7eb;
-    color: #374151;
-    cursor: pointer;
-    transition: 0.2s ease;
+    min-width: 145px;
+    padding: 0 10px;
 }
 
-.select:focus {
-    border-color: #93c5fd;
-    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.08);
-}
 
 .dltAll {
     background: #dc2626;
@@ -133,19 +98,16 @@ body{
 .tableWrap {
     width: 100%;
     overflow-x: auto;
-    scrollbar-width: thin;
 }
 
 .table {
     width: 100%;
     min-width: 760px;
-    min-width: 800px;
     text-align: center;
     font-size: 16px;
     border-collapse: separate;
     border-spacing: 0;
     border: 1px solid #e5e7eb;
-    border-radius: 12px;
     overflow: hidden;
 }
 
@@ -162,6 +124,7 @@ body{
     padding: 15px 14px;
     border-bottom: 1px solid #e5e7eb;
     white-space: nowrap;
+    text-align: center;
 }
 
 .table thead th:first-child {
@@ -189,6 +152,7 @@ body{
     border-bottom: 1px solid #eef0f3;
     padding: 17px 14px;
     color: #374151;
+    text-align: center;
 }
 
 .table tbody tr:last-child td {
@@ -264,5 +228,20 @@ body{
 
     .dltAll {
         width: 100%;
+    }
+}
+
+@media (max-width: 650px) {
+    .toolbar {
+        flex-wrap: wrap;
+    }
+
+    .search {
+        flex-basis: 100%;
+        margin: 0;
+    }
+
+    .select {
+        flex: 1;
     }
 }

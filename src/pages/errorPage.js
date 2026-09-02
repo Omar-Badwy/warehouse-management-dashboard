@@ -13,6 +13,9 @@ export default function ErrorPage() {
     if(type === "categories"){
         title = "Category"
     }
+    if(type === "orders"){
+        title = "Order"
+    }
 
     return (
         <main className={styles.page}>

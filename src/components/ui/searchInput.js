@@ -23,11 +23,22 @@ export default function SearchInput ({search,setSearch,setFilter,setSort,filterB
         {id: 8, name: "lowest quantity"},
     ]
 
+    
     const SortClientData = [
         {id: 1, name: "name (A-Z)"},
         {id: 2, name: "name (Z-A)"},
         {id: 3, name: "newest"},
         {id: 4, name: "oldest"},
+    ]
+    
+    const SortOrderData = [
+        {id: 1, name: "newest"},
+        {id: 2, name: "oldest"},
+    ]
+
+     const filterOrderData = [
+        {id: 1, name: "client"},
+        {id: 2, name: "order-id"},
     ]
 
     function handleFilterChange (e) {
@@ -50,6 +61,17 @@ export default function SearchInput ({search,setSearch,setFilter,setSort,filterB
                         </SelectInputSearch>
 
                         <SelectInputSearch data={SortProData} value={sortBy} onChange={handleSortChange} >
+                            <option value="sort by">{"sort by"}</option>
+                        </SelectInputSearch>
+                    </>
+
+                case "twoInputsOrd":
+                    return <>
+                        <SelectInputSearch data={filterOrderData} value={filterBy} onChange={handleFilterChange} >
+                            <option value="search by">{"search by"}</option>
+                        </SelectInputSearch>
+
+                        <SelectInputSearch data={SortOrderData} value={sortBy} onChange={handleSortChange} >
                             <option value="sort by">{"sort by"}</option>
                         </SelectInputSearch>
                     </>
@@ -77,15 +99,15 @@ export default function SearchInput ({search,setSearch,setFilter,setSort,filterB
 
     return (
         <>
-            <div className={styles.searchSection}>
-                <input type='search' placeholder='search' className={styles.inpSearch}
+            <>
+                <input type='search' placeholder='search' className={styles.search}
                     value={search} onChange={(e) => setSearch(e.target.value)}/>
 
-                <div className={styles.searchInputs}>
+                {/* <div className={styles.searchInputs}> */}
                     {renderInputs}
-                </div>
+                {/* </div> */}
 
-            </div>
+            </>
         </>
     )
 }

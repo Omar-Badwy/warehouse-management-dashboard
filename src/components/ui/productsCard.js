@@ -1,10 +1,13 @@
 import { useSelector } from 'react-redux'
 import styles from '../../styles/dashboard.module.css'
 import { formatNumber } from '../../utils/formatNumber'
-
+import { useContext } from 'react'
+import { ModalsContext } from '../../providers/modalsProvider'
 
 function ProductsCard () {
 
+    const { openModal } = useContext(ModalsContext)
+    
     const products = useSelector( (state) => state.products.products )
 
     const productsCount = products.reduce( (acc, current) => {
@@ -16,8 +19,6 @@ function ProductsCard () {
 
         return acc + Number(current.count * current.price)
     },0 )
-
-    // console.log(totalInventoryValue)
 
     const cards = [
         {id: 2, title: "Products", icon: <i style={{color:"white"}} className="fa-solid fa-cubes"></i>, value: productsCount, bgColor: "#005b8c", color:"white"},
@@ -46,9 +47,20 @@ function ProductsCard () {
     
 
     return(
-        <div className={styles.cards}>
-            {CardElements}
-        </div>
+        <>
+            <header className={styles.header}>
+                <div>
+                    <p className={styles.eyebrow}>WAREHOUSE</p>
+                    <h1>products</h1>
+                    <p className={styles.subtitle}>Manage and track products.</p>
+                </div>
+                <button className={styles.addButton} onClick={() => openModal("addProduct") }>+ Add Product</button>
+            </header>
+            
+            <div className={styles.cards}>
+                {CardElements}
+            </div>
+        </>
     )
 }
 
