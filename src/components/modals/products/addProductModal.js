@@ -15,12 +15,6 @@ function AddProductModal () {
 
     const dispatch = useDispatch()
 
-    function handleCloseMOdal () {
-        setProductInput({name: "",categoryId: "",count: "",price: "",})
-        setErrors({name: "",category: "",count: "",price: "",phone: "",email: "",address: "",})
-        closeModal()
-    }
-
     function handleAddProduct () {
 
         let type = "add"
@@ -38,7 +32,7 @@ function AddProductModal () {
 
     return(
         <>
-            <BaseModal title="add product" onClose={handleCloseMOdal} onSubmit={handleAddProduct}>
+            <BaseModal title="add new product" onSubmit={handleAddProduct}>
                 <ProductForm/>
             </BaseModal>
         </>

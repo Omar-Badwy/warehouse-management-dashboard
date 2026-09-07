@@ -14,12 +14,6 @@ function EditCategoryModal () {
     const categories = useSelector( (state) => state.categories.categories)
     const dispatch = useDispatch()
 
-    function handleCloseMOdal () {
-        setCategoryInput({id: "", name: ""})
-        setErrors({name: "",category: "",count: "",price: "",phone: "",email: "",address: "",})
-        closeModal()
-    }
-
     function handleEditCategory () {
     
             let validationErrors = validateCategory(categoryInput,categories,setErrors)
@@ -33,7 +27,7 @@ function EditCategoryModal () {
 
     return(
         <>
-            <BaseModal title="edit category" onClose={handleCloseMOdal} onSubmit={handleEditCategory}>
+            <BaseModal title="edit category" onSubmit={handleEditCategory}>
                 <CategoryForm/>
             </BaseModal>
         </>

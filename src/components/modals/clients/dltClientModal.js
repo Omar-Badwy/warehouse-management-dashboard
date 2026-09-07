@@ -8,13 +8,7 @@ function DltClientModal () {
 
     const dispatch = useDispatch()
 
-    const { closeModal , setCategoryInput, setErrors, modalData,} = useContext(ModalsContext)
-
-    function handleCloseMOdal () {
-        setCategoryInput({id: "", name: ""})
-        setErrors({name: "",category: "",count: "",price: "",phone: "",email: "",address: "",})
-        closeModal()
-    }
+    const { closeModal, modalData,} = useContext(ModalsContext)
 
     function handleDltProduct () {
         dispatch(dltClient({id: modalData.id}))
@@ -23,8 +17,8 @@ function DltClientModal () {
 
     return(
         <>
-            <BaseModal title={"Delete client"} buttonText={"Delete client"} onClose={handleCloseMOdal} onSubmit={handleDltProduct}>
-                <p style={{color:"white",fontSize:"20px"}}>Are you sure you want to delete this client?</p>
+            <BaseModal title={"Delete client"} buttonText={"Delete client"} onSubmit={handleDltProduct}>
+                <p style={{color:"black",fontSize:"20px"}}>Are you sure you want to delete this client?</p>
             </BaseModal>
         </>
     )

@@ -13,12 +13,6 @@ function EditClientModal () {
 
     const dispatch = useDispatch()
 
-    function handleCloseModal () {
-        setClientInput({name: "",phone: "",email: "",address: "",})
-        setErrors({name: "",category: "",count: "",price: "",phone: "",email: "",address: "",})
-        closeModal()
-    }
-
     function handleAddClient () {
 
         let validationErrors = validateClient(clientInput,setErrors)
@@ -35,7 +29,7 @@ function EditClientModal () {
 
     return(
         <>
-            <BaseModal title="edit client" onClose={handleCloseModal} onSubmit={handleAddClient}>
+            <BaseModal title="edit client" onSubmit={handleAddClient}>
                 <ClientForm/>
             </BaseModal>
         </>

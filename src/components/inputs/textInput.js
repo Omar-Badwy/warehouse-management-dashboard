@@ -5,8 +5,8 @@ function TextInput ({type,name,placeholder,error,value,onChange}) {
 
     return(
         <>
-            <Input.Wrapper classNames={{label: styles.label, error: styles.error}} 
-                label={name} error={error}>
+            <Input.Wrapper classNames={{label: styles.label, error: styles.error,}} 
+                 error={error}>
 
                 <Input type={type} name={name} className={styles.input} placeholder={placeholder}
 

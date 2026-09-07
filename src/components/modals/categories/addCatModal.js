@@ -15,12 +15,6 @@ function AddCategoryModal () {
 
     const dispatch = useDispatch()
 
-    function handleCloseMOdal () {
-        setCategoryInput({id: "", name: ""})
-        setErrors({name: "",category: "",count: "",price: "",phone: "",email: "",address: "",})
-        closeModal()
-    }
-
      function handleAddCategory () {
     
             const type = "add"
@@ -35,7 +29,7 @@ function AddCategoryModal () {
 
     return(
         <>
-            <BaseModal title="add category" onClose={handleCloseMOdal} onSubmit={handleAddCategory}>
+            <BaseModal title="add new category" onSubmit={handleAddCategory}>
                 <CategoryForm/>
             </BaseModal>
         </>

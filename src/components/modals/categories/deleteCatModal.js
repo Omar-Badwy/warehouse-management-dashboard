@@ -14,13 +14,7 @@ function DltCategoryModal () {
 
     const dispatch = useDispatch()
 
-    const { closeModal , setCategoryInput, setErrors, modalData,} = useContext(ModalsContext)
-
-    function handleCloseMOdal () {
-        setCategoryInput({id: "", name: ""})
-        setErrors({name: "",category: "",count: "",price: "",phone: "",email: "",address: "",})
-        closeModal()
-    }
+    const { closeModal , modalData,} = useContext(ModalsContext)
 
     function handleDltCategory () {
     
@@ -32,10 +26,10 @@ function DltCategoryModal () {
 
     return(
         <>
-            <BaseModal title="delete category" buttonText="delete" onClose={handleCloseMOdal} onSubmit={handleDltCategory}>
-                <p style={{color:"#c2c2c2",fontSize:"17px"}}>Are you sure you want to delete this category?</p>
-                <p style={{color:"#c2c2c2",fontSize:"17px"}}>This action will permanently delete the category and all products inside it.</p>
-                <p style={{color:"#c2c2c2",fontSize:"17px"}}>This action cannot be undone. </p>
+            <BaseModal title="delete category" buttonText="delete" onSubmit={handleDltCategory}>
+                <p style={{color:"black",fontSize:"17px"}}>Are you sure you want to delete this category?</p>
+                <p style={{color:"black",fontSize:"17px"}}>This action will permanently delete the category and all products inside it.</p>
+                <p style={{color:"black",fontSize:"17px"}}>This action cannot be undone. </p>
             </BaseModal>
         </>
     )

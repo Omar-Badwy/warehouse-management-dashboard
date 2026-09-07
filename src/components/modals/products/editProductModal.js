@@ -15,12 +15,6 @@ const { closeModal , productInput, setProductInput, setErrors, } = useContext(Mo
 
     const dispatch = useDispatch()
 
-    function handleCloseMOdal () {
-        setProductInput({name: "",categoryId: "",count: "",price: "",})
-        setErrors({name: "",category: "",count: "",price: "",phone: "",email: "",address: "",})
-        closeModal()
-    }
-
     function handleEditProduct () { 
     
             let type = "edit"
@@ -35,7 +29,7 @@ const { closeModal , productInput, setProductInput, setErrors, } = useContext(Mo
 
     return(
         <>
-            <BaseModal title="edit product" onClose={handleCloseMOdal} onSubmit={handleEditProduct}>
+            <BaseModal title="edit product" onSubmit={handleEditProduct}>
                 <ProductForm/>
             </BaseModal>
         </>

@@ -12,13 +12,12 @@ function SelectInput ({value,onChange,error,name}) {
 
     return(
         <>
-            <label style={{color:"white",fontSize:"20px",fontWeight:"600"}}>Category
-
+            <label>
                 {modalOption?.categoryId ? (
 
                 <Input.Wrapper classNames={{label: styles.label, error: styles.error}} error={error}>
 
-                    <Input name={name} className={styles.input} style={{marginLeft:"0",padding:"10px"}}
+                    <Input name={name} className={styles.input}
                         value={categories.find(cat => cat.id === modalOption.categoryId)?.name || ""}
                         disabled/>
                 </Input.Wrapper>
@@ -27,9 +26,7 @@ function SelectInput ({value,onChange,error,name}) {
 
                 <Input.Wrapper classNames={{label: styles.label, error: styles.error}} error={error}>
 
-                    <select name={name} className={styles.input} style={{padding:"10px"}}
-                        value={value} onChange={onChange}>
-
+                    <select name={name} className={styles.select} value={value} onChange={onChange}>
                         <option key={"select category"} value="select category" selected>{"select category"}</option>
                         {categories.map(cat => <option key={cat.id} value={cat.id}>{cat.name}</option> )}
                     </select>

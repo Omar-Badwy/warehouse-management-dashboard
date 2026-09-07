@@ -8,13 +8,7 @@ function DltProductModal ({type}) {
 
     const dispatch = useDispatch()
 
-    const { closeModal , setCategoryInput, setErrors, modalData,} = useContext(ModalsContext)
-
-    function handleCloseMOdal () {
-        setCategoryInput({id: "", name: ""})
-        setErrors({name: "",category: "",count: "",price: "",phone: "",email: "",address: "",})
-        closeModal()
-    }
+    const { closeModal , modalData,} = useContext(ModalsContext)
 
     function handleDltProduct () {
 
@@ -40,7 +34,7 @@ function DltProductModal ({type}) {
 
             dltConfig= {
                     title: "Delete product",
-                    content: <p style={{color:"white",fontSize:"20px"}}>Are you sure you want to delete this product?</p>,
+                    content: <p style={{color:"black",fontSize:"20px"}}>Are you sure you want to delete this product?</p>,
                     button: "Delete product",
                     function: handleDltProduct,
                 }
@@ -50,7 +44,7 @@ function DltProductModal ({type}) {
             
             dltConfig= {
                     title: "Delete All",
-                    content: <p style={{color:"white",fontSize:"20px"}}>This action will delete all products. Are you sure you want to delete all products?</p>,
+                    content: <p style={{color:"black",fontSize:"20px"}}>This action will delete all products. Are you sure you want to delete all products?</p>,
                     button: "Delete All",
                     function: handleDltAllProduct,
                 }
@@ -61,7 +55,7 @@ function DltProductModal ({type}) {
 
             dltConfig= {
                     title: "Delete All",
-                    content: <p style={{color:"white",fontSize:"20px"}}>This action will delete all products that related with this category. Are you sure you want to delete all products?</p>,
+                    content: <p style={{color:"black",fontSize:"20px"}}>This action will delete all products that related with this category. Are you sure you want to delete all products?</p>,
                     button: "Delete All",
                     function: handleDltAllProductWidthCatId,
                 }
@@ -73,7 +67,7 @@ function DltProductModal ({type}) {
 
     return(
         <>
-            <BaseModal title={dltConfig.title} buttonText={dltConfig.button} onClose={handleCloseMOdal} onSubmit={dltConfig.function}>
+            <BaseModal title={dltConfig.title} buttonText={dltConfig.button}  onSubmit={dltConfig.function}>
                 {dltConfig.content}
             </BaseModal>
         </>

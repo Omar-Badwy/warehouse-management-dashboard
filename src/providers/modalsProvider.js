@@ -20,10 +20,6 @@ const ModalsProvider = ({children}) => {
     setModalOption(option)
   }
 
-  function closeModal () {
-    setOpened(false)
-  }
-
   const [productInput, setProductInput] = useState({
         name: "",
         categoryId: "",
@@ -52,6 +48,14 @@ const ModalsProvider = ({children}) => {
         email: "",
         address: "",
     })
+
+    function closeModal () {
+        setProductInput({name: "",categoryId: "",count: "",price: "",})
+        setCategoryInput({id: "", name: ""})
+        setCategoryInput({name: "",phone: "",email: "",address: "",})
+        setErrors({name: "",category: "",count: "",price: "",phone: "",email: "",address: "",})
+        setOpened(false)
+    }
 
   return (
     <ModalsContext.Provider value={{
