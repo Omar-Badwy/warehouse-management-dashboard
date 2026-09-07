@@ -4,14 +4,23 @@
     justify-content: space-between;
     align-items: center;
     color: black;
-    padding: 0 20px;
+    padding: 10px 20px;
     box-shadow: 5px 1px 7px 2px #faf8f8;
 }
 
 .title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
     font-size: 20px;
     font-weight: 700;
     color: #004d77;
+    text-transform: capitalize;
+}
+
+.title h2 {
+    margin: 0;
 }
 
 .user {
@@ -34,4 +43,22 @@
     display: flex;
     flex-direction: row-reverse;
     gap: 10px;
+}
+
+@media  (max-width: 570px) {
+    .title h2 {
+        font-size: 18px;
+    }
+}
+
+@media  (max-width: 400px) {
+    /* .navbar {
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+    } */
+
+    .user-info {
+       display: none;
+    }
 }

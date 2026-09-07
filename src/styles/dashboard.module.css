@@ -5,13 +5,160 @@
     gap: 20px;
 }
 
-.dashContent{
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    gap: 20px;
+/* ! GRID */
+
+.grid {
+  max-width: 1200px;
+  display: grid;
+  grid-template-columns: repeat(3,minmax(300px, 0.8fr) ) ;
+  grid-template-areas: 
+  "recentOrders recentOrders topClients"
+  "topCategories topProducts topProducts"
+  "sales sales sales";
+  gap: 20px;
 }
 
-.card , .recentOrders , .topClients {
+.recentOrders {
+  grid-area: recentOrders;
+}
+
+.topClients {
+  grid-area: topClients;
+}
+
+.sales {
+  grid-area: sales;
+}
+
+.topCategories {
+  grid-area: topCategories;
+}
+
+.topProducts {
+  grid-area: topProducts;
+}
+
+/* ! GRID */
+
+/* ! CHARTS */
+
+.chartContainer {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background: #fff;
+    border: 1px solid #e6e8ee;
+    border-radius: 20px;
+    padding: 22px 0;
+    box-shadow: 0px 0px 2px 0px black;
+}
+
+.chartContainer h2 {
+    margin: 0 0 20px;
+    font-size: 20px;
+    text-transform: capitalize;
+}
+
+/* ! CHARTS */
+
+/* ! RECENT ORDERS */
+
+.section {
+  background: #fff;
+  border: 1px solid #e6e8ee;
+  border-radius: 16px;
+  padding: 22px;
+  box-shadow: 0 8px 24px rgba(30, 35, 45, 0.04);
+}
+
+.sectionHeader {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+
+.sectionHeader h2 {
+    margin: 0 0 20px;
+    font-size: 20px;
+    text-transform: capitalize;
+}
+
+.sectionHeader button {
+  border: 1px solid #d9dee8;
+  background: #fff;
+  border-radius: 9px;
+  padding: 10px 15px;
+  font-weight: 600;
+  cursor: pointer;
+  color: black;
+  transition: 0.2s ease;
+  margin: 0 0 20px;
+}
+
+.sectionHeader button:hover {
+    background: #f8f9fb;
+    transform: translateY(-1px);
+}
+
+.productList {
+  display: flex;
+  flex-direction: column;
+}
+
+.order {
+  display: grid;
+  grid-template-columns: 44px minmax(0, 1fr) 70px auto;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 0;
+  border-top: 1px solid #eceef3;
+}
+
+.order:first-child {
+  border-top: 0;
+}
+
+.orderIcon,
+.avatar {
+  display: grid;
+  place-items: center;
+  border-radius: 12px;
+  font-weight: 800;
+}
+
+.orderIcon {
+  width: 44px;
+  height: 44px;
+  background: #f0f2f7;
+}
+
+.orderInfo h3 {
+  margin: 0 0 4px;
+  font-size: 15px;
+}
+
+.orderInfo span
+{
+  font-size: 12px;
+}
+
+.quantity {
+  text-align: center;
+}
+
+.quantity span ,.lineTotal span {
+  display: block;
+  margin-bottom: 4px;
+  font-size: 12px;
+}
+
+/* ! RECENT ORDERS */
+
+.card , .recentOrders  {
     box-shadow: 0px 0px 2px 0px black;
     border-radius: 20px;
 }
@@ -23,7 +170,6 @@
     align-items: flex-end;
     justify-content: space-between;
     gap: 24px;
-    /* margin-bottom: 26px; */
 }
 
 .eyebrow {
@@ -71,109 +217,333 @@
     font-weight: 600;
 }
 
-/* ! Recent Orders */
+/* ! Cards */
 
-.recentOrders , .topClients{
-    border-radius: 20px;
-    /* background-color: red; */
-    padding: 20px;
+/* ! DRAWER */
+
+.drawerContent {
+  background: #f8fafc;
 }
 
- .recentOrders div , 
- .topClients div {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
- }
-
-.recentOrders div span , 
-.topClients div span {
-    color: #005b8c;
-    font-size: 25px;
-    font-weight: 700;
+.drawerHeader {
+  min-height: 65px;
+  padding: 0 16px;
+  background: #ffffff;
+  border-bottom: 1px solid #e5e7eb;
 }
 
-.recentOrders div button , 
-.topClients div button {
-    background: linear-gradient(#5b08a9e4,#1d13a6e4);
-    font-size: 15px;
-    text-transform: capitalize;
-    padding: 10px;
-    width: fit-content;
+.drawerClose {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
 }
 
-.recentOrders div button:hover , 
-.topClients div button:hover {
-    scale: 1.01;
+.drawerBody {
+  height: calc(100% - 65px);
+  padding: 22px 16px;
+  display: flex;
+  flex-direction: column;
 }
 
-.recentOrders table , 
-.topClients table {
-    width: 100%;
-    text-align: center;
-    font-size: 18px;
-    font-weight: 400;
-    border-collapse:collapse;
+
+/* =========================
+   BRAND
+========================= */
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 4px 5px;
 }
 
-.recentOrders table thead , 
-.topClients table thead {
-    font-size: 20px;
-    font-weight: 600;
-    background: #F8FAFC;
+.brandIcon {
+  width: 44px;
+  height: 44px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 12px;
+
+  background: #111827;
+  color: #ffffff;
+
+  font-size: 19px;
 }
 
-.recentOrders table thead th, 
-.topClients table thead th {
-    color: #64748B;
-    font-size: 14px;
-    font-weight: 600;
-    text-transform: uppercase;
+.brandText {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
 }
 
-.recentOrders table tbody tr td , 
-.topClients table tbody tr td {
-    border-bottom: 1px solid #E5E7EB;
-    padding: 18px;
-    color: #374151;
+.brandText h2 {
+  margin: 0;
+
+  color: #111827;
+
+  font-size: 18px;
+  font-weight: 700;
+
+  line-height: 1.2;
 }
 
-.recentOrders table tbody tr:nth-child(even) , 
-.topClients table tbody tr:nth-child(even){
-    background:#FAFAFA;
+.brandText span {
+  color: #94a3b8;
+
+  font-size: 12px;
+  font-weight: 500;
 }
 
-/* ! Top Clients */
+
+/* =========================
+   DIVIDER
+========================= */
+
+.divider {
+  width: 100%;
+  height: 1px;
+
+  margin: 22px 0;
+
+  background: #e5e7eb;
+}
+
+
+/* =========================
+   NAV
+========================= */
+
+.nav {
+  display: flex;
+  flex-direction: column;
+
+  gap: 7px;
+}
+
+.sectionTitle {
+  margin: 0 8px 8px;
+
+  color: #94a3b8;
+
+  font-size: 10px;
+  font-weight: 700;
+
+  letter-spacing: 0.12em;
+}
+
+
+/* =========================
+   NAV LINK
+========================= */
+
+.navLink {
+  width: 100%;
+  min-height: 48px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 13px;
+
+  padding: 0 13px;
+
+  border-radius: 11px;
+
+  background: transparent;
+
+  color: #64748b;
+
+  text-decoration: none;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  transition: all 0.2s ease;
+}
+
+.navLink:hover {
+  background: #eef2f7;
+
+  color: #111827;
+
+  transform: translateX(2px);
+}
+
+/* Active */
+
+.navLink.active {
+  background: #111827;
+
+  color: #ffffff;
+
+  box-shadow:
+    0 6px 16px rgba(15, 23, 42, 0.14);
+}
+
+
+/* =========================
+   ICON
+========================= */
+
+.icon {
+  width: 24px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 17px;
+}
+
+
+/* =========================
+   TEXT
+========================= */
+
+.linkText {
+  flex: 1;
+}
+
+
+/* =========================
+   BOTTOM
+========================= */
+
+.bottom {
+  margin-top: auto;
+}
+
+.bottom .divider {
+  margin: 18px 0;
+}
+
+
+/* =========================
+   LOGOUT
+========================= */
+
+.logout {
+  width: 100%;
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 13px;
+  padding: 0 13px;
+  margin-bottom: 15px;
+  border: none;
+  border-radius: 11px;
+  background: #ff000095;
+
+  color: #fef2f2;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.logout:hover {
+  background: #ff0000b5;
+}
+
+
+/* =========================
+   USER CARD
+========================= */
+
+.userCard {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 12px;
+  border: 1px solid #e5e7eb;
+  border-radius: 13px;
+  background: #ffffff;
+}
+
+
+/* Avatar */
+
+.avatar {
+  width: 38px;
+  height: 38px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: #e2e8f0;
+  color: #334155;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+
+/* User info */
+
+.userInfo {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.userInfo strong {
+  color: #1e293b;
+
+  font-size: 13px;
+}
+
+.userInfo span {
+  color: #94a3b8;
+
+  font-size: 11px;
+}
+
+
+.drawerBtn {
+  display: none;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 480px) {
+  .drawerBody {
+    padding: 18px 12px;
+  }
+
+  .drawerBtn {
+      display: flex;
+    }
+}
+
+/* ! DRAWER */
 
 
 /* ! Responsive Design */
 
-
-@media screen and (max-width: 930px) {
-    .dashContent{
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        grid-template-rows: 1fr 1fr;
-        grid-template-areas: 
-        "orders orders"
-        "clients clients";
-    }
-
-    .recentOrders {
-        grid-area: orders;
-    }
-
-    .topClients {
-        grid-area: clients;
-    }
-}
-
-@media (max-width: 768px){
+@media (max-width: 850px){
 
     .cards{
         grid-template-columns: 1fr;
     }
 
+    .grid{
+        grid-template-columns: auto;
+        grid-template-areas: 
+        "recentOrders"
+        "topProducts"
+        "sales"
+        "topClients"
+        "topCategories";
+    }
+
 }
+
+/* ! Responsive Design */

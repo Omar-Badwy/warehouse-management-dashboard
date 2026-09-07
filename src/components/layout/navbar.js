@@ -1,6 +1,11 @@
+import styles from '../../styles/dashboard.module.css'
+
+import { ActionIcon, Drawer } from '@mantine/core';
 import '../../styles/navbar.css'
 
 import { Link, useLocation } from "react-router-dom";
+import { useDisclosure } from '@mantine/hooks';
+import SidebarDrawer from '../ui/sidebarDrawer';
 
 export default function Navbar () {
 
@@ -34,12 +39,54 @@ export default function Navbar () {
 
     const title = getPageTitle(location.pathname);
 
+    const [opened, { open, close }] = useDisclosure(false);
+
     return(
+
+        <>
+        <SidebarDrawer opened={opened} close={close} />
+        {/* <Drawer 
+            className={styles.drawer}
+            opened={opened}
+            onClose={close}
+            title="Authentication"
+            overlayProps={{ backgroundOpacity: 0.5, blur: 4 }}
+            style={{
+                height: "100%",
+                borderRadius: "15px",
+            }}
+        >
+            <h2>omar badwy</h2>
+        </Drawer> */}
 
         <div className="navbar">
 
             <div className="title" >
-                <h2 style={{textTransform:"capitalize"}}>{title}</h2>
+                
+                <div className={styles.drawerBtn}>
+                    <ActionIcon
+                        variant="default"
+                        onClick={open}
+                        aria-label="Open menu"
+                        style={{
+                            width: "40px",
+                            height: "40px",
+                            borderRadius: "10px",
+                            border: "1px solid #e5e7eb",
+                            backgroundColor: "#fff",
+                        }}
+                    >
+                        <i
+                            className="fa-solid fa-bars"
+                            style={{
+                                fontSize: "20px",
+                                color: "#111827",
+                            }}
+                        />
+                    </ActionIcon>
+                </div>
+
+                <h2>{title}</h2>
             </div>
             
             <div className="user" >
@@ -58,6 +105,7 @@ export default function Navbar () {
             </div>
 
         </div>
+        </>
 
     )
 }

@@ -2,7 +2,11 @@ import styles from '../styles/dashboard.module.css'
 
 import Cards from '../components/ui/dashboardCards'
 import RecentOrders from '../components/ui/recentOrders'
-import TopoClients from '../components/ui/topClients'
+import SalesChart from '../components/charts/salesChart'
+import TopClientsChart from '../components/charts/topClientsChart'
+import ProductsSalesChart from '../components/charts/productsSaleChart'
+import TopCategoriesChart from '../components/charts/topCategoriesChart'
+
 
 export default function Dashboard () {
 
@@ -11,9 +15,12 @@ export default function Dashboard () {
 
             <Cards/>
             
-            <div className={styles.dashContent}>
+            <div className={styles.grid}>
                 <RecentOrders/>
-                <TopoClients/>
+                <TopClientsChart/>
+                <TopCategoriesChart/>
+                <ProductsSalesChart/>
+                <SalesChart/>
             </div>
 
         </div>

@@ -18,8 +18,8 @@ export const productSlice  = createSlice({
 
             const date = new Date()
 
-            state.products.push({id: uuidv4(), name: name, categoryId: categoryId, count: count, 
-                price: price, createdAt: date, updatedAt: null,})
+            state.products.push({id: uuidv4(), name: name, categoryId: categoryId, count: Number(count), 
+                price: Number(price), createdAt: date, updatedAt: null,})
             localStorage.setItem("proData",JSON.stringify(state.products))
             
         },

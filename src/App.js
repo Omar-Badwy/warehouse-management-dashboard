@@ -3,6 +3,7 @@ import AppRoutes from './routes/routes';
 import ModalsProvider from './providers/modalsProvider';
 import OrderMOdalProvider from './providers/orderModalProvider';
 
+import '@mantine/core/styles.css';
 
 function App() {
   return (

@@ -1,46 +1,65 @@
 import styles from '../../styles/dashboard.module.css'
-import Table from '../table/table';
+import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 function RecentOrders() {
 
-    const elements = [
-        {clint: "omar", products: 1234, price: 12345, orders: 23},
-        {clint: "mohamed", products: 56, price: 34637, orders: 344},
-        {clint: "ahmed", products: 634, price: 36644, orders: 34},
-        {clint: "amr", products: 574, price: 35643, orders: 79},
-        {clint: "sasa", products: 96, price: 45776, orders: 22},
-    ]
+    const navigate = useNavigate()
 
-    const rows = elements.map( (row) => {
+    const orders = useSelector( (state) => state.orders.orders)
+
+    const products =  useSelector( (state) => state.products.products)
+
+    const clients =  useSelector( (state) => state.clients.clients)
+
+    const latestOrders = [...orders]
+    .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+    .slice(0, 3);
+
+    const rows = latestOrders.map( (ord) => {
+
+        const client = clients.find( (client) => client.id === ord.clientId )
 
         return(
-            <tr key={row.clint}>
-                <td style={{textAlign:"start"}}>{row.clint}</td>
-                <td>{row.products}</td>
-                <td>{row.price}</td>
-                <td>{row.orders}</td>
-            </tr>
+            <article className={styles.order} key={ord.id}>
+
+                <div className={styles.orderIcon}>
+                    {client.name.charAt(0)}
+                </div>
+
+                <div className={styles.orderInfo}>
+                    <h3>{client.name}</h3>
+                    <span>OrderID: #{ord.id}</span>
+                </div>
+
+                <div className={styles.quantity}>
+                    <span>Qty</span>
+                    <strong>{ord.products.length.toLocaleString()}</strong>
+                </div>
+
+                <strong className={styles.lineTotal}>
+                    <span>Total</span>
+                    {ord.products.reduce( 
+                        (total,pro) => total + ( Number( pro.quantity) * Number( pro.price) )
+                        , 0).toLocaleString() } EGP
+                </strong>
+            </article>
         )
     } )
 
     
 
     return (
-        <div className={styles.recentOrders}>
-            <div>
-                <span>Recent Orders</span>
-                <button>view all</button>
+        <section className={`${styles.section} ${styles.recentOrders}`}>
+            <div className={styles.sectionHeader}>
+                <h2>Recent Orders</h2>
+                <button onClick={ () => navigate("/orders") }>view all</button>
             </div>
 
-            <Table columns={[
-                {name: "Client"},
-                {name: "Products Count"},
-                {name: "Price"},
-                {name: "Orders Count"},
-                ]} rows={rows}/>
-
-
-        </div>
+            <div className={styles.productList}>
+                {rows}
+            </div>
+        </section>
     );
 }
 

@@ -15,6 +15,8 @@ function ClientsTable () {
 
     const clients = useSelector( (state) => state.clients.clients )
 
+    const orders = useSelector( (state) => state.orders.orders )
+
     const navigate = useNavigate()
 
     const { openModal } = useContext(ModalsContext)
@@ -59,12 +61,15 @@ function ClientsTable () {
 
          rows = sortedClients.map( (client) => {
     
+            const clientOrders = orders.filter( (order) => order.clientId === client.id) 
+        
+          const totalOrders = clientOrders.length
             return(
                 <tr key={client.id}>
                     <td style={{textAlign:"start"}}>{client.name}</td>
                     <td>{client.phone}</td>
                     <td>{client.address}</td>
-                    <td>0</td>
+                    <td>{totalOrders}</td>
                     <td>
                         <div className={styles.actions}>
                             <div className={styles.editIcon} onClick={ () => openModal("editClient",client) }> <i className="fa-solid fa-pen"></i> </div>

@@ -118,10 +118,10 @@ export default function OrderPage () {
                         {/* # products */}
                     <section className={styles.card}>
                         <div className={styles.cardHeader}>
-                        <div>
-                            <h2>Products</h2>
-                            <p>{totalQuantity} items in this order</p>
-                        </div>
+                            <div>
+                                <h2>Products</h2>
+                                <p>{totalQuantity} items in this order</p>
+                            </div>
                         </div>
 
                         <div className={styles.productList}>

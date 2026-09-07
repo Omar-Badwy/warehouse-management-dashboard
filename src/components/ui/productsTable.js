@@ -102,7 +102,7 @@ function ProductsTable () {
                         {name: "name"},
                         {name: "Category"},
                         {name: "Price"},
-                        {name: "Count"},
+                        {name: "Stock "},
                         {name: "actions"},
                         ]} rows={rows}/>
                     }

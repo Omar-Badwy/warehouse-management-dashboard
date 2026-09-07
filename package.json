@@ -8,6 +8,7 @@
     "@mantine/charts": "^9.5.1",
     "@mantine/core": "^9.5.1",
     "@mantine/hooks": "^9.5.1",
+    "@recharts/devtools": "^0.0.18",
     "@reduxjs/toolkit": "^2.12.0",
     "@testing-library/dom": "^10.4.1",
     "@testing-library/jest-dom": "^6.9.1",

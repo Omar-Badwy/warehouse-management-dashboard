@@ -96,6 +96,7 @@ return(
                 <section className={styles.productSection}>
                     <Input.Wrapper classNames={{error: styles.error}} error={orderErrors.productId}>
                         <select className={styles.select} name="productId" value={orderInput.productId}  onChange={orderInputOnChange}>
+                            <option key={"select product"} value="select product">select product</option>
                             {products.map( (pro) =>  <option key={pro.id} value={pro.id}>{pro.name}</option>) } 
                         </select>
                     </Input.Wrapper>
