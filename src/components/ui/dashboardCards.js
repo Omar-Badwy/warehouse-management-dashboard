@@ -24,9 +24,9 @@ function Cards() {
 
     const card = [
         {id: 1, title: "Inventory Value", icon: <i style={{color:"white"}} className="fa-solid fa-dollar"></i>, count: formatNumber( totalInventoryValue ), bgColor: "#005b8c", color:"white"},
-        {id: 2, title: "Total Products", icon: <i style={{color:"gray"}} className="fa-solid fa-cubes"></i>, count: productsCount, bgColor: "white", color:"#005b8c"},
-        {id: 3, title: "Total Clints", icon: <i style={{color:"gray"}} className="fa-solid fa-users"></i>, count: totalClients, bgColor: "white", color:"#005b8c"},
-        {id: 4, title: "Orders", icon: <i style={{color:"gray"}} className="fa-solid fa-cart-flatbed"></i>, count: totalOrders, bgColor: "white", color:"#005b8c",},
+        {id: 2, title: "Total Products", icon: <i style={{color:"gray"}} className="fa-solid fa-cubes"></i>, count: formatNumber(productsCount) , bgColor: "white", color:"#005b8c"},
+        {id: 3, title: "Total Clints", icon: <i style={{color:"gray"}} className="fa-solid fa-users"></i>, count: formatNumber(totalClients) , bgColor: "white", color:"#005b8c"},
+        {id: 4, title: "Orders", icon: <i style={{color:"gray"}} className="fa-solid fa-cart-flatbed"></i>, count: formatNumber(totalOrders) , bgColor: "white", color:"#005b8c",},
     ]
 
     const mapCard = card.map( (card) => {

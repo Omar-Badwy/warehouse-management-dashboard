@@ -4,9 +4,7 @@ import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer,} from "recharts";
 import { useMemo } from "react";
 import { useSelector } from "react-redux";
 
-export default function TopCategoriesChart ()  {
-
-    const orders = useSelector( (state) => state.orders.orders )
+export default function TopCategoriesChart ({filteredDate})  {
 
     const products = useSelector( (state) => state.products.products )
 
@@ -16,23 +14,9 @@ export default function TopCategoriesChart ()  {
     
         useMemo(() => {
 
-            const today = new Date();
-
-            const diff = (today.getDay() + 1) % 7;
-
-            const startOfWeek = new Date(today);
-
-            startOfWeek.setDate(today.getDate() - diff);
-            startOfWeek.setHours(0, 0, 0, 0);
-
-
-            const weeklyOrders = orders.filter((order) => {
-                return new Date(order.createdAt) >= startOfWeek;
-            });
-
             let soldCategories = [];
 
-            weeklyOrders.forEach((order) => {
+            filteredDate.forEach((order) => {
 
                 order.products.forEach((orderProduct) => {
 
@@ -75,7 +59,7 @@ export default function TopCategoriesChart ()  {
                 .sort((a, b) => b.quantity - a.quantity)
                 .slice(0, 5);
 
-        }, [orders, products, categories]);
+        }, [filteredDate, products, categories]);
 
 
     const COLORS = [

@@ -40,10 +40,63 @@
 
 /* ! GRID */
 
+/* ! FILTER SECTION */
+
+.filterSection {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.filterSectionHeader {
+  margin: 0 10px 0 0;
+}
+
+.filterSectionHeader h2{
+  font-size: 29px;
+  font-weight: 800;
+  color: #004D77;
+}
+
+.filterSectionHeader p {
+  color: #647084;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.filters {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: 10px;
+  border: 1px solid #e6e8ee;
+  border-radius: 10px;
+  box-shadow: 0px 0px 2px 0px black;
+  color: #647084;
+  padding: 5px;
+}
+
+.filters > div {
+  padding: 10px 15px;
+  border-radius: 10px;
+  font-size: 18px;
+  font-weight: 400;
+  cursor: pointer;
+}
+
+
+.filterActive {
+  background-color: #182230;
+  color: white;
+}
+
+/* ! FILTER SECTION */
+
 /* ! CHARTS */
 
 .chartContainer {
-    width: 100%;
+    /* width: 100%; */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -110,8 +163,8 @@
 }
 
 .order {
-  display: grid;
-  grid-template-columns: 44px minmax(0, 1fr) 70px auto;
+  display: flex;
+  justify-content: space-between;
   align-items: center;
   gap: 14px;
   padding: 16px 0;
@@ -120,6 +173,18 @@
 
 .order:first-child {
   border-top: 0;
+}
+
+.orderHead, .orderData{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+}
+
+.orderData{
+  width: 25%;
+  justify-content: flex-start;
 }
 
 .orderIcon,
@@ -527,6 +592,20 @@
 
 
 /* ! Responsive Design */
+
+@media (max-width: 580px) {
+  
+  .filterSectionHeader h2{ font-size: 27px; }
+
+  .filterSectionHeader p { font-size: 14px; }
+
+  .filters { padding: 5px; }
+
+  .filters > div {
+    padding: 5px 10px;
+    font-size: 15px;
+  }
+}
 
 @media (max-width: 850px){
 

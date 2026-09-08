@@ -5,30 +5,15 @@ import { useMemo } from "react";
 import { useSelector } from "react-redux";
 import { RechartsDevtools } from '@recharts/devtools';
 
-export default function ProductsSalesChart ()  {
-
-    const orders = useSelector( (state) => state.orders.orders )
+export default function ProductsSalesChart ({filteredDate})  {
 
     const products = useSelector( (state) => state.products.products )
 
     const topProducts = useMemo(() => {
 
-        const today = new Date();
-
-        const diff = (today.getDay() + 1) % 7;
-
-        const startOfWeek = new Date(today);
-
-        startOfWeek.setDate(today.getDate() - diff);
-        startOfWeek.setHours(0, 0, 0, 0);
-
-        const weeklyOrders = orders.filter((order) => {
-            return new Date(order.createdAt) >= startOfWeek;
-        });
-
         let soldProducts = [];
 
-        weeklyOrders.forEach((order) => {
+        filteredDate.forEach((order) => {
             order.products.forEach((product) => {
 
                 const existingProduct = soldProducts.find(
@@ -61,7 +46,7 @@ export default function ProductsSalesChart ()  {
                 };
             });
 
-    }, [orders, products]);
+    }, [filteredDate, products]);
 
 
    return (

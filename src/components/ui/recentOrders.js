@@ -8,8 +8,6 @@ function RecentOrders() {
 
     const orders = useSelector( (state) => state.orders.orders)
 
-    const products =  useSelector( (state) => state.products.products)
-
     const clients =  useSelector( (state) => state.clients.clients)
 
     const latestOrders = [...orders]
@@ -23,26 +21,33 @@ function RecentOrders() {
         return(
             <article className={styles.order} key={ord.id}>
 
-                <div className={styles.orderIcon}>
-                    {client.name.charAt(0)}
+                <div className={styles.orderHead}>
+
+                    <div className={styles.orderIcon}>
+                        {client.name.charAt(0)}
+                    </div>
+
+                    <div className={styles.orderInfo}>
+                        <h3>{client.name}</h3>
+                        <span>OrderID: #{ord.id}</span>
+                    </div>
                 </div>
 
-                <div className={styles.orderInfo}>
-                    <h3>{client.name}</h3>
-                    <span>OrderID: #{ord.id}</span>
-                </div>
+                <div className={styles.orderData}>
 
-                <div className={styles.quantity}>
-                    <span>Qty</span>
-                    <strong>{ord.products.length.toLocaleString()}</strong>
-                </div>
+                    <div className={styles.quantity}>
+                        <span>Qty</span>
+                        <strong>{ord.products.length.toLocaleString()}</strong>
+                    </div>
 
-                <strong className={styles.lineTotal}>
-                    <span>Total</span>
-                    {ord.products.reduce( 
-                        (total,pro) => total + ( Number( pro.quantity) * Number( pro.price) )
-                        , 0).toLocaleString() } EGP
-                </strong>
+                    <strong className={styles.lineTotal}>
+                        <span>Total</span>
+                        {ord.products.reduce( 
+                            (total,pro) => total + ( Number( pro.quantity) * Number( pro.price) )
+                            , 0).toLocaleString() } EGP
+                    </strong>
+
+                </div>
             </article>
         )
     } )

@@ -2,80 +2,128 @@ import styles from '../../styles/dashboard.module.css'
 
 import { Line, LineChart, CartesianGrid, Tooltip, XAxis, YAxis, } from 'recharts';
 import { RechartsDevtools } from '@recharts/devtools';
-import { useSelector } from 'react-redux';
 import { useMemo } from 'react';
 
-export default function SalesChart () {
+export default function SalesChart ({filteredDate,filter}) {
     
-    const orders = useSelector( (state) => state.orders.orders)
+    const Sales = useMemo(() => {
 
-    const weeklySales = useMemo(() => {
+        if (filter === "week") {
 
-        const today = new Date();
+            const daysOfWeek = [
+                "Sat","Sun","Mon","Tue","Wed","Thu","Fri"
+            ];
 
-        const diff = (today.getDay() + 1) % 7;
-
-        const startOfWeek = new Date(today);
-
-        startOfWeek.setDate(
-            today.getDate() - diff
-        );
-
-        startOfWeek.setHours(0, 0, 0, 0);
-
-        const weeklyOrders = orders.filter(
-            (order) => new Date(order.createdAt) >= startOfWeek
-        );
-
-
-        const days = [
-            "Sat",
-            "Sun",
-            "Mon",
-            "Tue",
-            "Wed",
-            "Thu",
-            "Fri"
-        ];
-
-        return days.map((day, index) => {
-
-            const dayOrders = weeklyOrders.filter((order) => {
-
-                const orderDate = new Date(order.createdAt);
-
-                const orderDayIndex =
-                    (orderDate.getDay() + 1) % 7;
-
-                return orderDayIndex === index;
+            return daysOfWeek.map((day, index) => {
+    
+                const dayOrders = filteredDate.filter((order) => {
+    
+                    const orderDate = new Date(order.createdAt);
+    
+                    const orderDayIndex =
+                        (orderDate.getDay() + 1) % 7;
+    
+                    return orderDayIndex === index;
+                });
+    
+    
+                const sales = dayOrders.reduce(
+                    (total, order) => {
+    
+                        const orderTotal = order.products.reduce(
+                            (sum, product) => {
+                                return sum + (
+                                    product.quantity * product.price
+                                );
+                            },
+                            0
+                        );
+    
+                        return total + orderTotal;
+                    },
+                    0
+                );
+    
+                return {
+                    day,
+                    sales
+                };
             });
+        } 
+
+        if (filter === "month") { 
+
+            const now = new Date()
+
+            const daysInMonth = new Date( 
+                now.getFullYear(), 
+                now.getMonth() + 1, 0 
+            ).getDate(); 
+
+            const daysOfMonth = Array.from( { length: daysInMonth }, (_, index) => index + 1 ); 
+
+            return daysOfMonth.map((day) => { 
+
+                const dayOrders = filteredDate.filter((order) => { 
+                    const orderDate = new Date(order.createdAt); 
+
+                    return orderDate.getDate() === day; 
+                }); 
+
+                const sales = dayOrders.reduce( (total, order) => { 
+                    
+                    const orderTotal = order.products.reduce( (sum, product) => { 
+                            return sum + ( product.quantity * product.price ); 
+                        }, 0 
+                    ); 
+
+                    return total + orderTotal; 
+
+                }, 0 ); 
+
+                return { 
+                    day, 
+                    sales 
+                }; 
+
+            }); 
+        }
 
 
-            const sales = dayOrders.reduce(
-                (total, order) => {
+        if (filter === "year") { 
 
-                    const orderTotal = order.products.reduce(
-                        (sum, product) => {
-                            return sum + (
-                                product.quantity * product.price
-                            );
-                        },
-                        0
-                    );
+            const months = [ 
+                "Jan", "Feb", "Mar", "Apr", "May", "Jun", 
+                "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" 
+            ]; 
+            
+            return months.map((month, index) => { 
 
-                    return total + orderTotal;
-                },
-                0
-            );
+                const monthOrders = filteredDate.filter((order) => { 
+                    const orderDate = new Date(order.createdAt); 
+                    return orderDate.getMonth() === index; 
+                }); 
 
+                const sales = monthOrders.reduce( (total, order) => { 
 
-            return {
-                day,
-                sales
-            };
-        });
+                    const orderTotal = order.products.reduce( (sum, product) => { 
+                        return sum + ( product.quantity * product.price ); 
+                    }, 0 ); 
 
-    }, [orders]);
+                    return total + orderTotal; 
+
+                }, 0 ); 
+                
+                return { 
+                    month, 
+                    sales 
+                }; 
+            }); 
+        } 
+
+        return [];
+
+    }, [filteredDate,filter]);
 
     
     return(
@@ -91,7 +139,7 @@ export default function SalesChart () {
                     aspectRatio: 1.618
                 }}
                 responsive
-                data={weeklySales}
+                data={Sales}
                 margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
             >
             <CartesianGrid
@@ -100,7 +148,7 @@ export default function SalesChart () {
                 strokeOpacity={0.5}
             />
 
-            <XAxis dataKey="day" stroke="black" />
+            <XAxis dataKey={filter === "year" ? "month" : "day"} stroke="black" />
 
             <YAxis stroke="black" strokeWidth={2} tickFormatter={(value) => value.toLocaleString()} />
 

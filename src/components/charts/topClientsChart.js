@@ -5,9 +5,7 @@ import {BarChart,Bar,XAxis,YAxis,CartesianGrid,Tooltip,ResponsiveContainer,} fro
 import { useMemo } from 'react';
 
 
-export default function TopClientsChart ()  {
-
-  const orders = useSelector( (state) => state.orders.orders)
+export default function TopClientsChart ({filteredDate})  {
 
   const clients =  useSelector( (state) => state.clients.clients)
 
@@ -15,21 +13,8 @@ export default function TopClientsChart ()  {
 
     useMemo( () => {
 
-        const today = new Date();
-
-        const diff = (today.getDay() + 1) % 7;
-
-        const startOfWeek = new Date(today);
-
-        startOfWeek.setDate(today.getDate() - diff);
-        startOfWeek.setHours(0, 0, 0, 0);
-
-        const weeklyOrders = orders.filter((order) => {
-            return new Date(order.createdAt) >= startOfWeek;
-        });
-
       const clientOrders = clients.map( (client) => {
-          const clientOrders = weeklyOrders.filter( (order) => order.clientId === client.id) 
+          const clientOrders = filteredDate.filter( (order) => order.clientId === client.id) 
         
           const totalOrders = clientOrders.length
           return { name: client.name, orders: totalOrders }
@@ -39,7 +24,7 @@ export default function TopClientsChart ()  {
         .sort((a, b) => b.orders - a.orders)
         .slice(0, 3);
 
-    }, [clients, orders])
+    }, [clients, filteredDate])
 
   return (
     <div className={`${styles.chartContainer} ${styles.topClients}`}>
