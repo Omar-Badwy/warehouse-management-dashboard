@@ -41,6 +41,10 @@ export default function SearchInput ({search,setSearch,setFilter,setSort,filterB
         {id: 2, name: "order-id"},
     ]
 
+     const filterClientOrdersData = [
+        {id: 1, name: "order-id"},
+    ]
+
     function handleFilterChange (e) {
         setFilter(e.target.value)
     }
@@ -68,6 +72,17 @@ export default function SearchInput ({search,setSearch,setFilter,setSort,filterB
                 case "twoInputsOrd":
                     return <>
                         <SelectInputSearch data={filterOrderData} value={filterBy} onChange={handleFilterChange} >
+                            <option value="search by">{"search by"}</option>
+                        </SelectInputSearch>
+
+                        <SelectInputSearch data={SortOrderData} value={sortBy} onChange={handleSortChange} >
+                            <option value="sort by">{"sort by"}</option>
+                        </SelectInputSearch>
+                    </>
+
+                case "clientOrderPage":
+                    return <>
+                        <SelectInputSearch data={filterClientOrdersData} value={filterBy} onChange={handleFilterChange} >
                             <option value="search by">{"search by"}</option>
                         </SelectInputSearch>
 
