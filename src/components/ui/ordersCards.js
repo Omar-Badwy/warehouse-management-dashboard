@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, } from 'react';
 import styles from '../../styles/orders.module.css'
 import { orderModalContext } from '../../providers/orderModalProvider';
 import { useSelector } from 'react-redux';
@@ -10,17 +10,17 @@ function OrdersCards() {
 
     const orders = useSelector( (state) => state.orders.orders)
     
-    const pending = orders.reduce( 
-        (total,order) => order.status === "pending" ? total + 1 : 0, 
-    0)
+    const pending = orders.filter(
+            order => order.status === "pending"
+        ).length;
 
-    const completed = orders.reduce( 
-        (total,order) => order.status === "completed" ? total + 1 : 0, 
-    0)
+        const completed = orders.filter(
+            order => order.status === "completed"
+        ).length;
 
-    const canceled = orders.reduce( 
-        (total,order) => order.status === "cancelled" ? total + 1 : 0, 
-    0)
+        const canceled = orders.filter(
+            order => order.status === "cancelled"
+        ).length;
     
     return(
         <>
@@ -35,7 +35,7 @@ function OrdersCards() {
 
             <section className={styles.cards}>
                 <div className={styles.card}><span>Total Orders</span><strong>{orders.length}</strong></div>
-                <div className={styles.card}><span>Pending</span><strong>{pending}</strong></div>
+                <div className={styles.card}><span style={{color:"gold"}}>Pending</span><strong>{pending}</strong></div>
                 <div className={styles.card}><span style={{color:"green"}}>Completed</span><strong>{completed}</strong></div>
                 <div className={styles.card}><span style={{color:"red"}}>Canceled</span><strong>{canceled}</strong></div>
             </section>

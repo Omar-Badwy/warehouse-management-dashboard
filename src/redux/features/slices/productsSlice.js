@@ -1,10 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { v4 as uuidv4 } from 'uuid';
 
-
-    const initialState = {
-        products: JSON.parse(localStorage.getItem("proData")) || []
-    }
+const initialState = {
+    products: JSON.parse(localStorage.getItem("proData")) || []
+}
 
 export const productSlice  = createSlice({
     name:"products",
@@ -41,19 +40,102 @@ export const productSlice  = createSlice({
             localStorage.setItem("proData",JSON.stringify(state.products))
         },
 
-        decreasePro: (state, action) => {
-            
-            for (const orderProduct of action.payload) {
+        editCompletedOrder: (state, action) => {
 
-            const product = state.products.find(
-                (product) => product.id === orderProduct.productId
-            )
+            const {orderData,orderItems} = action.payload
 
-            if (product) {
-                product.count -= orderProduct.quantity
+            if (orderData.status !== "completed") return;
+
+            for (const orderProduct of orderData.products ) {
+
+                const product = state.products.find(
+                    (product) => product.id === orderProduct.productId
+                )
+
+                for(const orderProductItems of orderItems){
+
+                    if(orderProduct.productId === orderProductItems.productId){
+                        
+                        if(orderProduct.quantity < orderProductItems.quantity){
+
+                            const currntQty = Number(orderProductItems.quantity) - Number(orderProduct.quantity)
+
+                            product.count -= currntQty
+
+                        } 
+                        
+                        else if(orderProduct.quantity > orderProductItems.quantity) {
+
+                            const currntQty =  Number(orderProduct.quantity) - Number(orderProductItems.quantity)
+
+                            product.count += currntQty
+                        }
+
+                    } 
+
+                }
+
             }
-        }
-            // localStorage.setItem("proData",JSON.stringify(state.products))
+
+            // # New Products Added to the Order
+
+                for (const newProduct of orderItems) {
+
+                    const oldProduct = orderData.products.find(
+                        (product) => product.productId === newProduct.productId
+                    );
+
+                    if (!oldProduct) {
+                        const product = state.products.find(
+                            (product) => product.id === newProduct.productId
+                        );
+
+                        if (product) {
+                            product.count -= Number(newProduct.quantity);
+                        }
+                    }
+                }
+                 
+                // # Deleted Products from the Order
+                
+                for (const oldProduct of orderData.products) {
+
+                    const newProduct = orderItems.find(
+                        (product) => product.productId === oldProduct.productId
+                    );
+
+                    if (!newProduct) {
+                        const product = state.products.find(
+                            (product) => product.id === oldProduct.productId
+                        );
+
+                        if (product) {
+                            product.count += Number(oldProduct.quantity);
+                        }
+                    }
+                }
+            
+            localStorage.setItem("proData",JSON.stringify(state.products))
+        },
+
+        completeOrder: (state, action) => {
+
+            const {data,status} = action.payload
+            
+            for (const orderProduct of data) {
+
+                const product = state.products.find(
+                    (product) => product.id === orderProduct.productId
+                )
+
+                if (product) {
+
+                    if(status === "completed") { product.count -= Number(orderProduct.quantity) }
+                     else if(status === "cancelled") { product.count += Number(orderProduct.quantity) }
+                }
+            }
+            
+            localStorage.setItem("proData",JSON.stringify(state.products))
         },
 
         dlt: (state, action) => {
@@ -85,6 +167,17 @@ export const productSlice  = createSlice({
     },
 })
 
-export const {add, edit , dlt , dltAll, dltAllWithCatId, deleteProductsByCategory, decreasePro,} = productSlice.actions
+export const {
+        add, 
+        edit , 
+        dlt , 
+        dltAll, 
+        dltAllWithCatId, 
+        deleteProductsByCategory, 
+        completeOrder, 
+        cancleOrder,
+        editCompletedOrder,
+
+    } = productSlice.actions
 
 export default productSlice.reducer

@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { orderModalContext } from "../../../providers/orderModalProvider";
 import { updateStatusOrder } from "../../../redux/features/slices/ordersSlice";
+import { completeOrder, } from "../../../redux/features/slices/productsSlice";
 import styles from "../../../styles/orderModal.module.css"
 import { Input } from "@mantine/core";
 
@@ -12,9 +13,13 @@ function UpdateOrderModal () {
 
     const dispatch = useDispatch()
 
+    const orders = useSelector( (state) => state.orders.orders)
+
     function orderInputOnChange (e) {
         setOrderInput({...orderInput, [e.target.name] : e.target.value})
     }
+
+    const order = orders.find( (order) => order.id === orderModal.data)
 
     function handleUpdateStatus () {
 
@@ -24,6 +29,14 @@ function UpdateOrderModal () {
                 status: orderInput.status,
                 id: orderModal.data,
             }))
+
+            if(orderInput.status === "completed"){
+                dispatch(completeOrder({data: order.products, status: "completed"}))
+            }
+
+            if(orderInput.status === "cancelled"){
+                dispatch(completeOrder({data: order.products, status: "cancelled"}))
+            }
 
             closeOrderModal()
         }

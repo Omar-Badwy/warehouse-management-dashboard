@@ -29,26 +29,73 @@ function OrderForm () {
             setOrderInput({...orderInput, [e.target.name] : e.target.value})
         }
 
-    function addnewProduct () {
-
-        let validationErrors = validateOrder(
+    function addnewProduct() {
+        const validationErrors = validateOrder(
             orderInput,
             setOrderErrors,
             products,
             orderModal
-        )
+        );
 
-        if(Object.keys(validationErrors).length === 0){
+        if (Object.keys(validationErrors).length !== 0) return;
 
-            setOrderItems([...orderItems, {productId: orderInput.productId, quantity: orderInput.quantity,
-                price: newProduct ? newProduct.price : "", status: orderInput.status
-            } ])
+        const existingProduct = orderItems.find(
+            item => item.productId === orderInput.productId
+        );
 
-            setOrderInput({...orderInput, productId: "",quantity: ""})
+        const currentQuantity = existingProduct
+        ? Number(existingProduct.quantity)
+        : 0;
+
+        const newQuantity =
+            currentQuantity + Number(orderInput.quantity);
+
+        const remainingQuantity = newProduct
+            ? newProduct.count - (existingProduct ? Number(existingProduct.quantity) : 0)
+            : 0;
+
+        if (newQuantity > newProduct.count) {
+            setOrderErrors({
+                ...orderErrors,
+                quantity: `Quantity exceeds available stock. ${remainingQuantity} available.`,
+            });
+
+            return;
         }
 
-    }
+        if (existingProduct) {
 
+            setOrderItems(
+                orderItems.map(item =>
+                    item.productId === orderInput.productId
+                        ? {
+                            ...item,
+                            quantity: newQuantity
+                        }
+                        : item
+                )
+            );
+
+        } 
+        
+        else {
+            setOrderItems([
+                ...orderItems,
+                {
+                    productId: orderInput.productId,
+                    quantity: Number(orderInput.quantity),
+                    price: newProduct ? newProduct.price : 0,
+                    status: orderInput.status
+                }
+            ]);
+        }
+
+        setOrderInput({
+            ...orderInput,
+            productId: "",
+            quantity: ""
+        });
+    }
 
     function removeItem(id) {
         const items = orderItems.filter( (pro) => pro.productId !== id)

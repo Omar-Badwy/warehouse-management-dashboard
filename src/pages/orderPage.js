@@ -95,10 +95,14 @@ export default function OrderPage () {
 
                         <div className={styles.actionsSection}>
 
-                            <button className={`${styles.btnAction} ${styles.btnEdit}`}
-                                onClick={editOrder}>
-                                edit order
-                            </button>
+                            {order.status === "cancelled" ? "" : 
+                            
+                                <button className={`${styles.btnAction} ${styles.btnEdit}`}
+                                    onClick={editOrder}>
+                                    edit order
+                                </button>
+                                
+                            }
 
                             <button className={`${styles.btnAction} ${styles.btnDlt}`}
                                 onClick={ () => openOrderModal("dltOrder",orderId)}>

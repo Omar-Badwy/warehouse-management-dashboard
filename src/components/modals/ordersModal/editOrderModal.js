@@ -4,21 +4,24 @@ import OrderForm from "../../forms/orderForm";
 import BaseOrderModal from "./baseOrderModal";
 import { orderModalContext } from "../../../providers/orderModalProvider";
 import { editOrder } from "../../../redux/features/slices/ordersSlice";
-import { validateOrder } from "../../../utils/validation/orderValidation";
-
+import { editCompletedOrder } from "../../../redux/features/slices/productsSlice";
 
 function EditOrderModal () {
 
-    const { orderInput, orderItems, closeOrderModal, setOrderErrors, orderModal, } = useContext(orderModalContext)
+    const { orderItems, closeOrderModal, orderModal, } = useContext(orderModalContext)
 
-    const products = useSelector( (state) => state.products.products)
+    const orders = useSelector( (state) => state.orders.orders)
+
+    const order = orders.find( (ord) => ord.id === orderModal.data)
 
     const dispatch = useDispatch()
 
     function handleAddOrder () {
 
-        // let validationErrors = validateOrder(orderInput,setOrderErrors,products,orderModal)
-        // if(Object.keys(validationErrors).length === 0){
+            dispatch(editCompletedOrder({
+                orderData: order,
+                orderItems: orderItems,
+            }))
 
             dispatch(editOrder({
                 items: orderItems,
@@ -26,7 +29,6 @@ function EditOrderModal () {
             }))
 
             closeOrderModal()
-        // }
     }
 
     return(

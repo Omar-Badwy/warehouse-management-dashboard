@@ -22,9 +22,9 @@ export function validateOrder (orderInput,setErrors,products,orderModal) {
         newErrors.quantity = "Quantity must be at least 1";
     } 
 
-    // if( quantity > product.count){
-    //     newErrors.quantity = "Quantity is not available";
-    // } 
+    if( quantity > product.count){
+        newErrors.quantity = "Quantity is not available";
+    } 
 
     if (!Number.isInteger(Number(quantity))) {
         newErrors.quantity = "Quantity must be a whole number";
