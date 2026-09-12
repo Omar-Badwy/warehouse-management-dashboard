@@ -47,13 +47,22 @@ const ModalsProvider = ({children}) => {
         phone: "",
         email: "",
         address: "",
+        password: "",
+        confirmPassword: "",
+    })
+
+    const [userInput,setUserInput] = useState({
+      name: "",
+      email: "",
+      password: "",
+      confirmPassword: "",
     })
 
     function closeModal () {
         setProductInput({name: "",categoryId: "",count: "",price: "",})
-        setCategoryInput({id: "", name: ""})
-        setCategoryInput({name: "",phone: "",email: "",address: "",})
-        setErrors({name: "",category: "",count: "",price: "",phone: "",email: "",address: "",})
+        setCategoryInput({id: "",name: "",phone: "",email: "",address: "",})
+        setUserInput({name: "",email: "",password: "",confirmPassword: "",})
+        setErrors({name: "",category: "",count: "",price: "",phone: "",email: "",address: "",password: "",confirmPassword: "",})
         setOpened(false)
     }
 
@@ -71,6 +80,8 @@ const ModalsProvider = ({children}) => {
       setCategoryInput,
       clientInput,
       setClientInput,
+      userInput,
+      setUserInput,
       errors,
       setErrors,
       }}>

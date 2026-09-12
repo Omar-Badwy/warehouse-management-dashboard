@@ -10,11 +10,15 @@ import AddClientModal from './clients/addClientModal';
 import EditClientModal from './clients/editClientModal';
 import DltClientModal from './clients/dltClientModal';
 import AddOrderModal from './ordersModal/addOrderModal';
+import LogoutModal from './logoutModal';
+import UpdateUserModal from './login/updateUserModal';
+import UpdatePasswordModal from './login/updatePasswordModal';
+import ClearLocaleStorageModal from './clearLocalStorageModal';
 
 function Modals () {
 
     const { opened,modalType, modalData, modalOption,
-        setProductInput,setCategoryInput,setClientInput} = useContext(ModalsContext)
+        setProductInput,setCategoryInput,setClientInput,setUserInput,} = useContext(ModalsContext)
 
     useEffect(() => {
 
@@ -33,6 +37,10 @@ function Modals () {
 
             case "editClient" :
                 setClientInput(modalData);
+                break;
+
+            case "updateUser" :
+                setUserInput(modalData);
                 break;
 
             default:         
@@ -91,11 +99,18 @@ function Modals () {
             case "addOrder":
                 return <AddOrderModal/>
 
-            // case "editOrder":
-            //     return <EditOrderModal/>
+            case "logout":
+                return <LogoutModal/>
 
-            // case "dltOrder":
-            //     return <DltOrderModal/>
+            case "updateUser":
+                return <UpdateUserModal/>
+
+            case "updatePassword":
+                return <UpdatePasswordModal/>
+
+            case "clearLocaleStorageModal":
+                return <ClearLocaleStorageModal/>
+
 
             default:
                 return null;

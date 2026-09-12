@@ -11,7 +11,7 @@
 }
 
 .modal {
-    width: min(920px, 100%);
+    width: min(720px, 100%);
     max-height: calc(100vh - 48px);
     display: flex;
     flex-direction: column;
@@ -144,6 +144,10 @@
 .select:focus,
 input:focus {
     border-color: #2563eb;
+}
+
+input > button {
+    cursor: pointer;
 }
 
 .error {

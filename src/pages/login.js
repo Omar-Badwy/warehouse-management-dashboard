@@ -4,25 +4,27 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 // ? Redux importing
-import { useSelector, useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { login } from '../redux/features/slices/authSlise'
 
 export default function Login () {
 
+    // ? Redux Code
+
+    const user = useSelector( (state) => state.auth.user )
+
+    const dispatch = useDispatch()
+
     // ? Variables
 
-    const user = {
-        name: "omar",
-        email: "admin.com",
-        password: "123456"
-    }
+    // const defaultUser = !user ? {
+    //     name: "omar",
+    //     email: "admin.com",
+    //     password: "123456"
+    // } : user
 
     const navigate = useNavigate()
 
-    // ? Redux Code
-    const state = useSelector( (state) => state.auth.user)
-
-    const dispatch = useDispatch()
 
     // ? States
     const [name,setName] = useState("")
@@ -30,10 +32,11 @@ export default function Login () {
     const [password,setPassword] = useState("")
 
     // ? Functions
-    let handleLogin = () => {
-        if(user.name === name && user.email === email && user.password === password) {
 
-            dispatch( login({user}) )
+    let handleLogin = () => {
+        if(user?.name === name && user?.email === email && user?.password === password) {
+
+            dispatch( login(user) )
             navigate("/dashboard" , { replace: true });
             
         }else{

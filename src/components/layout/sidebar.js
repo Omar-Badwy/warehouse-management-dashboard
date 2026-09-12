@@ -1,14 +1,15 @@
 // import { v4 as uuidv4 } from 'uuid';
 import '../../styles/sidebar.css'
 import { Link, useLocation } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
 import { logout } from '../../redux/features/slices/authSlise';
+import { useContext } from 'react';
+import { ModalsContext } from '../../providers/modalsProvider';
 
 function SideBar () {
 
     const location = useLocation()
 
-    const dispatch = useDispatch()
+    const {openModal} = useContext(ModalsContext)
 
     // ? variables
     const sidebarLinks = [
@@ -45,7 +46,7 @@ function SideBar () {
               {sidebarLinksMap}
 
 
-              <div className="div logout" onClick={() => dispatch(logout())}>
+              <div className="div logout" onClick={() => openModal("logout")}>
                   <div className='div-icon'>
                       <i className="fa-solid fa-right-from-bracket"></i>
                   </div>

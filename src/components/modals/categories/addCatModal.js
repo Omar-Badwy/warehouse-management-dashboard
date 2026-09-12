@@ -9,23 +9,22 @@ import { validateCategory } from "../../../utils/validation/categoryValidation";
 
 function AddCategoryModal () {
 
-    const { closeModal , categoryInput, setCategoryInput, setErrors, } = useContext(ModalsContext)
+    const { closeModal , categoryInput, setErrors, } = useContext(ModalsContext)
 
     const categories = useSelector( (state) => state.categories.categories)
 
     const dispatch = useDispatch()
 
-     function handleAddCategory () {
-    
-            const type = "add"
-            let validationErrors = validateCategory(categoryInput,categories,setErrors,type)
-            if(Object.keys(validationErrors).length === 0){
-    
-                dispatch(addCat({data: categoryInput,}))
-                setCategoryInput({id: "", name: ""})
-                closeModal()
-            }
+    function handleAddCategory () {
+
+        const type = "add"
+        let validationErrors = validateCategory(categoryInput,categories,setErrors,type)
+        if(Object.keys(validationErrors).length === 0){
+
+            dispatch(addCat({data: categoryInput,}))
+            closeModal()
         }
+    }
 
     return(
         <>
