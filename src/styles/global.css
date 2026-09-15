@@ -1,0 +1,313 @@
+:root {
+
+    /* ? Navbar */
+
+    --navbar-bg: transparent;
+    --navbar-text-color: black; 
+    --navbar-title-color: #004d77; 
+    --navbar-boxShadow: #faf8f8;
+    
+
+    /* ? Sidebar */
+
+    --sidebar-bg: #005b8c; 
+    --sidebar-text: white; 
+    --sidebar-text-active: #3b82f6; 
+    --sidebar-item-hover: #14142877; 
+    --sidebar-item-active: #14142877; 
+    --sidebar-logout-hover: #ff0000c0;
+
+    /* ? Dvider */
+
+    --dvider-title: #111827;
+    --dvider-bg: #e5e7eb;
+    --dvider-text: #64748b;
+
+    /* ? Main */
+
+    --main-bg: #F7F8FC;
+
+    /* ? Dashboard */
+
+    --filterTime-active: #182230;
+    --orderIcon-bg: #f0f2f7;
+    --orderIcon-color: black;
+
+    --card-bg: #fff;
+    --card-color: black;
+    --card-first-bg: #004D77;
+    --card-first-color: white;
+
+    --card-order-border: #5291dec5;
+    --order-border: #eceef3;
+    --card-order-text: #20232a;
+
+    /* ? Text */
+
+    --eyebrow: #2563eb;
+    
+    --text-title: white;
+    --text-primary: #004D77; 
+    --text-secondary: #64748b;
+
+    --text-muted: #647084;
+    --text-white: #ffffff;
+
+    /* ? Shadows */
+    --shadow-black: black;
+    --shadow-white: white;
+    --shadow-card: black;
+
+    /* ? Borders */
+    --border-primary: #e6e8ee;
+
+    /* ? Buttons */
+    --button-add-primary: #2563eb;
+    --button-add-primary-hover-bg: #2564ebc8;
+    
+    --stroke-color: #3a414c;
+    --strokeDasharray-color: #647084c2;
+    
+    /* ? Settings */
+    --settings-h6: black;
+
+    --setting-blue-bg: #edf4ff; 
+    --setting-purple-bg: #f3efff; 
+    --setting-orange-bg: #fff5e8; 
+    --setting-green-bg: #eaf9f0; 
+    --setting-red-bg: #fff0f0; 
+
+    --setting-button-edit: #F1F4F9;
+    --setting-button-select: #fff;
+    --setting-button-border: #dfe3eb;
+    --setting-button-color: #344054;
+
+    /* ? Table */
+    
+    --table-bg: #fff;
+    --table-text: #64748b;
+    --table-text: #374151;
+
+    --table-input-bg: #fff;
+    --table-input-color: ;
+    --table-input-border: #cbd5e1;
+
+    --table-head-bg: #f8fafc;
+    --table-head-color: #64748b;
+
+    --table-tr-hover: #f8fafc;
+    --table-tr-nth-bg: #fcfcfd;
+    --table-tr-nth-hover: #f8fafc;
+
+    --table-icon-dlt-bg: #dc2626;
+    --table-icon-dlt-hover: #b91c1c;
+    --table-icon-color: #fff;
+    --table-icon-bg: #0062ff;
+    --table-icon-hover: #0052d6;
+
+    --table-border: #edf4ff;
+
+    /* ? Client Page */
+
+    --client-btn-dlt-bg: #fff;
+    --client-btn-dlt-color: #c62828;
+    --client-btn-dlt-hover: #f8f9fb;
+    --client-btn-dlt-border: #d9dee8;
+
+    --client-btn-edit-bg: #fff;
+    --client-btn-edit-color: black;
+    --client-btn-edit-hover: #f8f9fb;
+    --client-btn-edit-border: #d9dee8;
+
+    /* ? Modal */
+
+    --modal-bg: #fff;
+    --modal-border: #eef2f7;
+    --modal-text-title: #172033;
+    --modal-text: #64748b;
+    --modal-icon-bg: #eff6ff;
+    --modal-icon-color: #2563eb;
+
+    --modal-dvider-border: #eef2f7;
+
+    --modal-input-border: #cbd5e1;
+    --modal-input-bg: #fff;
+    --modal-input-color: #334155;
+
+    --modal-special-input-border: #e2e8f0;
+    --modal-special-input-bg: #f8fafc;
+    --modal-special-input-color: #334155;
+
+    --modal-input-total-bg: #334155;
+    --modal-input-total-color: #fff;
+
+    --modal-btn-cancle-border: #cbd5e1;
+    --modal-btn-cancle-bg: #fff;
+    --modal-btn-cancle-color: #475569;
+
+    --modal-btn-add-bg: #2563eb;
+    --modal-btn-add-color: #fff;
+
+    --modal-btn-close-bg: #f1f5f9;
+    --modal-btn-close-color: #64748b;
+
+    --modal-orderProduct-bg: #fbfcfd;
+    --modal-orderProduct-color: ;
+    --modal-orderProduct-border: #e5e9ee;
+    --modal-orderProduct-hover: ;
+
+    --modal-orderProduct-inp-border: #dfe4ea;
+    --modal-orderProduct-inp-bg: #fff;
+    --modal-orderProduct-inp-color: #18212f;
+    --modal-orderProduct-inp-hover: ;
+}
+
+
+
+
+
+.darkMode {
+
+    --settings-h6: #004D77;
+    --scroll-bg: #000000;
+
+    --sidebar-bg: #0f172a; 
+    --sidebar-text: #647084; 
+    --sidebar-item-hover: #004D77; 
+    --sidebar-item-active: #004D77; 
+
+    --main-bg: #111827;
+
+    --navbar-bg: #111827;
+    --navbar-text-color: #77849c; 
+    --navbar-title-color: #004d77; 
+    --navbar-boxShadow: none;
+
+    --card-bg: transparent;
+    --card-color: #647084;
+    --card-text: #fff;
+    --card-hover: #2634491d;
+    --card-first-bg: #004d77d0;
+    --card-first-color: white;
+
+    --card-order-border: #004d77;
+    --card-order-text: #647084;
+    --order-border: #004d77;
+
+
+    --orderIcon-bg: #004D77;
+    --orderIcon-hover-bg: #004d77b3;
+    --orderIcon-color: white;
+
+    /* ? Borders */
+    --border-primary: #333334;
+    --border-primary: #004d77;
+
+    --stroke-color: #0b72a1;
+    --strokeDasharray-color: #647084;
+
+    /* ? Buttons */
+    --button-add-primary: #004D77;
+    --button-add-primary-hover-bg: #004d77b3;
+
+    /* ? Settings */
+
+    --setting-blue-bg: #3b82f652; 
+    --setting-purple-bg: #7c3aed43; 
+    --setting-orange-bg: #f59f0b4d; 
+    --setting-green-bg: #16a34a4b; 
+    --setting-red-bg: #ef444442; 
+
+    --setting-button-edit: #004D77;
+    --setting-button-select: #004D77;
+    --setting-button-border: none;
+    --setting-button-color: #fff;
+
+
+    /* ? Table */
+
+    --table-bg: transparent;
+    --table-text: #ffffff67;
+
+    --table-input-bg: #111827;
+    --table-input-border: #004D77;
+    --table-input-color: #fff;
+
+    --table-head-bg: #111827;
+    --table-head-color: #004D77;
+
+    --table-tr-hover: #11182784;
+    --table-tr-nth-bg: #111827ce;
+    --table-tr-nth-hover: #111827;
+
+    --table-border: #111827b6;
+
+    --table-icon-dlt-bg: #dc2626bf;
+    --table-icon-dlt-hover: #b91c1cf4;
+
+    --table-icon-color: #fff;
+
+    --table-icon-bg: #004d77b5;
+    --table-icon-hover: #004D77;
+
+    /* ? Client Page */
+
+    --client-btn-dlt-bg: transparent;
+    --client-btn-dlt-color: #fff;
+    --client-btn-dlt-hover: #b91c1cf4;
+    --client-btn-dlt-border: #004D77;
+
+    --client-btn-edit-bg: transparent;
+    --client-btn-edit-color: #fff;
+    --client-btn-edit-hover: #004d77b5;
+    --client-btn-edit-border: #004D77;
+
+    /* ? Modal */
+
+    --modal-bg: #0f172a;
+    --modal-bg: #0f1626;
+    --modal-border: #004d77b5;
+    --modal-text-title: #eef2f7;
+    --modal-text: #64748b;
+    --modal-icon-bg: #eef2f7;
+    --modal-icon-bg: #004D77;
+    --modal-icon-color: #eef2f7d8;
+
+    --modal-dvider-border: #004D77;
+
+    --modal-input-border: #004D77;
+    --modal-input-bg: #0f1626;
+    --modal-input-color: #eef2f7;
+
+    --modal-special-input-border: #004D77;
+    --modal-special-input-bg: #2634491d;
+    --modal-special-input-color: #fff;
+
+    --modal-input-total-bg: #0b0e126b;
+    --modal-input-total-color: #fff;
+
+    --modal-btn-cancle-border: #004D77;
+    --modal-btn-cancle-bg: transparent;
+    --modal-btn-cancle-hover: #fff;
+    --modal-btn-cancle-color: #5f728c;
+
+    --modal-btn-add-border: #004D77;
+    --modal-btn-add-bg: transparent;
+    --modal-btn-add-hover: #2564ebba;
+    --modal-btn-add-color: #fff;
+
+    --modal-btn-close-bg: transparent;
+    --modal-btn-close-color: #eef2f7d8;
+    --modal-btn-close-border: #004D77;
+    --modal-btn-close-hover: #004D77;
+
+    --modal-orderProduct-title-color: #004D77;
+
+    --modal-orderProduct-bg: #2634491d;
+    --modal-orderProduct-color: ;
+    --modal-orderProduct-border: #004D77;
+
+    --modal-orderProduct-inp-border: #004D77;
+    --modal-orderProduct-inp-bg: #0f1626;
+    --modal-orderProduct-inp-color: #fff;
+}

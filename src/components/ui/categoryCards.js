@@ -21,18 +21,14 @@ function CategoryCards () {
     const largestCategory = useLargesCategory(products)
 
     const cards = [
-        {id: 1, title: "Total Categories", icon: <i style={{color:"white"}} className="fa-solid fa-table-cells-large"></i>, value: categoryCount, bgColor: "#005b8c", color:"white"},
-        {id: 2, title: "Total Products", icon: <i style={{color:"gray"}} className="fa-solid fa-cubes"></i>, value: productsCount, bgColor: "white", color:"#005b8c"},
+        {id: 1, title: "Total Categories", icon: <i style={{color:"white"}} className="fa-solid fa-table-cells-large"></i>, value: categoryCount,},
+        {id: 2, title: "Total Products", icon: <i style={{color:"gray"}} className="fa-solid fa-cubes"></i>, value: productsCount,},
     ]
 
     const CardElements = cards.map( (card) => {
 
         return(
-            <div key={card.id} className={styles.card}
-            style={{
-                backgroundColor:`${card.bgColor}`,
-                color:`${card.color}`,
-            }}>
+            <div key={card.id} className={styles.card}>
 
                 <div style={{display:"flex",flexDirection:"column",justifyContent:"center"}}>
                     <span>{card.value}</span>
@@ -62,9 +58,7 @@ function CategoryCards () {
 
                 <div className={styles.card}
                 style={{
-                    backgroundColor:`white`,
-                    color:`#005b8c`,
-                    width: "calc(200% + 20px)"
+                    width: "calc(200% + 20px)",
                 }}>
 
                     <div style={{display:"flex",flexDirection:"column",justifyContent:"center"}}>

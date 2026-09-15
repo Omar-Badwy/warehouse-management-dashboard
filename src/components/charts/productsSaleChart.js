@@ -60,17 +60,18 @@ export default function ProductsSalesChart ({filteredDate})  {
                     margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
                     >
 
-                    <CartesianGrid stroke="#94a3b8" strokeDasharray="5 5" strokeOpacity={0.5} />
-                    <XAxis dataKey="name" stroke="black" />
+                    <CartesianGrid stroke="var(--strokeDasharray-color)" strokeDasharray="5 5" strokeOpacity={0.5} />
+
+                    <XAxis dataKey="name" stroke="var(--stroke-color)" />
                     
-                    <YAxis stroke="black" strokeWidth={2} dataKey="quantity" tickFormatter={(value) => value.toLocaleString()}/>
+                    <YAxis stroke="var(--stroke-color)" strokeWidth={2} dataKey="quantity" tickFormatter={(value) => value.toLocaleString()}/>
 
                     <Tooltip defaultIndex={2} />
                     <Bar
                         dataKey="quantity"
                         fill="#0ea5e9"
                         fillOpacity={0.85}
-                        stroke="#0369a1"
+                        stroke="var(--stroke-color)"
                         strokeWidth={2}
                         radius={4}
                         barSize={30}

@@ -36,11 +36,12 @@
 .header h1 {
   margin: 0 0 6px;
   font-size: 30px;
+  color: var(--text-primary);
 }
 
 .header p {
   margin: 0;
-  color: #667085;
+  color: var(--text-muted);
 }
 
 .actions {
@@ -49,34 +50,44 @@
 }
 
 .button {
-  border: 1px solid #d9dee8;
-  background: #fff;
   border-radius: 9px;
   padding: 10px 15px;
   font-weight: 600;
   cursor: pointer;
-  color: black;
+}
+
+.editButton {
+  border: 1px solid var(--client-btn-edit-border);
+  background: var(--client-btn-edit-bg);
+  color: var(--client-btn-edit-color);
 }
 
 .button:hover {
-  background: #f8f9fb;
+  background: var(--client-btn-edit-hover);
 }
 
 .deleteButton {
-  color: #c62828;
+  border: 1px solid var(--client-btn-dlt-border);
+  background: var(--client-btn-dlt-bg);
+  color: var(--client-btn-dlt-color);
 }
 
+.deleteButton:hover {
+  background: var(--client-btn-dlt-hover);
+}
+
+
 .card {
-  background: #fff;
-  border: 1px solid #e6e9ef;
+  background: var(--card-bg);
+  border: 1px solid var(--border-primary);
   border-radius: 16px;
-  box-shadow: 0 8px 30px rgba(25, 35, 55, 0.06);
+  box-shadow: 0 8px 15px #1923370f;
   overflow: hidden;
 }
 
 .cardHead {
   padding: 24px;
-  border-bottom: 1px solid #edf0f4;
+  border: 1px solid var(--border-primary);
   display: flex;
   align-items: center;
   gap: 16px;
@@ -97,6 +108,7 @@
 .cardHead h2 {
   margin: 0 0 4px;
   font-size: 20px;
+  color: var(--text-primary);
 }
 
 .cardHead span {
@@ -111,11 +123,11 @@
 
 .item {
   padding: 22px 24px;
-  border-bottom: 1px solid #edf0f4;
+  border: 1px solid var(--border-primary);
 }
 
 .item:nth-child(odd) {
-  border-right: 1px solid #edf0f4;
+  border: 1px solid var(--border-primary);
 }
 
 .label {

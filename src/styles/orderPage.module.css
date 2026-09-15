@@ -4,7 +4,7 @@
 
 .page {
   /* background: #f6f7fb; */
-  color: #20232a;
+  color: var(--card-order-text);
   font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
@@ -39,17 +39,20 @@
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.08em;
+  color: var(--eyebrow);
 }
 
-.titleRow h1 {
+.titleRow h3 {
   margin: 0;
   font-size: 30px;
   line-height: 1.15;
+  color: var(--text-primary);
 }
 
 .createdAt {
   margin: 8px 0 0;
   font-size: 14px;
+  color: var(--text-muted);
 }
 
 .actionsSection {
@@ -58,14 +61,35 @@
 }
 
 .btnAction {
-  border: 1px solid #d9dee8;
-  background: #fff;
   border-radius: 9px;
   padding: 10px 15px;
   font-weight: 600;
   cursor: pointer;
-  color: black;
   transition: 0.2s ease;
+}
+
+.btnEdit {
+  border: 1px solid var(--client-btn-edit-border);
+  background: var(--client-btn-edit-bg);
+  color: var(--client-btn-edit-color);
+}
+
+.btnEdit:hover {
+  background: var(--client-btn-edit-hover);
+}
+
+.btnDlt {
+  border: 1px solid var(--client-btn-dlt-border);
+  background: var(--client-btn-dlt-bg);
+  color: var(--client-btn-dlt-color);
+}
+
+.btnDlt:hover {
+  background: var(--client-btn-dlt-hover);
+}
+
+.btnAction:hover {
+    transform: translateY(-1px);
 }
 
 .status {
@@ -81,16 +105,6 @@
 .completed { background: #dcfce7; color: #15803d; }
 .pending { background: #fef3c7; color: #8a6500; }
 .cancelled { background: #fee2e2; color: #dc2626; }
-
-
-.btnDlt {
-  color: #c62828;
-}
-
-.btnAction:hover {
-    background: #f8f9fb;
-    transform: translateY(-1px);
-}
 
 .grid {
   max-width: 1200px;
@@ -108,11 +122,10 @@
 }
 
 .card {
-  background: #fff;
-  border: 1px solid #e6e8ee;
+  background: var(--card-bg);
+  border: 1px solid var(--border-primary);
   border-radius: 16px;
   padding: 22px;
-  box-shadow: 0 8px 24px rgba(30, 35, 45, 0.04);
 }
 
 .cardHeader {
@@ -143,7 +156,7 @@
   align-items: center;
   gap: 14px;
   padding: 16px 0;
-  border-top: 1px solid #eceef3;
+  border-top: 1px solid var(--order-border);
 }
 
 .product:first-child {
@@ -156,12 +169,14 @@
   place-items: center;
   border-radius: 12px;
   font-weight: 800;
+  background: var(--orderIcon-bg);
+  color: var(--orderIcon-color);
+
 }
 
 .productIcon {
   width: 44px;
   height: 44px;
-  background: #f0f2f7;
 }
 
 .productInfo h3,
@@ -206,7 +221,6 @@
 .avatar {
   width: 48px;
   height: 48px;
-  background: #eef0f5;
 }
 
 .client p {
@@ -218,7 +232,7 @@
   flex-direction: column;
   gap: 14px;
   padding-top: 18px;
-  border-top: 1px solid #eceef3;
+  border-top: 1px solid var(--order-border);
 }
 
 .contact div {
@@ -244,7 +258,7 @@
 
 .divider {
   height: 1px;
-  background: #eceef3;
+  background: var(--order-border);
   margin: 10px 0;
 }
 
@@ -283,7 +297,7 @@
   height: 10px;
   margin-top: 4px;
   border-radius: 50%;
-  background: #d9dce3;
+  background: var(--order-border);
   flex: 0 0 auto;
 }
 
@@ -294,7 +308,7 @@
   left: 4px;
   width: 1px;
   height: 52px;
-  background: #d9dce3;
+  background: var(--order-border);
 }
 
 .timelineItem strong {

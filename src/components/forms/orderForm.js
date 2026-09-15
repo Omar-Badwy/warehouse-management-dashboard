@@ -4,6 +4,7 @@ import { orderModalContext } from "../../providers/orderModalProvider";
 import { Input } from "@mantine/core";
 import { validateOrder } from "../../utils/validation/orderValidation";
 import { useSelector } from "react-redux";
+import {formatNumber} from '../../utils/formatNumber'
 
 function OrderForm () {
 
@@ -157,10 +158,10 @@ return(
                         <div style={{display:"flex",alignItems:"center",gap:"10px"}}>
 
                         <Input.Wrapper classNames={{label: styles.label}} label="price:" >
-                            <input type="text" readOnly name="price" value={newProduct ? `${newProduct.price} EGP` : 0}/>
+                            <input type="text" readOnly name="price" value={newProduct ? `${formatNumber(newProduct.price)} EGP` : 0}/>
                         </Input.Wrapper>
                         <Input.Wrapper classNames={{label: styles.label}} label="available:" >
-                            <input type="text" readOnly name="available" value={newProduct ? `${newProduct.count}` : 0}/>
+                            <input type="text" readOnly name="available" value={newProduct ? `${formatNumber(newProduct.count)}` : 0}/>
                         </Input.Wrapper>
                         </div>
                     </div>

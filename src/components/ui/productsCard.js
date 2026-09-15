@@ -21,18 +21,14 @@ function ProductsCard () {
     },0 )
 
     const cards = [
-        {id: 2, title: "Products", icon: <i style={{color:"white"}} className="fa-solid fa-cubes"></i>, value: productsCount, bgColor: "#005b8c", color:"white"},
-        {id: 1, title: "Pound", icon: <i style={{color:"gray"}} className="fa-solid fa-dollar"></i>, value: formatNumber(totalInventoryValue) , bgColor: "white", color:"#005b8c"},
+        {id: 2, title: "Products", icon: <i style={{color:"white"}} className="fa-solid fa-cubes"></i>, value: productsCount,},
+        {id: 1, title: "Pound", icon: <i style={{color:"gray"}} className="fa-solid fa-dollar"></i>, value: formatNumber(totalInventoryValue) ,},
     ]
 
     const CardElements = cards.map( (card) => {
 
         return(
-            <div key={card.id} className={styles.card}
-            style={{
-                backgroundColor:`${card.bgColor}`,
-                color:`${card.color}`,
-            }}>
+            <div key={card.id} className={styles.card}>
 
                 <div style={{display:"flex",flexDirection:"column",justifyContent:"center"}}>
                     <span>{card.value}</span>

@@ -46,7 +46,7 @@ function SideBar () {
               {sidebarLinksMap}
 
 
-              <div className="div logout" onClick={() => openModal("logout")}>
+              <div className="div logout" onClick={() => openModal()}>
                   <div className='div-icon'>
                       <i className="fa-solid fa-right-from-bracket"></i>
                   </div>

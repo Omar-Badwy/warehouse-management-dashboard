@@ -6,20 +6,21 @@
     gap: 25px;
 }
 
+.header h1 {
+    color: #172033;
+    color: var(--text-primary);
+}
+
+.header p {
+    color: var(--text-muted);
+}
+
 .eyebrow { 
     margin: 0 0 7px; 
     font-size: 12px; 
     font-weight: 700; 
     letter-spacing: .12em; 
-    color: #7c8496; 
-}
-
-.header h1 {
-    color: #172033;
-}
-
-.header p {
-    color: #7B8496;
+    color: var(--eyebrow); 
 }
 
 .section, .logout {
@@ -28,9 +29,11 @@
     flex-direction: column;
     gap: 15px;
     padding: 20px;
-    background-color: #FFFFFF;
-    box-shadow: 0 0 2px 0px #808080cc;
+    /* background-color: #FFFFFF;
+    background-color: var(--card-bg); */
+    box-shadow: 0 0 1px 0px #808080cc;
     border-radius: 15px;
+    border: 1px solid var(--border-primary);
 }
 
 .logout {
@@ -43,6 +46,8 @@
     gap: 20px;
     padding-bottom: 10px;
     box-shadow: 0px 1px 1px 0 #80808024;
+    color: var(--settings-h6);
+
 }
 
 .card {
@@ -62,6 +67,7 @@
     font-size:15px; 
     font-weight:600;
     text-transform: capitalize;
+    color: var(--settings-h6);
 }
 
 .cardInfo p {
@@ -97,21 +103,25 @@
 
 .editBtn {
     background-color: #F1F4F9;
+    background: var(--setting-button-edit);
     padding: 5px 10px;
     border-radius: 7px;
     font-size: 18px;
     text-transform: capitalize;
     font-weight: 400;
     cursor: pointer;
+    color: var(--setting-button-color);
+
 }
 
 .select { 
     min-width:120px; 
     padding:9px 12px; 
-    border:1px solid #dfe3eb; 
+    border:1px solid var(--setting-button-border); 
     border-radius:9px; 
     background:#fff; 
-    color:#344054; 
+    background: var(--setting-button-select);
+    color: var(--setting-button-color);
     outline:none; 
 }
 
@@ -134,9 +144,10 @@
 }
 
 .logoutBtn {
-    background:#fff; 
+    background: transparent; 
     color:#dc2626;
     border:1px solid #f1c9c9; 
+    border:1px solid #dc262669; 
 }
 
 .changePasswordBtn {
@@ -150,28 +161,28 @@
 /* ! COLORS */
 
 .blue { 
-    background:#edf4ff; 
-    color:#3b82f6; 
+    background: var(--setting-blue-bg); 
+    color: var(--setting-blue-color); 
 } 
 
 .purple { 
-    background:#f3efff; 
-    color:#7c3aed; 
+    background: var(--setting-purple-bg); 
+    color: var(--setting-purple-color); 
 }
 
 .orange { 
-    background:#fff5e8; 
-    color:#f59e0b; 
+    background: var(--setting-orange-bg); 
+    color: var(--setting-orange-color); 
 } 
 
 .green { 
-    background:#eaf9f0; 
-    color:#16a34a; 
+    background: var(--setting-green-bg); 
+    color: var(--setting-green-color); 
 } 
 
 .red { 
-    background:#fff0f0; 
-    color:#ef4444; 
+    background: var(--setting-red-bg); 
+    color: var(--setting-red-color); 
 }
 
 /* ! COLORS */

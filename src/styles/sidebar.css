@@ -7,11 +7,11 @@
 
 .sidebar {
     min-height: 100dvh;
-    background-color: #005b8c;
+    background-color: var(--sidebar-bg);
+    /* background-color: #005b8c; */
     /* background-color: #808080e4; */
     /* background-color: #020216ec; */
     /* background-color: #2f4050; */
-    /* background-image: linear-gradient(to right, #005b8c); */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -26,7 +26,6 @@
     justify-content: center;
     padding: 10px;
     gap: 20px;
-    /* background-color: #B3B3B3; */
 }
 
 .div-inputs .div {
@@ -36,7 +35,7 @@
     align-items: center;
     justify-content: space-between;
     font-size: 20px;
-    color: white;
+    color: var(--sidebar-text);
     text-transform: capitalize;
     cursor: pointer;
     font-weight: 500;
@@ -44,7 +43,7 @@
 }
 
 .div:hover {
-    background-color: #14142877;
+    background-color: var(--sidebar-item-hover);
 }
 
 .div-icon {
@@ -53,17 +52,13 @@
 }
 
 .active {
-    background-color: #14142877;
+    background-color: var(--sidebar-item-active);
 }
 
-/* .logout {
-    background-color: #ff0000c0;
-} */
-
 .logout:hover {
-    background-color: #ff0000c0;
+    background-color: var(--sidebar-logout-hover);
 }
 
 i {
-    color: white;
+    color: var(--sidebar-text);
 }

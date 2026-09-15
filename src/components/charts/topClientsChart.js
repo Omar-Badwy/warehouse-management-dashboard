@@ -42,14 +42,14 @@ export default function TopClientsChart ({filteredDate})  {
                     }}
                     
                 >
-                    <CartesianGrid strokeDasharray="3 3" />
+                    <CartesianGrid strokeDasharray="4 4" stroke="var(--strokeDasharray-color)"/>
 
-                    <XAxis type="number" stroke='black' tickFormatter={(value) => value.toLocaleString()}/>
+                    <XAxis type="number" stroke="var(--stroke-color)" tickFormatter={(value) => value.toLocaleString()}/>
 
                     <YAxis
                         type="category"
                         dataKey="name"
-                        stroke='black' 
+                        stroke="var(--stroke-color)" 
                     />
 
                     <Tooltip />
@@ -61,8 +61,8 @@ export default function TopClientsChart ({filteredDate})  {
                         radius={4}
                         
                         fillOpacity={0.85}
-                        stroke="#0369a1"
-                        strokeWidth={2}
+                        stroke="var(--stroke-color)"
+                        strokeWidth={1}
                         
                     />
                 </BarChart>

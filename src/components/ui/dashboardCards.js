@@ -23,20 +23,16 @@ function Cards() {
     },0 )
 
     const card = [
-        {id: 1, title: "Inventory Value", icon: <i style={{color:"white"}} className="fa-solid fa-dollar"></i>, count: formatNumber( totalInventoryValue ), bgColor: "#005b8c", color:"white"},
-        {id: 2, title: "Total Products", icon: <i style={{color:"gray"}} className="fa-solid fa-cubes"></i>, count: formatNumber(productsCount) , bgColor: "white", color:"#005b8c"},
-        {id: 3, title: "Total Clints", icon: <i style={{color:"gray"}} className="fa-solid fa-users"></i>, count: formatNumber(totalClients) , bgColor: "white", color:"#005b8c"},
-        {id: 4, title: "Orders", icon: <i style={{color:"gray"}} className="fa-solid fa-cart-flatbed"></i>, count: formatNumber(totalOrders) , bgColor: "white", color:"#005b8c",},
+        {id: 1, title: "Inventory Value", icon: <i style={{color:"white"}} className="fa-solid fa-dollar"></i>, count: formatNumber( totalInventoryValue ),},
+        {id: 2, title: "Total Products", icon: <i style={{color:"gray"}} className="fa-solid fa-cubes"></i>, count: formatNumber(productsCount) ,},
+        {id: 3, title: "Total Clints", icon: <i style={{color:"gray"}} className="fa-solid fa-users"></i>, count: formatNumber(totalClients) ,},
+        {id: 4, title: "Orders", icon: <i style={{color:"gray"}} className="fa-solid fa-cart-flatbed"></i>, count: formatNumber(totalOrders) ,},
     ]
 
     const mapCard = card.map( (card) => {
 
         return(
-            <div key={card.id} className={styles.card}
-            style={{
-                backgroundColor:`${card.bgColor}`,
-                color:`${card.color}`,
-            }}>
+            <div key={card.id} className={styles.card}>
 
                 <div style={{display:"flex",flexDirection:"column",justifyContent:"center"}}>
                     <span>{card.count}</span>

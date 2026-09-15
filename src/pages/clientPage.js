@@ -170,7 +170,7 @@ export default function ClientPage () {
               </div>
 
               <div className={styles.actions}>
-                <button className={styles.button} onClick={ () => openModal("editClient",client) }>Edit client</button>
+                <button className={`${styles.button} ${styles.editButton}`} onClick={ () => openModal("editClient",client) }>Edit client</button>
                 <button className={`${styles.button} ${styles.deleteButton}`} onClick={ () => openModal("dltClient",client) }>
                   Delete
                 </button>

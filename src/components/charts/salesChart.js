@@ -143,21 +143,21 @@ export default function SalesChart ({filteredDate,filter}) {
                 margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
             >
             <CartesianGrid
-                stroke="#94a3b8"
+                stroke="var(--strokeDasharray-color)"
                 strokeDasharray="5 5"
                 strokeOpacity={0.5}
             />
 
-            <XAxis dataKey={filter === "year" ? "month" : "day"} stroke="black" />
+            <XAxis dataKey={filter === "year" ? "month" : "day"} stroke="var(--stroke-color)" />
 
-            <YAxis stroke="black" strokeWidth={2} tickFormatter={(value) => value.toLocaleString()} />
+            <YAxis stroke="var(--stroke-color)" strokeWidth={2} tickFormatter={(value) => value.toLocaleString()} />
 
             <Tooltip formatter={(value) => value.toLocaleString()} />
 
             <Line
                 type="monotone"
                 dataKey="sales"
-                stroke="#0ea5e9"
+                stroke="var(--stroke-color)"
                 strokeWidth={3}
                 dot={{ r: 5 }}
                 activeDot={{ r: 7 }}

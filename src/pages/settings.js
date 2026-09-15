@@ -3,6 +3,7 @@ import styles from "../styles/settings.module.css"
 import { useSelector } from "react-redux"
 import { useContext } from "react"
 import { ModalsContext } from "../providers/modalsProvider"
+import { ThemeContext } from "../providers/themeProvider"
 
 
 export default function Settings () {
@@ -11,6 +12,8 @@ export default function Settings () {
     console.log(user)
 
     const {openModal} = useContext(ModalsContext)
+
+    const {mode,setMode} = useContext(ThemeContext)
 
     return (
         <>
@@ -73,9 +76,9 @@ export default function Settings () {
                             </div>
 
                             <div>
-                                <select className={styles.select}>
-                                    <option value="ligth" >ligth</option>
-                                    <option value="dark" >dark</option>
+                                <select className={styles.select} value={mode} onChange={(e) => setMode(e.target.value)}>
+                                    <option value="ligth">ligth</option>
+                                    <option value="dark">dark</option>
                                 </select>
                             </div>
                         </div>
@@ -142,7 +145,7 @@ export default function Settings () {
                             </div>
 
                             <div className={styles.clearData} onClick={() => openModal("clearLocaleStorageModal")}>
-                                <i style={{color:"black"}} className="fa-solid fa-caret-right"></i>
+                                <i style={{color:"var(--setting-button-color)"}} className="fa-solid fa-caret-right"></i>
                             </div>
                         </div>
     
