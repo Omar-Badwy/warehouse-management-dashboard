@@ -1,11 +1,14 @@
 import  styles from '../styles/login.module.css'
 
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 // ? Redux importing
 import { useDispatch, useSelector } from 'react-redux'
 import { login } from '../redux/features/slices/authSlise'
+import { Input } from '@mantine/core'
+import { ModalsContext } from '../providers/modalsProvider'
+import { validateLogin } from '../utils/validation/loginValidation'
 
 export default function Login () {
 
@@ -15,33 +18,31 @@ export default function Login () {
 
     const dispatch = useDispatch()
 
-    // ? Variables
+    const {errors, setErrors} = useContext(ModalsContext)
 
-    // const defaultUser = !user ? {
-    //     name: "omar",
-    //     email: "admin.com",
-    //     password: "123456"
-    // } : user
+    // ? Variables
 
     const navigate = useNavigate()
 
 
     // ? States
-    const [name,setName] = useState("")
-    const [email,setEmail] = useState("")
-    const [password,setPassword] = useState("")
+
+    const [userInput,setUserInput] = useState({
+        name: "",
+        email: "",
+        password: "",
+    })
 
     // ? Functions
 
     let handleLogin = () => {
-        if(user?.name === name && user?.email === email && user?.password === password) {
 
+        let validationErrors = validateLogin(userInput,setErrors,user)
+
+        if(Object.keys(validationErrors).length === 0){
             dispatch( login(user) )
             navigate("/dashboard" , { replace: true });
-            
-        }else{
-            alert("Invalid Credentials")
-        }
+        }       
     }
 
     return (
@@ -55,22 +56,31 @@ export default function Login () {
                 </div>
                 
                 <div className={styles.inputs}>
-                    <div className={styles.divInput}>
-                        <i className="fa-solid fa-user"></i>
-                        <input type='text' placeholder='Name' value={name} className={styles.inp}
-                        onChange={ (e) => setName(e.target.value) }/>
+                    <div className={styles.div}>
+                        <div className={styles.divInput}>
+                            <i className="fa-solid fa-user"></i>
+                            <input type='text' name='name' placeholder='Name' value={userInput.name} className={styles.inp}
+                            onChange={ (e) => setUserInput({...userInput, name : e.target.value}) }/>
+                        </div>
+                        <Input.Wrapper classNames={{error: styles.error,}} error={errors.name}/>
                     </div>
                     
-                    <div className={styles.divInput}>
-                        <i className="fa-solid fa-envelope"></i>
-                        <input type='email' placeholder='Email'value={email} className={styles.inp}
-                        onChange={ (e) => setEmail(e.target.value) }/>
+                    <div className={styles.div}>
+                        <div className={styles.divInput}>
+                            <i className="fa-solid fa-envelope"></i>
+                            <input type='email' name='email' placeholder='Email'value={userInput.email} className={styles.inp}
+                            onChange={ (e) => setUserInput({...userInput, email : e.target.value}) }/>
+                        </div>
+                        <Input.Wrapper classNames={{error: styles.error,}} error={errors.email}/>
                     </div>
                     
-                    <div className={styles.divInput}>
-                        <i className="fa-solid fa-lock"></i>
-                        <input type='number' placeholder='Password' value={password} className={styles.inp}
-                        onChange={ (e) => setPassword(e.target.value) }/>
+                    <div className={styles.div}>
+                        <div className={styles.divInput}>
+                            <i className="fa-solid fa-lock"></i>
+                            <input type='number' name='password' placeholder='Password' value={userInput.password} className={styles.inp}
+                            onChange={ (e) => setUserInput({...userInput, password : e.target.value}) }/>
+                        </div>
+                        <Input.Wrapper classNames={{error: styles.error,}} error={errors.password}/>
                     </div>
 
                 </div>

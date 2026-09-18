@@ -2,7 +2,7 @@ import { useContext, } from 'react';
 import styles from '../../styles/orders.module.css'
 import { orderModalContext } from '../../providers/orderModalProvider';
 import { useSelector } from 'react-redux';
-// import { formatNumber } from '../../utils/formatNumber'
+import { formatNumber } from '../../utils/formatNumber';
 
 function OrdersCards() {
 
@@ -35,9 +35,9 @@ function OrdersCards() {
 
             <section className={styles.cards}>
                 <div className={styles.card}><span>Total Orders</span><strong>{orders.length}</strong></div>
-                <div className={styles.card}><span style={{color:"gold"}}>Pending</span><strong>{pending}</strong></div>
-                <div className={styles.card}><span style={{color:"green"}}>Completed</span><strong>{completed}</strong></div>
-                <div className={styles.card}><span style={{color:"red"}}>Canceled</span><strong>{canceled}</strong></div>
+                <div className={styles.card}><span style={{color:"gold"}}>Pending</span><strong>{formatNumber(pending)}</strong></div>
+                <div className={styles.card}><span style={{color:"green"}}>Completed</span><strong>{formatNumber(completed)}</strong></div>
+                <div className={styles.card}><span style={{color:"red"}}>Canceled</span><strong>{formatNumber(canceled)}</strong></div>
             </section>
         </>
     )

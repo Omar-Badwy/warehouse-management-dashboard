@@ -6,7 +6,7 @@ import '../../styles/navbar.css'
 import { Link, useLocation } from "react-router-dom";
 import { useDisclosure } from '@mantine/hooks';
 import SidebarDrawer from '../ui/sidebarDrawer';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { ThemeContext } from '../../providers/themeProvider';
 import { useSelector } from 'react-redux';
 
@@ -44,9 +44,15 @@ export default function Navbar () {
 
     const user = useSelector( (state) => state.auth.user)
 
-    const [opened, { open, close }] = useDisclosure(false);
+    const [opened, setOpend] = useState(false);
 
-    // const mode = localStorage.getItem("mode")
+    const openDrawer = () => {
+        setOpend(true)
+    }
+
+    const closeDrawer = () => {
+        setOpend(false)
+    }
 
     const {mode,setMode} = useContext(ThemeContext)
 
@@ -61,33 +67,14 @@ export default function Navbar () {
     return(
 
         <>
-        <SidebarDrawer opened={opened} close={close} />
+        <SidebarDrawer opened={opened} close={closeDrawer} />
 
         <div className="navbar">
 
             <div className="title" >
                 
-                <div className={styles.drawerBtn}>
-                    <ActionIcon
-                        variant="default"
-                        onClick={open}
-                        aria-label="Open menu"
-                        style={{
-                            width: "40px",
-                            height: "40px",
-                            borderRadius: "10px",
-                            border: "1px solid #e5e7eb",
-                            backgroundColor: "#fff",
-                        }}
-                    >
-                        <i
-                            className="fa-solid fa-bars"
-                            style={{
-                                fontSize: "20px",
-                                color: "#111827",
-                            }}
-                        />
-                    </ActionIcon>
+                <div className={styles.drawerBtn} onClick={openDrawer}>
+                    <i className="fa-solid fa-bars"/>
                 </div>
 
                 <h2>{title}</h2>

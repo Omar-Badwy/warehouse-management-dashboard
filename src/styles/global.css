@@ -17,12 +17,6 @@
     --sidebar-item-active: #14142877; 
     --sidebar-logout-hover: #ff0000c0;
 
-    /* ? Dvider */
-
-    --dvider-title: #111827;
-    --dvider-bg: #e5e7eb;
-    --dvider-text: #64748b;
-
     /* ? Main */
 
     --main-bg: #F7F8FC;
@@ -121,6 +115,8 @@
 
     /* ? Modal */
 
+    --modal-color: black;
+
     --modal-bg: #fff;
     --modal-border: #eef2f7;
     --modal-text-title: #172033;
@@ -160,11 +156,35 @@
     --modal-orderProduct-inp-bg: #fff;
     --modal-orderProduct-inp-color: #18212f;
     --modal-orderProduct-inp-hover: ;
+
+    /* ? Dvider */
+
+    --drawer-content-bg: #f8fafc;
+    --drawer-header-bg: #ffffff;
+
+    --drawer-blandIcon-bg: #111827;
+    --drawer-blandIcon-color: #fff;
+    --drawer-blandIcon-title: #111827;
+
+    --drawer-divider-color: #e5e7eb;
+
+    --drawer-navLink-hover-bg: #eef2f7;
+    --drawer-navLink-hover-color: #111827;
+    --drawer-navLink-hover-bg: #111827;
+    --drawer-navLink-active-color: #ffffff;
+
+    --drawer-btn-logout-bg: #ff000095;
+    --drawer-btn-logout-color: #fef2f2;
+    --drawer-btn-logout-hover-bg: #ff0000b5;
+
+    --drawer-btnShow-bg: #fff;
+    --drawer-btnShow-border: #e5e7eb;
+    --drawer-btnShow-color: black;
+
+    --drawer-userCard-border: #e5e7eb;
+    --drawer-userCard-bg: #ffffff;
+    --drawer-userInfo-title: #1e293b;
 }
-
-
-
-
 
 .darkMode {
 
@@ -264,7 +284,8 @@
 
     /* ? Modal */
 
-    --modal-bg: #0f172a;
+    --modal-color: #fff;
+
     --modal-bg: #0f1626;
     --modal-border: #004d77b5;
     --modal-text-title: #eef2f7;
@@ -310,4 +331,34 @@
     --modal-orderProduct-inp-border: #004D77;
     --modal-orderProduct-inp-bg: #0f1626;
     --modal-orderProduct-inp-color: #fff;
+
+    /* ? Dvider */
+
+    --drawer-content-bg: #0f172a;
+    --drawer-header-bg: #0f172a;
+
+    --drawer-blandIcon-bg: #004d77b5;
+    --drawer-blandIcon-color: #64748b;
+    --drawer-blandIcon-title: #004D77;
+
+    --drawer-divider-color: #004D77;
+
+    --drawer-navLink-hover-bg: #eef2f7;
+    --drawer-navLink-hover-color: #111827;
+    --drawer-navLink-hover-bg: #111827;
+    --drawer-navLink-active-color: #ffffff;
+
+    --drawer-btn-logout-border: #dc2626a0;
+    --drawer-btn-logout-bg: #transparent;
+    --drawer-btn-logout-color: #fef2f2;
+    --drawer-btn-logout-hover-bg: #dc262692;
+
+    --drawer-btnShow-bg: transparent;
+    --drawer-btnShow-border: #004D77;
+    --drawer-btnShow-color: white;
+    --drawer-btnShow-hover: #004D77;
+
+    --drawer-userCard-border: #004D77;
+    --drawer-userCard-bg: transparent;
+    --drawer-userInfo-title: #ffffffb0;
 }

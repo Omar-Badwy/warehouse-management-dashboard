@@ -1,7 +1,10 @@
 import { Button } from "@mantine/core";
+import { ThemeContext } from "../../providers/themeProvider";
+import { useContext } from "react";
  
 export default function EmptyState ({icon,title,description,buttonText,onClick}) {
 
+    const {mode} =  useContext(ThemeContext)
 
     return(
         <>
@@ -12,13 +15,13 @@ export default function EmptyState ({icon,title,description,buttonText,onClick})
                 gap:"10px",
                 padding:"20px",
                 fontSize:"20px",
-                color:"black",
+                color: mode === "ligth" ? "black" : "white",
                 width:"100%"
             }}>
                 <p>{icon} {title}</p>
                 <p>{description}</p>
                 {buttonText ? 
-                <Button onClick={onClick} style={{backgroundColor:"#0062ff"}}>{buttonText}</Button>
+                <Button onClick={onClick} style={{backgroundColor:"var(--button-add-primary)"}}>{buttonText}</Button>
                 : ""}
             </div>
         </>

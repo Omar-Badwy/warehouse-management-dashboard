@@ -8,6 +8,7 @@ import useSort from '../../hooks/useSort'
 import useFilter from '../../hooks/useFilter'
 import SearchInput from './searchInput'
 import { useNavigate } from 'react-router-dom'
+import { formatNumber } from '../../utils/formatNumber'
 
 function ClientsTable () {
 
@@ -69,7 +70,7 @@ function ClientsTable () {
                     <td style={{textAlign:"start"}}>{client.name}</td>
                     <td>{client.phone}</td>
                     <td>{client.address}</td>
-                    <td>{totalOrders}</td>
+                    <td>{formatNumber(totalOrders)}</td>
                     <td>
                         <div className={styles.actions}>
                             <div className={styles.editIcon} onClick={ () => openModal("editClient",client) }> <i className="fa-solid fa-pen"></i> </div>

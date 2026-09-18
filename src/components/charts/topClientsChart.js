@@ -52,7 +52,7 @@ export default function TopClientsChart ({filteredDate})  {
                         stroke="var(--stroke-color)" 
                     />
 
-                    <Tooltip />
+                    <Tooltip formatter={(value) => value.toLocaleString()}/>
 
                     <Bar
                         dataKey="orders"

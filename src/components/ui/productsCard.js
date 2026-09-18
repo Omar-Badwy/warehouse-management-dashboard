@@ -21,7 +21,7 @@ function ProductsCard () {
     },0 )
 
     const cards = [
-        {id: 2, title: "Products", icon: <i style={{color:"white"}} className="fa-solid fa-cubes"></i>, value: productsCount,},
+        {id: 2, title: "Products", icon: <i style={{color:"white"}} className="fa-solid fa-cubes"></i>, value: formatNumber(productsCount),},
         {id: 1, title: "Pound", icon: <i style={{color:"gray"}} className="fa-solid fa-dollar"></i>, value: formatNumber(totalInventoryValue) ,},
     ]
 

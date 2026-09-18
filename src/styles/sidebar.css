@@ -49,6 +49,7 @@
 .div-icon {
     width: 25%;
     font-size: 25px;
+    color: var(--sidebar-text);
 }
 
 .active {
@@ -57,8 +58,4 @@
 
 .logout:hover {
     background-color: var(--sidebar-logout-hover);
-}
-
-i {
-    color: var(--sidebar-text);
 }

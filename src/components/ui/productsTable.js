@@ -65,8 +65,9 @@ function ProductsTable () {
                 <tr key={product.id}>
                     <td style={{textAlign:"start"}}>{product.name}</td>
                     <td>{category.name}</td>
-                    <td>{ formatNumber(product.price) }</td>
-                    <td>{product.count}</td>
+                    <td>{formatNumber(product.price) }</td>
+                    <td>{formatNumber(product.count)}</td>
+                    <td>{formatNumber(product.count * product.price)}</td>
                     <td>
                         <div className={styles.actions}>
                             <div className={styles.editIcon} onClick={ () => openModal("editProduct",product) }> <i className="fa-solid fa-pen"></i> </div>
@@ -103,6 +104,7 @@ function ProductsTable () {
                         {name: "Category"},
                         {name: "Price"},
                         {name: "Stock "},
+                        {name: "Total value "},
                         {name: "actions"},
                         ]} rows={rows}/>
                     }

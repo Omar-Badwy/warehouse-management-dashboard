@@ -34,7 +34,7 @@ function DltProductModal ({type}) {
 
             dltConfig= {
                     title: "Delete product",
-                    content: <p style={{color:"black",fontSize:"20px"}}>Are you sure you want to delete this product?</p>,
+                    content: <p>Are you sure you want to delete this product?</p>,
                     button: "Delete product",
                     function: handleDltProduct,
                 }
@@ -44,7 +44,7 @@ function DltProductModal ({type}) {
             
             dltConfig= {
                     title: "Delete All",
-                    content: <p style={{color:"black",fontSize:"20px"}}>This action will delete all products. Are you sure you want to delete all products?</p>,
+                    content: <p>This action will delete all products. Are you sure you want to delete all products?</p>,
                     button: "Delete All",
                     function: handleDltAllProduct,
                 }
@@ -55,7 +55,7 @@ function DltProductModal ({type}) {
 
             dltConfig= {
                     title: "Delete All",
-                    content: <p style={{color:"black",fontSize:"20px"}}>This action will delete all products that related with this category. Are you sure you want to delete all products?</p>,
+                    content: <p>This action will delete all products that related with this category. Are you sure you want to delete all products?</p>,
                     button: "Delete All",
                     function: handleDltAllProductWidthCatId,
                 }

@@ -200,13 +200,13 @@ return(
                                 <div className={styles.fields}>
                                     <div>
                                         <label>Quantity</label>
-                                        <input type="number" value={item.quantity ?? 0} readOnly/>
+                                        <input type="number" value={formatNumber(item.quantity) ?? 0} readOnly/>
                                     </div>
 
                                     <div>
                                     <label>Price</label>
                                     <input
-                                        value={`${item.price ?? 0} EGP`}
+                                        value={`${formatNumber(item.price) ?? 0} EGP`}
                                         readOnly
                                     />
                                     </div>
@@ -215,7 +215,7 @@ return(
                                 <div className={styles.subtotal}>
                                     <span>Subtotal</span>
                                     <strong>
-                                    {(item.quantity ?? 0) * (item.price ?? 0)} EGP
+                                    {formatNumber( (item.quantity ?? 0) * (item.price ?? 0) )} EGP
                                     </strong>
                                 </div>
 

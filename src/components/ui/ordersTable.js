@@ -76,7 +76,7 @@ export default function OrdersTable() {
             return <tr key={order.id}>
                 <td className={styles.orderId}>{`ORD-${order.id}`}</td>
                 <td>{client.name}</td>
-                <td>{totalQuantity}</td>
+                <td>{formatNumber(totalQuantity)}</td>
                 <td>{formatNumber(orderTotal)} EGP</td>
                 <td><span className={`${styles.status} ${styles[order.status.toLowerCase()]}`}>{order.status}</span></td>
                 <td>{ formatDate(order.createdAt) }</td>

@@ -8,6 +8,7 @@ import EmptyState from '../empty/emptyState'
 import SearchInput from './searchInput'
 import useFilter from '../../hooks/useFilter'
 import useSort from '../../hooks/useSort'
+import { formatNumber } from '../../utils/formatNumber'
 
 function CategoryTable () {
 
@@ -67,7 +68,7 @@ function CategoryTable () {
             return(
                 <tr key={cat.id}>
                     <td style={{textAlign:"start"}}>{cat.name}</td>
-                    <td>{totalProducts}</td>
+                    <td>{formatNumber(totalProducts)}</td>
                     <td>{cat.createdAt}</td>
                     <td>{cat.updatedAt ? cat.updatedAt : "No updated"}</td>
                     <td>

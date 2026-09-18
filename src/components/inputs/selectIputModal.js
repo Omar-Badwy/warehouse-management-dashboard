@@ -17,7 +17,7 @@ function SelectInput ({value,onChange,error,name}) {
 
                 <Input.Wrapper classNames={{label: styles.label, error: styles.error}} error={error}>
 
-                    <Input name={name} className={styles.input}
+                    <input name={name} className={styles.input}
                         value={categories.find(cat => cat.id === modalOption.categoryId)?.name || ""}
                         disabled/>
                 </Input.Wrapper>

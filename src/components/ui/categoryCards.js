@@ -3,6 +3,7 @@ import styles from '../../styles/dashboard.module.css'
 import useLargesCategory from '../../hooks/useLargestCategory'
 import { useContext } from 'react'
 import { ModalsContext } from '../../providers/modalsProvider'
+import { formatNumber } from '../../utils/formatNumber'
 
 function CategoryCards () {
 
@@ -21,8 +22,8 @@ function CategoryCards () {
     const largestCategory = useLargesCategory(products)
 
     const cards = [
-        {id: 1, title: "Total Categories", icon: <i style={{color:"white"}} className="fa-solid fa-table-cells-large"></i>, value: categoryCount,},
-        {id: 2, title: "Total Products", icon: <i style={{color:"gray"}} className="fa-solid fa-cubes"></i>, value: productsCount,},
+        {id: 1, title: "Total Categories", icon: <i style={{color:"white"}} className="fa-solid fa-table-cells-large"></i>, value: formatNumber(categoryCount),},
+        {id: 2, title: "Total Products", icon: <i style={{color:"gray"}} className="fa-solid fa-cubes"></i>, value: formatNumber(productsCount),},
     ]
 
     const CardElements = cards.map( (card) => {
@@ -64,7 +65,7 @@ function CategoryCards () {
                     <div style={{display:"flex",flexDirection:"column",justifyContent:"center"}}>
                         <span style={{fontSize:"25px",marginBottom:"3px"}}>
                             {largestCategory ? largestCategory.name : "No Categories"} 
-                            ({largestCategory ? largestCategory.productsCount : 0})
+                            ({largestCategory ? formatNumber(largestCategory.productsCount) : 0})
                         </span>
                         <span style={{fontSize:"15px",color:"gray"}}>Largest Category</span>
                     </div>

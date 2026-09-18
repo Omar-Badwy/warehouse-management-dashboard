@@ -79,19 +79,15 @@ function CategoryProductsPage () {
         } )    
 
     const cards = [
-        {id: 1, title: "Total Value", icon: <i style={{color:"white"}} className="fa-solid fa-dollar"></i>, value: totalPrice.toLocaleString(), bgColor: "#005b8c", color:"white"},
-        {id: 2, title: "Total Products", icon: <i style={{color:"gray"}} className="fa-solid fa-cubes"></i>, value: productsCount, bgColor: "white", color:"#005b8c"},
-        // {id: 3, title: "most expensive product", icon: <i style={{color:"gray"}} className="fa-solid fa-cubes"></i>, value: MostExpensiveProduct.price, bgColor: "white", color:"#005b8c"},
+        {id: 1, title: "Total Value", icon: <i className="fa-solid fa-dollar"></i>, value: totalPrice.toLocaleString(),},
+        {id: 2, title: "Total Products", icon: <i className="fa-solid fa-cubes"></i>, value: productsCount,},
+        // {id: 3, title: "most expensive product", icon: <i className="fa-solid fa-cubes"></i>, value: MostExpensiveProduct.price,},
     ]
 
     const CardElements = cards.map( (card) => {
 
         return(
-            <div key={card.id} className={style.card}
-            style={{
-                backgroundColor:`${card.bgColor}`,
-                color:`${card.color}`,
-            }}>
+            <div key={card.id} className={style.card}>
 
                 <div style={{display:"flex",flexDirection:"column",justifyContent:"center"}}>
                     <span>{card.value}</span>

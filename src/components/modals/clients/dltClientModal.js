@@ -18,7 +18,7 @@ function DltClientModal () {
     return(
         <>
             <BaseModal title={"Delete client"} buttonText={"Delete client"} onSubmit={handleDltProduct}>
-                <p style={{color:"black",fontSize:"20px"}}>Are you sure you want to delete this client?</p>
+                <p>Are you sure you want to delete this client?</p>
             </BaseModal>
         </>
     )

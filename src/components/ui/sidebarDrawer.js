@@ -1,12 +1,16 @@
-import { Link, useLocation } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { Link, NavLink, useLocation } from "react-router-dom";
+import { useSelector } from "react-redux";
 import { Drawer } from "@mantine/core";
-import { logout } from "../../redux/features/slices/authSlise";
 import styles from "../../styles/dashboard.module.css";
+import { useContext } from "react";
+import { ModalsContext } from "../../providers/modalsProvider";
 
 function SidebarDrawer({ opened, close }) {
   const location = useLocation();
-  const dispatch = useDispatch();
+
+  const {openModal} = useContext(ModalsContext)
+
+  const user = useSelector( (state) => state.auth.user)
 
   const sidebarLinks = [
     {
@@ -55,95 +59,84 @@ function SidebarDrawer({ opened, close }) {
     return location.pathname.startsWith(path);
   };
 
-  const handleLogout = () => {
-    dispatch(logout());
-    close();
-  };
 
   return (
-    <Drawer
-      opened={opened}
-      onClose={close}
-      position="left"
-      size={290}
-      title=""
-      classNames={{
-        content: styles.drawerContent,
-        header: styles.drawerHeader,
-        close: styles.drawerClose,
-        body: styles.drawerBody,
-      }}
-      overlayProps={{
-        backgroundOpacity: 0.45,
-        blur: 3,
-      }}
-    >
-      {/* Logo */}
-      <div className={styles.brand}>
-        <div className={styles.brandIcon}>
-          <i className="fa-solid fa-warehouse" />
-        </div>
 
-        <div className={styles.brandText}>
-          <h2>Warehouse</h2>
-          <span>Management</span>
-        </div>
-      </div>
+      <div className={opened ? styles.overlay : ""} onMouseDown={close}>
 
-      <div className={styles.divider} />
+        <div className={`${styles.drawerContent} ${opened ? styles.drawerOpen : ""}`}>
 
-      {/* Navigation */}
-      <nav className={styles.nav}>
-        <p className={styles.sectionTitle}>MAIN MENU</p>
-
-        {sidebarLinks.map((item) => (
-          <Link
-            key={item.id}
-            to={item.path}
-            onClick={close}
-            className={`${styles.navLink} ${
-              isActive(item.path) ? styles.active : ""
-            }`}
-          >
-            <span className={styles.icon}>{item.icon}</span>
-
-            <span className={styles.linkText}>
-              {item.title}
-            </span>
-          </Link>
-        ))}
-      </nav>
-
-      {/* Bottom */}
-      <div className={styles.bottom}>
-        <div className={styles.divider} />
-
-        <button
-          className={styles.logout}
-          onClick={handleLogout}
-        >
-          <span className={styles.icon}>
-            <i className="fa-solid fa-right-from-bracket" />
-          </span>
-
-          <span className={styles.linkText}>
-            Logout
-          </span>
-        </button>
-
-        {/* User */}
-        <div className={styles.userCard}>
-          <div className={styles.avatar}>
-            O
+          <div className={styles.drawerHeader}>
+              <button className={styles.drawerClose} onClick={close}>
+                  <i className="fa-solid fa-xmark"></i>
+              </button>
           </div>
 
-          <div className={styles.userInfo}>
-            <strong>Omar</strong>
-            <span>Administrator</span>
+          <div className={styles.drawerBody}>
+
+              <div className={styles.brand}>
+                  <div className={styles.brandIcon}>
+                      <i className="fa-solid fa-warehouse"></i>
+                  </div>
+
+                  <div className={styles.brandText}>
+                      <h2>Warehouse</h2>
+                      <span>Management System</span>
+                  </div>
+              </div>
+
+              <div className={styles.divider}></div>
+
+              <nav className={styles.nav}>
+                <p className={styles.sectionTitle}>MAIN MENU</p>
+
+                {sidebarLinks.map((item) => (
+                  <Link
+                    key={item.id}
+                    to={item.path}
+                    onClick={close}
+                    className={`${styles.navLink} ${
+                      isActive(item.path) ? styles.active : ""
+                    }`}
+                  >
+                    <span className={styles.icon}>{item.icon}</span>
+
+                    <span className={styles.linkText}>
+                      {item.title}
+                    </span>
+                  </Link>
+                ))}
+              </nav>
+
+              <div className={styles.bottom}>
+
+                  <div className={styles.divider}></div>
+
+                  <button
+                      className={styles.logout}
+                      onClick={() => openModal("logout")}
+                  >
+                      <i className="fa-solid fa-right-from-bracket"></i>
+                      <span>Logout</span>
+                  </button>
+
+                  <div className={styles.userCard}>
+                      <div className={styles.avatar}>
+                          O
+                      </div>
+
+                      <div className={styles.userInfo}>
+                          <strong>{user.name}</strong>
+                          <span>Administrator</span>
+                      </div>
+                  </div>
+
+              </div>
+
           </div>
         </div>
+
       </div>
-    </Drawer>
   );
 }
 

@@ -8,7 +8,7 @@ function TextInput ({type,name,placeholder,error,value,onChange}) {
             <Input.Wrapper classNames={{label: styles.label, error: styles.error,}} 
                  error={error}>
 
-                <Input type={type} name={name} className={styles.input} placeholder={placeholder}
+                <input type={type} name={name} className={styles.input} placeholder={placeholder}
 
                 value={value} onChange={onChange}/>
             </Input.Wrapper>

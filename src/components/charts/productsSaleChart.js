@@ -66,7 +66,7 @@ export default function ProductsSalesChart ({filteredDate})  {
                     
                     <YAxis stroke="var(--stroke-color)" strokeWidth={2} dataKey="quantity" tickFormatter={(value) => value.toLocaleString()}/>
 
-                    <Tooltip defaultIndex={2} />
+                    <Tooltip defaultIndex={2} formatter={(value) => value.toLocaleString()}/>
                     <Bar
                         dataKey="quantity"
                         fill="#0ea5e9"

@@ -6,8 +6,10 @@ import SalesChart from '../components/charts/salesChart'
 import TopClientsChart from '../components/charts/topClientsChart'
 import ProductsSalesChart from '../components/charts/productsSaleChart'
 import TopCategoriesChart from '../components/charts/topCategoriesChart'
-import { useMemo, useState } from 'react'
+import { useContext, useMemo, useState } from 'react'
 import { useSelector } from 'react-redux'
+import EmptyState from '../components/empty/emptyState'
+import { orderModalContext } from '../providers/orderModalProvider'
 
 
 export default function Dashboard () {
@@ -15,6 +17,8 @@ export default function Dashboard () {
     const orders = useSelector( (state) => state.orders.orders)
 
     const [filter, setFilter] = useState('week')
+
+    const { openOrderModal } = useContext(orderModalContext)
 
     const filterTime = useMemo( () => {   
         
@@ -75,6 +79,8 @@ export default function Dashboard () {
 
     }, [orders, filter])
 
+        
+        console.log(filterTime)
 
     return (
         <div className={styles.dashboard}>
@@ -103,14 +109,24 @@ export default function Dashboard () {
 
             <Cards/>
             
-            <div className={styles.grid}>
-                <RecentOrders filteredDate={filterTime}/>
-                <TopClientsChart filteredDate={filterTime}/>
-                <TopCategoriesChart filteredDate={filterTime}/>
-                <ProductsSalesChart filteredDate={filterTime}/>
-                <SalesChart filteredDate={filterTime} filter={filter}/>
-            </div>
-
+            {filterTime.length > 0 ? 
+                <div className={styles.grid}>
+                    <RecentOrders filteredDate={filterTime}/>
+                    <TopClientsChart filteredDate={filterTime}/>
+                    <TopCategoriesChart filteredDate={filterTime}/>
+                    <ProductsSalesChart filteredDate={filterTime}/>
+                    <SalesChart filteredDate={filterTime} filter={filter}/>
+                </div>
+            : 
+                <EmptyState
+                    icon=""
+                    title="No Orders Yet"
+                    description="Start by adding your first order so you can view the statistics."
+                    buttonText="Add order"
+                    onClick={() => openOrderModal("addOrder") }
+                />
+            }
+            
         </div>
     )
 }

@@ -85,8 +85,8 @@ export default function ClientPage () {
         {id: 4, title: "Address", name: client.address},
         {id: 5, title: "Created At", name: client.createdAt},
         {id: 5, title: "Updated At", name: client.updatedAt ? client.updatedAt : "Not updated yet"},
-        {id: 6, title: "orders", name: clientOrders.length},
-        {id: 7, title: "products", name: productsCount},
+        {id: 6, title: "orders", name: formatNumber(clientOrders.length)},
+        {id: 7, title: "products", name:formatNumber( productsCount)},
     ]
 
     const itemsMap = items.map( (item) => {
@@ -146,7 +146,7 @@ export default function ClientPage () {
             return <tr key={order.id}>
                 <td className={style.orderId}>{`ORD-${order.id}`}</td>
                 <td>{client.name}</td>
-                <td>{totalQuantity}</td>
+                <td>{formatNumber(totalQuantity)}</td>
                 <td>{formatNumber(orderTotal)} EGP</td>
                 <td><span className={`${style.status} ${style[order.status.toLowerCase()]}`}>{order.status}</span></td>
                 <td>{ formatDate(order.createdAt) }</td>

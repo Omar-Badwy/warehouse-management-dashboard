@@ -4,6 +4,7 @@ import styles from "../styles/orderPage.module.css"
 import { useContext, useEffect } from "react"
 import { formatDate } from "../utils/formatDate"
 import { orderModalContext } from "../providers/orderModalProvider"
+import { formatNumber } from "../utils/formatNumber"
 
 export default function OrderPage () {
 
@@ -47,36 +48,36 @@ export default function OrderPage () {
 
                 <div className={styles.productInfo}>
                     <h3>{product.name}</h3>
-                    <span>Price: {pro.price.toLocaleString()} EGP</span>
+                    <span>Price: {formatNumber(pro.price)} EGP</span>
                 </div>
 
                 <div className={styles.quantity}>
                     <span>Qty</span>
-                    <strong>{pro.quantity}</strong>
+                    <strong>{formatNumber(pro.quantity)}</strong>
                 </div>
 
                 <strong className={styles.lineTotal}>
                     <span>Total</span>
-                    {(pro.quantity * pro.price).toLocaleString()} EGP
+                    {formatNumber(pro.quantity * pro.price)} EGP
                 </strong>
             </article>
     })
 
-  const totalQuantity = order.products.reduce(
-    (total, product) => total + Number(product.quantity),
-    0
-  );
+    const totalQuantity = order.products.reduce(
+        (total, product) => total + Number(product.quantity),
+        0
+    );
 
-  const total = order.products.reduce(
-    (total, product) => total + Number(product.quantity) * Number(product.price),
-    0
-  );
+    const total = order.products.reduce(
+        (total, product) => total + Number(product.quantity) * Number(product.price),
+        0
+    );
 
-  function editOrder () {
-    const order = orders.find( (ord) => ord.id === orderId )
-    setOrderItems(order.products)
-    openOrderModal("editOrder",orderId)
-  }
+    function editOrder () {
+        const order = orders.find( (ord) => ord.id === orderId )
+        setOrderItems(order.products)
+        openOrderModal("editOrder",orderId)
+    }
 
     return(
         <>
@@ -217,14 +218,14 @@ export default function OrderPage () {
 
                         <div className={styles.summaryRow}>
                         <span>Subtotal</span>
-                        <strong>{total.toLocaleString()} EGP</strong>
+                        <strong>{formatNumber(total)} EGP</strong>
                         </div>
 
                         <div className={styles.divider} />
 
                         <div className={styles.totalRow}>
                         <span>Total</span>
-                        <strong>{total.toLocaleString()} EGP</strong>
+                        <strong>{formatNumber(total)} EGP</strong>
                         </div>
 
                         <button className={styles.actionButton}

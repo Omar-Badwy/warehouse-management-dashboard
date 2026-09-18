@@ -27,9 +27,9 @@ function DltCategoryModal () {
     return(
         <>
             <BaseModal title="delete category" buttonText="delete" onSubmit={handleDltCategory}>
-                <p style={{color:"black",fontSize:"17px"}}>Are you sure you want to delete this category?</p>
-                <p style={{color:"black",fontSize:"17px"}}>This action will permanently delete the category and all products inside it.</p>
-                <p style={{color:"black",fontSize:"17px"}}>This action cannot be undone. </p>
+                <p>Are you sure you want to delete this category?</p>
+                <p>This action will permanently delete the category and all products inside it.</p>
+                <p>This action cannot be undone. </p>
             </BaseModal>
         </>
     )
