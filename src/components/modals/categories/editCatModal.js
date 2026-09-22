@@ -5,11 +5,12 @@ import { ModalsContext } from "../../../providers/modalsProvider";
 import { useDispatch, useSelector } from "react-redux";
 import { editCat } from "../../../redux/features/slices/categoriesSlice";
 import { validateCategory } from "../../../utils/validation/categoryValidation";
+import { addNotification } from "../../../redux/features/slices/notificationsSlice";
 
 
 function EditCategoryModal () {
 
-    const { closeModal , categoryInput, setCategoryInput, setErrors, } = useContext(ModalsContext)
+    const { closeModal , categoryInput, setErrors, } = useContext(ModalsContext)
 
     const categories = useSelector( (state) => state.categories.categories)
     const dispatch = useDispatch()
@@ -20,7 +21,11 @@ function EditCategoryModal () {
             if(Object.keys(validationErrors).length === 0){
     
                 dispatch(editCat({data: categoryInput,}))
-                setCategoryInput({id: "", name: ""})
+                dispatch( addNotification({
+                    type: "success",
+                    title: "category edited",
+                    message: `Category "${categoryInput.name}" was edited successfully.`,
+                }) )
                 closeModal()
             }
         }

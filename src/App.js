@@ -6,6 +6,8 @@ import './styles/global.css'
 
 import '@mantine/core/styles.css';
 import ThemeProvider from './providers/themeProvider';
+import NotificationContainer from './components/notifications/notificationsContainer';
+import StockNotifications from './utils/stockNotifications';
 
 function App() {
   return (
@@ -14,6 +16,8 @@ function App() {
         <ModalsProvider>
           <OrderMOdalProvider>
             <AppRoutes/>
+            <NotificationContainer/>
+            <StockNotifications/>
           </OrderMOdalProvider>
         </ModalsProvider>
       </MantineProvider>

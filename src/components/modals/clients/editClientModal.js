@@ -5,11 +5,12 @@ import { useDispatch } from "react-redux";
 import ClientForm from "../../forms/clientForm";
 import { editClient } from "../../../redux/features/slices/clientsSlice";
 import { validateClient } from "../../../utils/validation/clientsValidation";
+import { addNotification } from "../../../redux/features/slices/notificationsSlice";
 
 
 function EditClientModal () {
 
-    const { closeModal , clientInput, setClientInput, setErrors, } = useContext(ModalsContext)
+    const { closeModal , clientInput, setErrors, } = useContext(ModalsContext)
 
     const dispatch = useDispatch()
 
@@ -22,7 +23,11 @@ function EditClientModal () {
                 data: clientInput,
             }))
 
-            setClientInput({name: "",phoneNumber: "",email: "",address: "",})
+            dispatch( addNotification({
+                type: "success",
+                title: "client edited",
+                message: `Client "${clientInput.name}" was edited successfully.`,
+            }) )
             closeModal()
         }
     }

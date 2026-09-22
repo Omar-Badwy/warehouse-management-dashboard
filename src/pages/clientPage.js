@@ -201,7 +201,11 @@ export default function ClientPage () {
               </section>
 
               {/* # Client Orders */}
-              <section className={style.tableContainer}>
+              
+
+
+            {clientOrders.length > 0 ? 
+                <>
                   <div className={style.toolbar}>
                       <SearchInput
                               search={search}
@@ -230,7 +234,15 @@ export default function ClientPage () {
                       }
 
                   </div>
-              </section>
+                </>
+            : 
+                <section className={style.tableContainer}>
+                    <EmptyState
+                        title="No Orders Yet"
+                        description={`Start by adding the first order for ${client.name}.`}
+                        />
+                </section>
+            }
 
             </main>
 

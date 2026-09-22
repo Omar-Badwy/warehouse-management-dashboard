@@ -5,11 +5,12 @@ import { edit } from "../../../redux/features/slices/productsSlice";
 import { validateProduct } from "../../../utils/validation/productValidation";
 import { ModalsContext } from "../../../providers/modalsProvider";
 import { useDispatch, useSelector } from "react-redux";
+import { addNotification } from "../../../redux/features/slices/notificationsSlice";
 
 
 function EditProductModal () {
 
-const { closeModal , productInput, setProductInput, setErrors, } = useContext(ModalsContext)
+const { closeModal , productInput, setErrors, } = useContext(ModalsContext)
 
     const products = useSelector( (state) => state.products.products)
 
@@ -22,7 +23,12 @@ const { closeModal , productInput, setProductInput, setErrors, } = useContext(Mo
             if(Object.keys(validationErrors).length === 0){
     
                 dispatch(edit({data: productInput}))
-                setProductInput({name: "",categoryId: "",count: "",price: "",})
+
+                dispatch( addNotification({
+                    type: "success",
+                    title: "product edited",
+                    message: `Product "${productInput.name}" was edited successfully.`,
+                }) )
                 closeModal()
             }
         }

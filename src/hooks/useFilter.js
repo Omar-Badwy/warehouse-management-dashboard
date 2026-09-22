@@ -61,7 +61,7 @@ export default function useFilter(data, filterBy,search){
 
         return result;
 
-    },[data,filterBy,search,categories]);
+    },[data,filterBy,search,categories,clients]);
 
     return filteredData;
 }

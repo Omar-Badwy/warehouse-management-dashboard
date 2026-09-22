@@ -1,11 +1,11 @@
 import { useContext } from "react";
 import BaseModal from "../baseModal";
 import { ModalsContext } from "../../../providers/modalsProvider";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { deleteProductsByCategory } from "../../../redux/features/slices/productsSlice";
 import { dltCat } from "../../../redux/features/slices/categoriesSlice";
-
+import { addNotification } from "../../../redux/features/slices/notificationsSlice";
 
 
 function DltCategoryModal () {
@@ -16,10 +16,19 @@ function DltCategoryModal () {
 
     const { closeModal , modalData,} = useContext(ModalsContext)
 
+    const categories = useSelector( (state) => state.categories.categories)
+
+    const category = categories.find( (category) => category.id === modalData.id)
+
     function handleDltCategory () {
     
             dispatch(dltCat({id: modalData.id}))
             dispatch(deleteProductsByCategory({id: modalData.id}))
+            dispatch( addNotification({
+                type: "error",
+                title: "category deleted",
+                message: `category "${category.name}" was deleted.`,
+            }) )
             navigate("/categories");
             closeModal()
     }

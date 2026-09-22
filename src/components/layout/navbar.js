@@ -1,10 +1,7 @@
 import styles from '../../styles/dashboard.module.css'
-
-import { ActionIcon } from '@mantine/core';
 import '../../styles/navbar.css'
 
-import { Link, useLocation } from "react-router-dom";
-import { useDisclosure } from '@mantine/hooks';
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import SidebarDrawer from '../ui/sidebarDrawer';
 import { useContext, useState } from 'react';
 import { ThemeContext } from '../../providers/themeProvider';
@@ -14,12 +11,15 @@ export default function Navbar () {
 
     const location = useLocation()
 
+    const navigate = useNavigate()
+
     const pageTitles = {
         "/dashboard": "dashboard",
         "/products": "products",
         "/categories": "categories",
         "/clients": "clients",
         "/orders": "orders",
+        "/notifications": "notifications",
         "/settings": "settings",
         "/error": "errorPage",
     };
@@ -44,6 +44,8 @@ export default function Navbar () {
 
     const user = useSelector( (state) => state.auth.user)
 
+    const notifications = useSelector( (state) => state.notifications.notifications)
+
     const [opened, setOpend] = useState(false);
 
     const openDrawer = () => {
@@ -63,6 +65,8 @@ export default function Navbar () {
     function toDark (e) {
         setMode("dark")
     }
+
+    const unreadCount = notifications.filter( (notification) => !notification.read ).length;
 
     return(
 
@@ -99,6 +103,19 @@ export default function Navbar () {
                      cursor:"pointer", fontSize:"20px",display: mode === "dark" ? "flex" : "none" }} 
                     className="fa-solid fa-sun" onClick={toLigth}></i>
 
+                </div>
+
+                <div className={"notificationButton"} onClick={ () => navigate("/notifications")}>
+
+                    {unreadCount > 0 ? 
+                      <i className="fa-solid fa-bell fa-shake"></i>
+                    : <i className="fa-solid fa-bell"></i> }
+
+                    {unreadCount > 0 && (
+                        <span className={"notificationBadge"}>
+                        {unreadCount} 
+                        </span>
+                    )}
                 </div>
             </div>
 

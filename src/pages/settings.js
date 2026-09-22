@@ -1,19 +1,23 @@
 import { Switch } from "@mantine/core"
 import styles from "../styles/settings.module.css"
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { useContext } from "react"
 import { ModalsContext } from "../providers/modalsProvider"
 import { ThemeContext } from "../providers/themeProvider"
+import { updateNotsProperties } from "../redux/features/slices/notificationsSlice"
 
 
 export default function Settings () {
 
     const user = useSelector( (state) => state.auth.user )
-    console.log(user)
+
+    const notsProperties = useSelector( (state) => state.notifications.notsProperties )
 
     const {openModal} = useContext(ModalsContext)
 
     const {mode,setMode} = useContext(ThemeContext)
+
+    const dispatch = useDispatch()
 
     return (
         <>
@@ -101,24 +105,39 @@ export default function Settings () {
                         <div className={styles.card}> 
                              
                             <div className={styles.cardInfo}>
-                                <h6>Low stock alerts</h6>
-                                <p>Show an alert when a product reaches a low quantity.</p>
+                                <h6>Notifications</h6>
+                                <p>Allow notifications to appear</p>
                             </div>
 
                             <div className={styles.switch}>
-                                <Switch defaultChecked size="md" />
+                                <Switch defaultChecked checked={notsProperties.allowNotifications} size="md" 
+                                    onChange={ (e) => dispatch(updateNotsProperties("allowNotifications")) }/>
                             </div>
                         </div>
 
                         <div className={styles.card}> 
                              
                             <div className={styles.cardInfo}>
-                                <h6>Order status updates</h6>
-                                <p>Show notifications when an order status changes</p>
+                                <h6>Sounds</h6>
+                                <p>Allow notification sounds.</p>
                             </div>
 
                             <div className={styles.switch}>
-                                <Switch defaultChecked size="md" />
+                                <Switch defaultChecked checked={notsProperties.allowSounds} size="md" 
+                                    onChange={ (e) => dispatch(updateNotsProperties("allowSounds")) }/>
+                            </div>
+                        </div>
+
+                        <div className={styles.card}> 
+                             
+                            <div className={styles.cardInfo}>
+                                <h6>Pop-up notifications</h6>
+                                <p>Allow pop-up notifications to appear.</p>
+                            </div>
+
+                            <div className={styles.switch}>
+                                <Switch defaultChecked checked={notsProperties.allowPopNotifications} size="md" 
+                                    onChange={ (e) => dispatch(updateNotsProperties("allowPopNotifications")) }/>
                             </div>
                         </div>
     

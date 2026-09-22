@@ -142,6 +142,7 @@
     --modal-btn-cancle-color: #475569;
 
     --modal-btn-add-bg: #2563eb;
+    --modal-btn-add-hover: #2564ebc8;
     --modal-btn-add-color: #fff;
 
     --modal-btn-close-bg: #f1f5f9;
@@ -184,12 +185,47 @@
     --drawer-userCard-border: #e5e7eb;
     --drawer-userCard-bg: #ffffff;
     --drawer-userInfo-title: #1e293b;
+
+    /* ? Notifications */
+
+    --not-bg: #fff;
+    --not-border: #e6e8ee;
+    --not-hover: #0f172a0f;
+
+    --not-unread-border: #2563eb;
+
+    --not-title-color: #20232a;
+    --not-toast-title-color: #20232a;
+
+    --not-btn-hover-bg: #F7F8FC;
+    --not-btn-hover-color: #2563eb;
+    --not-btn-dlt-hover-bg: #dc2626;
+
+    --not-btn-clear-bg: #c62828fa;
+    --not-btn-clear-border: none;
+    --not-btn-clear-color: #fff;
+    --not-btn-clear-hover: #c62828dc;
+    --not-btn-clear-hover-color: #fff;
+
+    --not-success-bg: #ecfdf3;
+    --not-success-color: #027a48;
+
+    --not-warning-bg: #fffaeb;
+    --not-warning-color: #b54708;
+
+    --not-info-bg: #eff8ff;
+    --not-info-color: #175cd3;
+
+    --not-error-bg: #fef3f2;
+    --not-error-color: #b42318;
 }
 
 .darkMode {
 
     --settings-h6: #004D77;
     --scroll-bg: #000000;
+
+    /* ? Sidebar */
 
     --sidebar-bg: #0f172a; 
     --sidebar-text: #647084; 
@@ -198,10 +234,14 @@
 
     --main-bg: #111827;
 
+    /* ? Navbar */
+
     --navbar-bg: #111827;
     --navbar-text-color: #77849c; 
     --navbar-title-color: #004d77; 
     --navbar-boxShadow: none;
+
+    /* ? Card */
 
     --card-bg: transparent;
     --card-color: #647084;
@@ -314,7 +354,7 @@
 
     --modal-btn-add-border: #004D77;
     --modal-btn-add-bg: transparent;
-    --modal-btn-add-hover: #2564ebba;
+    --modal-btn-add-hover: #004D77;
     --modal-btn-add-color: #fff;
 
     --modal-btn-close-bg: transparent;
@@ -361,4 +401,37 @@
     --drawer-userCard-border: #004D77;
     --drawer-userCard-bg: transparent;
     --drawer-userInfo-title: #ffffffb0;
+
+    /* ? Notifications */
+
+    --not-bg: transparent;
+    --not-border: #004D77;
+    --not-hover: #0000002e;
+
+    --not-unread-border: #135af4;
+    --not-title-color: #004D77;
+    --not-toast-title-color: #000000bc;
+
+    --not-btn-hover-bg: #004d77b3;
+    --not-btn-hover-color: #2563eb;
+    --not-btn-dlt-hover-bg: #dc2626;
+
+    --not-btn-clear-bg: transparent;
+    --not-btn-clear-border: #c62828b3;
+    --not-btn-clear-color: #c62828cd;
+    --not-btn-clear-hover: #c62828b3;
+    --not-btn-clear-hover-color: #fff;
+
+    --not-success-bg: #064e3b;
+    --not-success-color: #6ee7b7;
+
+    --not-warning-bg: #fcd34d;
+    /* --not-warning-bg: #; */
+    --not-warning-color: #451a03;
+
+    --not-info-bg: #172554;
+    --not-info-color: #93c5fd;
+
+    --not-error-bg: #ce2b2b;
+    --not-error-color: #fca5a5;
 }

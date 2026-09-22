@@ -74,8 +74,14 @@
   color: var(--client-btn-edit-color);
 }
 
-.btnEdit:hover {
-  background: var(--client-btn-edit-hover);
+.btnEdit:hover:not(:disabled) {
+    background: var(--client-btn-edit-hover);
+    transform: translateY(-1px);
+}
+
+.btnEdit:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
 }
 
 .btnDlt {
@@ -86,10 +92,7 @@
 
 .btnDlt:hover {
   background: var(--client-btn-dlt-hover);
-}
-
-.btnAction:hover {
-    transform: translateY(-1px);
+  transform: translateY(-1px);
 }
 
 .status {

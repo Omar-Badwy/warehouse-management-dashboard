@@ -22,6 +22,7 @@ const OrderMOdalProvider = ({children}) => {
     }
 
     const [orderInput, setOrderInput] = useState({
+        id:"",
         clientId: "",
         productId: "",
         quantity: "",

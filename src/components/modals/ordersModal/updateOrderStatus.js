@@ -5,6 +5,7 @@ import { updateStatusOrder } from "../../../redux/features/slices/ordersSlice";
 import { completeOrder, } from "../../../redux/features/slices/productsSlice";
 import styles from "../../../styles/orderModal.module.css"
 import { Input } from "@mantine/core";
+import { addNotification } from "../../../redux/features/slices/notificationsSlice";
 
 
 function UpdateOrderModal () {
@@ -15,11 +16,15 @@ function UpdateOrderModal () {
 
     const orders = useSelector( (state) => state.orders.orders)
 
+    const order = orders.find( (order) => order.id === orderModal.data)
+
+    const clients = useSelector( (state) => state.clients.clients )
+
+    const client = clients.find( (client) => client.id === order.clientId)
+
     function orderInputOnChange (e) {
         setOrderInput({...orderInput, [e.target.name] : e.target.value})
     }
-
-    const order = orders.find( (order) => order.id === orderModal.data)
 
     function handleUpdateStatus () {
 
@@ -32,10 +37,20 @@ function UpdateOrderModal () {
 
             if(orderInput.status === "completed"){
                 dispatch(completeOrder({data: order.products, status: "completed"}))
+                dispatch( addNotification({
+                    type: "success",
+                    title: "Order completed",
+                    message: `Order #${order.id} was completed for client ${client.name}.`,
+                }) )
             }
 
             if(orderInput.status === "cancelled"){
                 dispatch(completeOrder({data: order.products, status: "cancelled"}))
+                dispatch( addNotification({
+                    type: "error",
+                    title: "Order Cancelled",
+                    message: `Order #${order.id} was cancelled and stock was restored.`,
+                }) )
             }
 
             closeOrderModal()
@@ -70,7 +85,7 @@ function UpdateOrderModal () {
 
                             <Input.Wrapper classNames={{error: styles.error}} error={orderErrors.status}>
                                 <select className={styles.select} name="status" onChange={orderInputOnChange} value={orderInput.status}>
-                                    <option value="select status" >{"select status"}</option>
+                                    <option value="select status">{"select status"}</option>
                                     <option value="pending" style={{color:"gold"}} >{"Pending Order"}</option>
                                     <option value="completed" style={{color:"green"}} >{"Complete Order"}</option>
                                     <option value="cancelled" style={{color:"red"}} >{"Cancle Order"}</option>

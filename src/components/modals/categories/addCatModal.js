@@ -5,6 +5,7 @@ import { ModalsContext } from "../../../providers/modalsProvider";
 import { useDispatch, useSelector } from "react-redux";
 import { addCat } from "../../../redux/features/slices/categoriesSlice";
 import { validateCategory } from "../../../utils/validation/categoryValidation";
+import { addNotification } from "../../../redux/features/slices/notificationsSlice";
 
 
 function AddCategoryModal () {
@@ -22,6 +23,11 @@ function AddCategoryModal () {
         if(Object.keys(validationErrors).length === 0){
 
             dispatch(addCat({data: categoryInput,}))
+            dispatch( addNotification({
+                type: "success",
+                title: "category added",
+                message: `New category "${categoryInput.name}" was added successfully.`,
+            }) )
             closeModal()
         }
     }

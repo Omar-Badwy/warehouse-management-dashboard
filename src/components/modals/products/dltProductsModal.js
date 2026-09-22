@@ -1,28 +1,50 @@
 import { useContext } from "react";
 import BaseModal from "../baseModal";
 import { ModalsContext } from "../../../providers/modalsProvider";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { dlt, dltAll, dltAllWithCatId } from "../../../redux/features/slices/productsSlice";
+import { addNotification } from "../../../redux/features/slices/notificationsSlice";
 
 function DltProductModal ({type}) {
 
     const dispatch = useDispatch()
-
+    
     const { closeModal , modalData,} = useContext(ModalsContext)
+
+    const products = useSelector( (state) => state.products.products)
+
+    const product = products.find( (product) => product.id === modalData.id)
+
 
     function handleDltProduct () {
 
         dispatch(dlt({id: modalData.id}))
+            
+        dispatch( addNotification({
+            type: "error",
+            title: "product deleted",
+            message: `product "${product.name}" was deleted.`,
+        }) )
         closeModal()
     }
 
     function handleDltAllProduct () {
         dispatch(dltAll())
+        dispatch( addNotification({
+            type: "error",
+            title: "products deleted",
+            message: `all products were deleted.`,
+        }) )
         closeModal()
     }
     
     function handleDltAllProductWidthCatId () {
         dispatch(dltAllWithCatId(modalData))
+        dispatch( addNotification({
+            type: "error",
+            title: "product deleted",
+            message: `product "${product.name}" was deleted.`,
+        }) )
         closeModal()
     }
 

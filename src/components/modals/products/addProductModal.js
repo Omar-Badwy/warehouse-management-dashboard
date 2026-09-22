@@ -5,11 +5,12 @@ import ProductForm from "../../forms/productForm";
 import BaseModal from "../baseModal";
 import { ModalsContext } from "../../../providers/modalsProvider";
 import { useDispatch, useSelector } from "react-redux";
+import { addNotification } from "../../../redux/features/slices/notificationsSlice";
 
 
 function AddProductModal () {
 
-    const { closeModal , productInput, setProductInput, setErrors, } = useContext(ModalsContext)
+    const { closeModal , productInput, setErrors, } = useContext(ModalsContext)
 
     const products = useSelector( (state) => state.products.products)
 
@@ -25,7 +26,12 @@ function AddProductModal () {
                 data: productInput,
             }))
 
-            setProductInput({name: "",categoryId: "",count: "",price: "",})
+            dispatch( addNotification({
+                type: "success",
+                title: "product added",
+                message: `New product "${productInput.name}" was added successfully.`,
+            }) )
+
             closeModal()
         }
     }

@@ -9,6 +9,7 @@ import { formatNumber } from '../utils/formatNumber';
 import useFilter from '../hooks/useFilter';
 import useSort from '../hooks/useSort';
 import SearchInput from '../components/ui/searchInput';
+import EmptyState from '../components/empty/emptyState';
 
 function CategoryProductsPage () {
 
@@ -113,40 +114,53 @@ function CategoryProductsPage () {
 
             <div className={styles.container}>
 
-                <div className={styles.header}>
+                {CategoryProducts.length > 0 ? 
+                    <>
+                    <div className={styles.header}>
                     <span className={styles.tableTitle}>{category ? category.name : null}</span>
                     <button className={styles.add} onClick={() => openModal("addProduct",null,{categoryId,}) }>add product</button>
-                </div>
+                    </div>
 
-                <div className={styles.toolbar}>
+                    <div className={styles.toolbar}>
 
-                    <SearchInput
-                        search={search}
-                        setSearch={setSearch}
-                        setFilter={setFilterBy}
-                        setSort={setSortBy}
-                        filterBy={filterBy}
-                        sortBy={sortBy}
-                        type="twoInputsPro"
-                    />
+                        <SearchInput
+                            search={search}
+                            setSearch={setSearch}
+                            setFilter={setFilterBy}
+                            setSort={setSortBy}
+                            filterBy={filterBy}
+                            sortBy={sortBy}
+                            type="twoInputsPro"
+                        />
 
-                    <button className={styles.dltAll} onClick={() => openModal("deleteAllProductWithCatId",categoryId,null)}>delete all</button>
-                </div>
+                        <button className={styles.dltAll} onClick={() => openModal("deleteAllProductWithCatId",categoryId,null)}>delete all</button>
+                    </div>
 
-                <table className={styles.table}>
-                    <thead>
-                        <tr>
-                            <th style={{textAlign:"start",padding:"0 20px"}}>product name</th>
-                            <th>Price</th>
-                            <th>Count</th>
-                            <th>total value</th>
-                            <th>actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {rows}
-                    </tbody>
-                </table>
+                    <table className={styles.table}>
+                        <thead>
+                            <tr>
+                                <th style={{textAlign:"start",padding:"0 20px"}}>product name</th>
+                                <th>Price</th>
+                                <th>Count</th>
+                                <th>total value</th>
+                                <th>actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {rows}
+                        </tbody>
+                    </table>
+                    </>
+                :
+                    <EmptyState
+                            title="No products Yet"
+                            description={`Start by adding the first product for ${category.name} category.`}
+                            buttonText="Add product"
+                            onClick={() => openModal("addProduct",null,{categoryId,}) }
+                        />
+                }
+
+                
 
             </div>
         </>

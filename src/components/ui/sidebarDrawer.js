@@ -43,8 +43,14 @@ function SidebarDrawer({ opened, close }) {
       path: "/orders",
       icon: <i className="fa-solid fa-cart-flatbed" />,
     },
+    { 
+      id: 6, 
+      title: "Notifications", 
+      path: "/notifications", 
+      icon: <i className="fa-solid fa-bell"></i>
+    },
     {
-      id: 6,
+      id: 7,
       title: "Settings",
       path: "/settings",
       icon: <i className="fa-solid fa-gear" />,

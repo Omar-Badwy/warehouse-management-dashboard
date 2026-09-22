@@ -1,7 +1,6 @@
 // import { v4 as uuidv4 } from 'uuid';
 import '../../styles/sidebar.css'
 import { Link, useLocation } from 'react-router-dom';
-import { logout } from '../../redux/features/slices/authSlise';
 import { useContext } from 'react';
 import { ModalsContext } from '../../providers/modalsProvider';
 
@@ -18,7 +17,8 @@ function SideBar () {
         { id: 3, title: "Categories", path: "/categories", icon: <i className="fa-solid fa-table-cells-large"></i>},
         { id: 4, title: "Clients", path: "/clients", icon: <i className="fa-solid fa-users"></i>},
         { id: 5, title: "Orders", path: "/orders", icon: <i className="fa-solid fa-cart-flatbed"></i>},
-        { id: 6, title: "Settings", path: "/settings", icon: <i className="fa-solid fa-gear"></i>},
+        { id: 6, title: "Notifications", path: "/notifications", icon: <i className="fa-solid fa-bell"></i>},
+        { id: 7, title: "Settings", path: "/settings", icon: <i className="fa-solid fa-gear"></i>},
     ];
 
     const sidebarLinksMap = sidebarLinks.map( (item) => {

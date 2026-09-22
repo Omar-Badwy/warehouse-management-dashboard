@@ -1,14 +1,19 @@
 import { useContext } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { orderModalContext } from "../../../providers/orderModalProvider";
 import { dltOrder } from "../../../redux/features/slices/ordersSlice";
 import styles from "../../../styles/orderModal.module.css"
 import { useNavigate } from "react-router-dom";
+import { addNotification } from "../../../redux/features/slices/notificationsSlice";
 
 
 function DltOrderModal () {
 
-    const { orderInput, closeOrderModal, orderModal, orderErrors, setOrderInput, } = useContext(orderModalContext)
+    const { closeOrderModal, orderModal, } = useContext(orderModalContext)
+
+    const orders = useSelector( (state) => state.orders.orders)
+
+    const order = orders.find( (ord) => ord.id === orderModal.data)
 
     const dispatch = useDispatch()
 
@@ -19,6 +24,12 @@ function DltOrderModal () {
         dispatch(dltOrder({
             id: orderModal.data,
         }))
+
+        dispatch( addNotification({
+            type: "error",
+            title: "Order deleted",
+            message: `Order #${order.id} was deleted.`,
+        }) )
 
         closeOrderModal()
         navigate("/orders", { replace: true } )

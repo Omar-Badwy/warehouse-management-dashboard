@@ -14,6 +14,7 @@ import Clients from "../pages/clients";
 import ClientPage from "../pages/clientPage";
 import ErrorPage from "../pages/errorPage";
 import OrderPage from "../pages/orderPage";
+import Notifications from "../pages/notifications";
 
 function AppRoutes() {
   return (
@@ -94,6 +95,15 @@ function AppRoutes() {
             element={
               <ProtectedRoute>
                 <OrderPage />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="notifications"
+            element={
+              <ProtectedRoute>
+                <Notifications />
               </ProtectedRoute>
             }
           />
