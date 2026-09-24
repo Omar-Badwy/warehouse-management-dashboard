@@ -29,6 +29,17 @@ export default function SearchInput ({search,setSearch,setFilter,setSort,filterB
         {id: 2, name: "name (Z-A)"},
         {id: 3, name: "newest"},
         {id: 4, name: "oldest"},
+        {id: 5, name: "highest orders"},
+        {id: 6, name: "lowest orders"},
+    ]
+
+    const SortCatsData = [
+        {id: 1, name: "name (A-Z)"},
+        {id: 2, name: "name (Z-A)"},
+        {id: 3, name: "newest"},
+        {id: 4, name: "oldest"},        
+        {id: 5, name: "highest products"},
+        {id: 6, name: "lowest products"},
     ]
     
     const SortOrderData = [
@@ -102,6 +113,13 @@ export default function SearchInput ({search,setSearch,setFilter,setSort,filterB
                 case "sort":
                     return <>
                         <SelectInputSearch data={SortClientData} value={sortBy} onChange={handleSortChange} >
+                            <option value="sort by">{"sort by"}</option>
+                        </SelectInputSearch>
+                    </>
+
+                case "sortCats":
+                    return <>
+                        <SelectInputSearch data={SortCatsData} value={sortBy} onChange={handleSortChange} >
                             <option value="sort by">{"sort by"}</option>
                         </SelectInputSearch>
                     </>

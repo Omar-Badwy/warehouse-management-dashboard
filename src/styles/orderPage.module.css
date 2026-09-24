@@ -300,7 +300,8 @@
   height: 10px;
   margin-top: 4px;
   border-radius: 50%;
-  background: var(--order-border);
+  background: #20232a;
+  background: var(--order-timeline-bg);
   flex: 0 0 auto;
 }
 
@@ -311,7 +312,7 @@
   left: 4px;
   width: 1px;
   height: 52px;
-  background: var(--order-border);
+  background: var(--order-timeline-bg);
 }
 
 .timelineItem strong {
@@ -325,6 +326,8 @@
 
 .timelineItem.active > span {
   background: #20232a;
+  background: var(--order-timeline-active-bg);
+
 }
 
 @media (max-width: 850px) {

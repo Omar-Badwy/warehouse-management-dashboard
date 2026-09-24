@@ -29,7 +29,7 @@ export const orderSlice  = createSlice({
             const { orderInput,orderItems } = action.payload
 
             state.orders.push({id: generateOrderId(state.orders) , clientId: orderInput.clientId, products: orderItems, status: orderInput.status,
-                createdAt: new Date(), updatedAt: null,})
+                createdAt: new Date(), updatedAt: null, timeline: [], })
             
             localStorage.setItem("ordData",JSON.stringify(state.orders))
         },
@@ -56,6 +56,14 @@ export const orderSlice  = createSlice({
                 if(order.id === id){
                     order.status = status
                     order.updatedAt = new Date()
+
+                    order.timeline.push({
+                        date: new Date(),
+                        status: status,
+                        description: status === "pending" ? "Waiting for order processing" : 
+                        status === "completed" ? "Order completed successfully" : "The order has been cancelled."
+                    })
+                    
                 }
             }
             

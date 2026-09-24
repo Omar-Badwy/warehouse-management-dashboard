@@ -20,6 +20,8 @@ export default function OrderPage () {
     
     const order = orders.find( (order) => order.id === orderId)
 
+    const timeline = order.timeline
+
     const client = clients.find( (client) => client.id === order.clientId)
 
     const {openOrderModal} = useContext(orderModalContext)
@@ -74,7 +76,6 @@ export default function OrderPage () {
     );
 
     function editOrder () {
-        const order = orders.find( (ord) => ord.id === orderId )
         setOrderItems(order.products)
         openOrderModal("editOrder",orderId)
     }
@@ -137,24 +138,45 @@ export default function OrderPage () {
                                 <h2>Order Timeline</h2>
                                 <p>Order activity</p>
                             </div>
-                            </div>
+                        </div>
 
-                            <div className={styles.timeline}>
+                        <div className={styles.timeline}>
+
                             <div className={`${styles.timelineItem} ${styles.active}`}>
                                 <span />
                                 <div>
-                                <strong>Order Created</strong>
-                                <p>{formatDate(order.createdAt)}</p>
+                                    <strong>Order Created</strong>
+                                    <p>{formatDate(order.createdAt)}</p>
                                 </div>
                             </div>
 
-                            <div className={styles.timelineItem}>
+                            <div className={`${styles.timelineItem} ${timeline.length > 0 ? styles.active : ""}`}>
                                 <span />
                                 <div>
-                                <strong>Pending</strong>
-                                <p>Waiting for order processing</p>
+                                    <strong>Pending</strong>
+                                    <p>Waiting for order processing</p>
                                 </div>
                             </div>
+
+                            {timeline ? timeline.map( (item,index) => {
+                                return(
+                                    <>
+                                        <div
+                                            className={`${styles.timelineItem} ${
+                                                index !== timeline.length - 1 ? styles.active : ""
+                                            }`}
+                                            key={item.id}
+                                        >
+                                            <span />
+                                            <div>
+                                                <strong>{item.status}</strong>
+                                                <p>{formatDate(item.date)}</p>
+                                                <p>{item.description}</p>
+                                            </div>
+                                        </div>
+                                    </>
+                                )
+                            } ) : ""}
 
                         </div>
                     </section>

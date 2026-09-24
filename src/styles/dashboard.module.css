@@ -14,6 +14,81 @@
     background: var(--card-hover);
 }
 
+/* ! Cards */
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.card {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    height: 125px;
+    padding: 20px;
+    font-size: 33px;
+    font-weight: 600;
+    border: 1px solid var(--border-primary);
+    color: var(--text-primary);
+}
+
+.card:first-child {
+    background: var(--card-first-bg);
+    color: var(--card-first-color);
+    border: var(--border-primary);
+}
+
+.largestCategory{
+    width: calc(200% + 20px);
+}
+
+/* ! Cards */
+
+
+.header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 24px;
+}
+
+.eyebrow {
+    margin: 0 0 6px;
+    color: var(--eyebrow);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .12em;
+}
+
+.header h1 {
+    margin: 0;
+    font-size: 32px;
+    color: var(--text-primary);
+}
+
+.subtitle {
+    margin: 8px 0 0;
+    color: var(--text-muted);
+    font-size: 14px;
+}
+
+.addButton {
+    border: 0;
+    border-radius: 9px;
+    padding: 12px 17px;
+    background: var(--button-add-primary);
+    color: var(--text-white);
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.addButton:hover {
+  background-color: var(--button-add-primary-hover-bg);
+  transform: translateY(-1px);
+}
+
 /* ! GRID */
 
 .grid {
@@ -231,77 +306,6 @@
 }
 
 /* ! RECENT ORDERS */
-
-
-/* ! Cards */
-
-.header {
-    display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
-    gap: 24px;
-}
-
-.eyebrow {
-    margin: 0 0 6px;
-    color: var(--eyebrow);
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: .12em;
-}
-
-.header h1 {
-    margin: 0;
-    font-size: 32px;
-    color: var(--text-primary);
-}
-
-.subtitle {
-    margin: 8px 0 0;
-    color: var(--text-muted);
-    font-size: 14px;
-}
-
-.addButton {
-    border: 0;
-    border-radius: 9px;
-    padding: 12px 17px;
-    background: var(--button-add-primary);
-    color: var(--text-white);
-    font-weight: 700;
-    cursor: pointer;
-}
-
-.addButton:hover {
-  background-color: var(--button-add-primary-hover-bg);
-  transform: translateY(-1px);
-}
-
-.cards {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
-}
-
-.card {
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    height: 125px;
-    padding: 20px;
-    font-size: 33px;
-    font-weight: 600;
-    border: 1px solid var(--border-primary);
-    color: var(--text-primary);
-}
-
-.card:first-child {
-    background: var(--card-first-bg);
-    color: var(--card-first-color);
-    border: var(--border-primary);
-}
-
-/* ! Cards */
 
 /* ! DRAWER */
 
@@ -653,6 +657,10 @@
 
     .cards{
         grid-template-columns: 1fr;
+    }
+
+    .largestCategory{
+      width: 100%;
     }
 
     .grid{

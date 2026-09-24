@@ -96,7 +96,7 @@ function CategoryTable () {
                         setSort={setSortBy}
                         filterBy={filterBy}
                         sortBy={sortBy}
-                        type="sort"
+                        type="sortCats"
                     />
 
                 </div>

@@ -1,12 +1,10 @@
-export function validateOrder (orderInput,setErrors,products,orderModal) {
+export function validateOrder (orderInput,setErrors,orderModal) {
         
     const newErrors = {}
 
     const { clientId, productId, quantity} = orderInput
 
-    const product = products.find( (pro) => pro.id === productId)
-
-    if(orderModal.type !== "editOrder"){
+    if(orderModal.type !== "editOrder" && !orderModal.data){
 
         if (clientId === "") {
             newErrors.clientId = "Client is required";
@@ -21,10 +19,6 @@ export function validateOrder (orderInput,setErrors,products,orderModal) {
 
         newErrors.quantity = "Quantity must be at least 1";
     } 
-
-    // if( quantity > product.count){
-    //     newErrors.quantity = "Quantity is not available";
-    // } 
 
     if (!Number.isInteger(Number(quantity))) {
         newErrors.quantity = "Quantity must be a whole number";

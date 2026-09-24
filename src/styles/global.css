@@ -33,8 +33,11 @@
     --card-first-color: white;
 
     --card-order-border: #5291dec5;
-    --order-border: #eceef3;
     --card-order-text: #20232a;
+    --order-border: #eceef3;
+
+    --order-timeline-bg: #eceef3;
+    --order-timeline-active-bg: #20232a;
 
     /* ? Text */
 
@@ -254,6 +257,8 @@
     --card-order-text: #647084;
     --order-border: #004d77;
 
+    --order-timeline-bg: #20232a;
+    --order-timeline-active-bg: #004D77;
 
     --orderIcon-bg: #004D77;
     --orderIcon-hover-bg: #004d77b3;

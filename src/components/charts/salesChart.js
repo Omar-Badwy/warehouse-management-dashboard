@@ -152,7 +152,7 @@ export default function SalesChart ({filteredDate,filter}) {
 
             <YAxis stroke="var(--stroke-color)" strokeWidth={2} tickFormatter={(value) => value.toLocaleString()} />
 
-            <Tooltip formatter={(value) => value.toLocaleString()} />
+            <Tooltip formatter={(value) => value.toLocaleString()} stroke="var(--stroke-color)"/>
 
             <Line
                 type="monotone"

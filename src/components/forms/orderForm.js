@@ -1,4 +1,4 @@
-import { useContext, useMemo } from "react";
+import { useContext, useEffect, useMemo } from "react";
 import styles from '../../styles/orderModal.module.css'
 import { orderModalContext } from "../../providers/orderModalProvider";
 import { Input } from "@mantine/core";
@@ -16,11 +16,20 @@ function OrderForm () {
      
     const clientOfEditOrder = useMemo( () => {
 
-        const orderOfEditOrder = orders.find( (ord) => ord.id === orderModal?.data)
+        if(orderModal.type === "editOrder" && orderModal.data){
 
-        return clients.find( (client) => client.id === orderOfEditOrder?.clientId )
+            const orderOfEditOrder = orders.find( (ord) => ord.id === orderModal?.data)
+    
+            return clients.find( (client) => client.id === orderOfEditOrder?.clientId )
+        }
 
-    }, [orderModal.data,clients,orders])
+        if(orderModal.type === "addOrder" && orderModal.data){
+            return clients.find( (client) => client.id === orderModal?.data )
+        }
+
+        return null;
+
+    }, [orderModal.data,clients,orders,orderModal.type])
 
     const products = useSelector( (state) => state.products.products)
 
@@ -31,10 +40,10 @@ function OrderForm () {
         }
 
     function addnewProduct() {
+        
         const validationErrors = validateOrder(
             orderInput,
             setOrderErrors,
-            products,
             orderModal
         );
 
@@ -93,6 +102,7 @@ function OrderForm () {
 
         setOrderInput({
             ...orderInput,
+            clientId: orderModal.type === "addOrder" && orderModal.data ? orderModal.data : orderInput.clientId,
             productId: "",
             quantity: ""
         });
@@ -106,6 +116,8 @@ function OrderForm () {
 return(
     <>
         <div className={styles.body}>
+
+            {/* # Client */}
             <section className={styles.section}>
                 <div className={styles.sectionTitle}>
                     <span className={styles.step}>01</span>
@@ -117,9 +129,9 @@ return(
 
                 <label className={styles.field}>
                     <span>Client</span>
-                        {orderModal.type === "editOrder" ? 
+                        {orderModal.type === "editOrder" || orderModal.type === "addOrder" && orderModal.data ? 
 
-                        <input className={styles.select} value={clientOfEditOrder.name} disabled />
+                        <input className={styles.select} value={clientOfEditOrder?.name} disabled />
 
                         : <Input.Wrapper classNames={{error: styles.error}} error={orderErrors.clientId}>
                         <select className={styles.select} name="clientId" onChange={orderInputOnChange} value={orderInput.clientId}>
@@ -132,6 +144,7 @@ return(
                 </label>
             </section>
 
+            {/* # Products */}
             <section className={styles.section}>
                 <div className={styles.sectionTitle}>
                     <span className={styles.step}>02</span>
@@ -232,6 +245,7 @@ return(
 
                     
             </section>
+
         </div>
     </>
 )

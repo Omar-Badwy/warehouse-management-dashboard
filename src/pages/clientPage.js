@@ -27,9 +27,9 @@ export default function ClientPage () {
     const { openOrderModal } = useContext(orderModalContext)
 
     
-    const clients =  useSelector( (state) => state.clients.clients)
-
     const orders =  useSelector( (state) => state.orders.orders)
+    
+    const clients =  useSelector( (state) => state.clients.clients)
     
     const client = clients.find( (client) => client.id === clientId)
 
@@ -203,46 +203,48 @@ export default function ClientPage () {
               {/* # Client Orders */}
               
 
+            <section className={style.tableContainer}>
 
-            {clientOrders.length > 0 ? 
-                <>
-                  <div className={style.toolbar}>
-                      <SearchInput
-                              search={search}
-                              setSearch={setSearch}
-                              setFilter={setFilterBy}
-                              setSort={setSortBy}
-                              filterBy={filterBy}
-                              sortBy={sortBy}
-                              type="clientOrderPage"
-                          />
-                  </div>
+                {clientOrders.length > 0 ? 
+                    <>
+                    <div className={style.toolbar}>
+                        <SearchInput
+                                search={search}
+                                setSearch={setSearch}
+                                setFilter={setFilterBy}
+                                setSort={setSortBy}
+                                filterBy={filterBy}
+                                sortBy={sortBy}
+                                type="clientOrderPage"
+                            />
+                    </div>
 
-                  <div className={style.tableWrapper}>
-                      {emptyState ? emptyState : 
-                          <table>
-                              <thead>
-                                  <tr>
-                                      <th>Order ID</th><th>Client</th><th>Products</th><th>Total</th>
-                                      <th>Status</th><th>Created At</th><th>Actions</th>
-                                  </tr>
-                              </thead>
-                              <tbody>
-                                  { rows }
-                              </tbody>
-                          </table>
-                      }
+                    <div className={style.tableWrapper}>
+                        {emptyState ? emptyState : 
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Order ID</th><th>Client</th><th>Products</th><th>Total</th>
+                                        <th>Status</th><th>Created At</th><th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    { rows }
+                                </tbody>
+                            </table>
+                        }
 
-                  </div>
-                </>
-            : 
-                <section className={style.tableContainer}>
-                    <EmptyState
-                        title="No Orders Yet"
-                        description={`Start by adding the first order for ${client.name}.`}
-                        />
-                </section>
-            }
+                    </div>
+                    </>
+                : 
+                        <EmptyState
+                            title="No Orders Yet"
+                            description={`Start by adding the first order for ${client.name}.`}
+                            buttonText="Add order"
+                            onClick={() => openOrderModal("addOrder", client?.id ) }
+                            />
+                }
+            </section>
 
             </main>
 

@@ -57,10 +57,7 @@ function CategoryCards () {
             <div className={styles.cards}>
                 {CardElements}
 
-                <div className={styles.card}
-                style={{
-                    width: "calc(200% + 20px)",
-                }}>
+                <div className={`${styles.card} ${styles.largestCategory}`}>
 
                     <div style={{display:"flex",flexDirection:"column",justifyContent:"center"}}>
                         <span style={{fontSize:"25px",marginBottom:"3px"}}>
