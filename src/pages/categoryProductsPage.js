@@ -2,8 +2,8 @@ import { useSelector } from 'react-redux';
 import styles from '../styles/products.module.css'
 import style from '../styles/dashboard.module.css'
 
-import { useNavigate, useParams } from "react-router-dom";
-import { useContext, useEffect, useState } from 'react';
+import { useParams } from "react-router-dom";
+import { useContext, useState } from 'react';
 import { ModalsContext } from '../providers/modalsProvider'
 import { formatNumber } from '../utils/formatNumber';
 import useFilter from '../hooks/useFilter';
@@ -23,8 +23,6 @@ function CategoryProductsPage () {
     
     const { openModal } = useContext(ModalsContext)
     
-    const navigate =  useNavigate()
-
     // # search / sort / filter states
 
     const [search,setSearch] = useState("")
@@ -37,12 +35,6 @@ function CategoryProductsPage () {
 
     
     const category = categories.find( (cat) => categoryId === cat.id );
-
-    useEffect(() => {
-        if (!category) {
-            navigate("/error?type=categories");
-        }
-    }, [category, navigate]);
 
     const CategoryProducts = category ? products
     .filter((product) => product.categoryId === category.id) : []

@@ -61,6 +61,7 @@ const ModalsProvider = ({children}) => {
     function closeModal () {
         setProductInput({name: "",categoryId: "",count: "",price: "",})
         setCategoryInput({id: "",name: "",phone: "",email: "",address: "",})
+        setClientInput({id: "",name: "",phone: "",email: "",address: "",})
         setUserInput({name: "",email: "",password: "",confirmPassword: "",})
         setErrors({name: "",category: "",count: "",price: "",phone: "",email: "",address: "",password: "",confirmPassword: "",})
         setOpened(false)

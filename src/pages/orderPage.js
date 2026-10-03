@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux"
-import { Link, useNavigate, useParams } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
 import styles from "../styles/orderPage.module.css"
-import { useContext, useEffect } from "react"
+import { useContext, } from "react"
 import { formatDate } from "../utils/formatDate"
 import { orderModalContext } from "../providers/orderModalProvider"
 import { formatNumber } from "../utils/formatNumber"
@@ -20,26 +20,13 @@ export default function OrderPage () {
     
     const order = orders.find( (order) => order.id === orderId)
 
-    const timeline = order.timeline
+    const timeline = order?.timeline
 
-    const client = clients.find( (client) => client.id === order.clientId)
+    const client = clients.find( (client) => client.id === order?.clientId)
 
     const {openOrderModal} = useContext(orderModalContext)
 
-    const navigate =  useNavigate()
-
-    useEffect( () => {
-
-        if(!order){
-            return  navigate("/error?type=orders")
-        }
-    },[order,navigate])
-
-    if(!order){
-        return  null
-    }
-
-    const orderProducts = order.products.map((pro) => {
+    const orderProducts = order?.products.map((pro) => {
 
         const product = products.find(  (product) => product.id === pro.productId)
 
@@ -176,7 +163,7 @@ export default function OrderPage () {
                                         </div>
                                     </>
                                 )
-                            } ) : ""}
+                            } ) : null }
 
                         </div>
                     </section>

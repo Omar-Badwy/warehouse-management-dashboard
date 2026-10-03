@@ -120,7 +120,7 @@ export const productSlice  = createSlice({
 
         completeOrder: (state, action) => {
 
-            const {data,status} = action.payload
+            const {data,status,oldStatus} = action.payload
             
             for (const orderProduct of data) {
 
@@ -130,8 +130,9 @@ export const productSlice  = createSlice({
 
                 if (product) {
 
-                    if(status === "completed") { product.count -= Number(orderProduct.quantity) }
-                     else if(status === "cancelled") { product.count += Number(orderProduct.quantity) }
+                    if(status === "completed" && oldStatus !== "completed") { product.count -= Number(orderProduct.quantity) }
+                    if(status === "cancelled" && oldStatus === "completed") { product.count += Number(orderProduct.quantity) }
+                    if(status === "pending" && oldStatus === "completed") { product.count += Number(orderProduct.quantity) }
                 }
             }
             

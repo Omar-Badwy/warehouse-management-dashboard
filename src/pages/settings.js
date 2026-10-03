@@ -110,7 +110,7 @@ export default function Settings () {
                             </div>
 
                             <div className={styles.switch}>
-                                <Switch defaultChecked checked={notsProperties.allowNotifications} size="md" 
+                                <Switch checked={notsProperties.allowNotifications} size="md" 
                                     onChange={ (e) => dispatch(updateNotsProperties("allowNotifications")) }/>
                             </div>
                         </div>
@@ -123,7 +123,7 @@ export default function Settings () {
                             </div>
 
                             <div className={styles.switch}>
-                                <Switch defaultChecked checked={notsProperties.allowSounds} size="md" 
+                                <Switch checked={notsProperties.allowSounds} size="md" 
                                     onChange={ (e) => dispatch(updateNotsProperties("allowSounds")) }/>
                             </div>
                         </div>
@@ -136,7 +136,7 @@ export default function Settings () {
                             </div>
 
                             <div className={styles.switch}>
-                                <Switch defaultChecked checked={notsProperties.allowPopNotifications} size="md" 
+                                <Switch checked={notsProperties.allowPopNotifications} size="md" 
                                     onChange={ (e) => dispatch(updateNotsProperties("allowPopNotifications")) }/>
                             </div>
                         </div>

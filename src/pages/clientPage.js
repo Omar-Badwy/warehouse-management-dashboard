@@ -3,7 +3,7 @@ import style from "../styles/orders.module.css";
 
 import { useSelector } from "react-redux"
 import { Link, useNavigate, useParams } from "react-router-dom"
-import { useContext, useEffect, useMemo, useState, } from "react"
+import { useContext, useMemo, useState, } from "react"
 
 import { ModalsContext } from "../providers/modalsProvider"
 import { orderModalContext } from "../providers/orderModalProvider";
@@ -41,14 +41,7 @@ export default function ClientPage () {
     const [sortBy,setSortBy] = useState("newest")
 
 
-    useEffect( () => {
-
-        if(!client){
-            return  navigate("/error?type=clients")
-        }
-    },[client,navigate])
-
-    const clientOrders = orders.filter( (order) => order.clientId === client.id)
+    const clientOrders = orders.filter( (order) => order.clientId === client?.id)
 
     const productsCount = 
         useMemo( () => {
@@ -66,10 +59,6 @@ export default function ClientPage () {
 
     const filteredOrders = useFilter(clientOrders, filterBy,search);
     const sortedOrders = useSort(filteredOrders, sortBy);
-
-    if(!client){
-        return  null
-    }
 
     const initials = client.name
         .split(" ")

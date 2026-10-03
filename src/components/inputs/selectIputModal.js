@@ -27,7 +27,7 @@ function SelectInput ({value,onChange,error,name}) {
                 <Input.Wrapper classNames={{label: styles.label, error: styles.error}} error={error}>
 
                     <select name={name} className={styles.select} value={value} onChange={onChange}>
-                        <option key={"select category"} value="select category" selected>{"select category"}</option>
+                        <option key={"select category"} value="select category">{"select category"}</option>
                         {categories.map(cat => <option key={cat.id} value={cat.id}>{cat.name}</option> )}
                     </select>
                 </Input.Wrapper>

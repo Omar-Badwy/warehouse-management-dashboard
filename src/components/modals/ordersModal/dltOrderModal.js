@@ -21,8 +21,14 @@ function DltOrderModal () {
 
     function handleDltOrder () {
 
+        navigate("/orders", { 
+            replace: true,
+            state: true
+        } )
+        
         dispatch(dltOrder({
             id: orderModal.data,
+            navigate,
         }))
 
         dispatch( addNotification({
@@ -32,7 +38,7 @@ function DltOrderModal () {
         }) )
 
         closeOrderModal()
-        navigate("/orders", { replace: true } )
+
     }
 
     return(
@@ -56,7 +62,7 @@ function DltOrderModal () {
                     </header>
 
                     <div style={{padding:"50px",display:"flex",alignItems:"center",justifyContent:"center"}}>
-                        <p style={{fontSize:"22px"}}>Are you sure delete this order.</p>
+                        <p style={{fontSize:"22px",color:"var(--modal-color)"}}>Are you sure delete this order.</p>
                     </div>
 
                     <footer className={styles.footer} style={{justifyContent:"flex-end"}}>

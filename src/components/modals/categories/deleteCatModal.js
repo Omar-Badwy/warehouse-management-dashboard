@@ -22,6 +22,11 @@ function DltCategoryModal () {
 
     function handleDltCategory () {
     
+            navigate("/categories", { 
+                replace: true,
+                state: true
+            } )
+
             dispatch(dltCat({id: modalData.id}))
             dispatch(deleteProductsByCategory({id: modalData.id}))
             dispatch( addNotification({
@@ -29,7 +34,6 @@ function DltCategoryModal () {
                 title: "category deleted",
                 message: `category "${category.name}" was deleted.`,
             }) )
-            navigate("/categories");
             closeModal()
     }
 

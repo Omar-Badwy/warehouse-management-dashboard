@@ -4,10 +4,13 @@ import { ModalsContext } from "../../../providers/modalsProvider";
 import { useDispatch, useSelector } from "react-redux";
 import { dltClient } from "../../../redux/features/slices/clientsSlice";
 import { addNotification } from "../../../redux/features/slices/notificationsSlice";
+import { useNavigate } from "react-router-dom";
 
 function DltClientModal () {
 
     const dispatch = useDispatch()
+
+    const navigate = useNavigate()
 
     const { closeModal, modalData,} = useContext(ModalsContext)
 
@@ -16,8 +19,13 @@ function DltClientModal () {
     const client = clients.find( (client) => client.id === modalData.id)
 
     function handleDltProduct () {
+
+        navigate("/clients", { 
+            replace: true,
+            state: true
+        } )
+
         dispatch(dltClient({id: modalData.id}))
-        
         dispatch( addNotification({
             type: "error",
             title: "client deleted",

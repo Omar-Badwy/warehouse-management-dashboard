@@ -80,8 +80,6 @@ export default function Dashboard () {
     }, [orders, filter])
 
         
-        console.log(filterTime)
-
     return (
         <div className={styles.dashboard}>
 

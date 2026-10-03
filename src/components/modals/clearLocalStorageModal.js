@@ -9,10 +9,10 @@ export default function ClearLocaleStorageModal () {
 
     function handleLogout () {
 
-        localStorage.clear("proData")
-        localStorage.clear("catData")
-        localStorage.clear("ordData")
-        localStorage.clear("clientsData")
+        localStorage.removeItem("proData")
+        localStorage.removeItem("catData")
+        localStorage.removeItem("ordData")
+        localStorage.removeItem("clientsData")
         closeModal()
     }
 

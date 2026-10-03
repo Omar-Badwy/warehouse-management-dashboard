@@ -30,13 +30,11 @@ function UpdateOrderModal () {
 
         if(orderInput.status !== ""){
 
-            dispatch(updateStatusOrder({
-                status: orderInput.status,
-                id: orderModal.data,
-            }))
+            const oldStatus = order?.status
+            const newStatus = orderInput.status
 
-            if(orderInput.status === "completed"){
-                dispatch(completeOrder({data: order.products, status: "completed"}))
+            if(newStatus === "completed" && oldStatus !== "completed"){
+                dispatch(completeOrder({data: order.products, status: "completed", oldStatus: order.status}))
                 dispatch( addNotification({
                     type: "success",
                     title: "Order completed",
@@ -44,14 +42,28 @@ function UpdateOrderModal () {
                 }) )
             }
 
-            if(orderInput.status === "cancelled"){
-                dispatch(completeOrder({data: order.products, status: "cancelled"}))
+            if(newStatus === "cancelled" && oldStatus === "completed"){
+                dispatch(completeOrder({data: order.products, status: "cancelled", oldStatus: order.status}))
                 dispatch( addNotification({
                     type: "error",
                     title: "Order Cancelled",
                     message: `Order #${order.id} was cancelled and stock was restored.`,
                 }) )
             }
+
+            if(newStatus === "pending" && oldStatus === "completed"){
+                dispatch(completeOrder({data: order.products, status: "pending", oldStatus: order.status}))
+                dispatch( addNotification({
+                    type: "warning",
+                    title: "Order pending",
+                    message: `Order #${order.id} was pending and stock was restored.`,
+                }) )
+            }
+
+            dispatch(updateStatusOrder({
+                status: newStatus,
+                id: order?.id,
+            }))
 
             closeOrderModal()
         }

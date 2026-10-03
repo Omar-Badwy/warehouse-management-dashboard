@@ -15,13 +15,16 @@ import ClientPage from "../pages/clientPage";
 import ErrorPage from "../pages/errorPage";
 import OrderPage from "../pages/orderPage";
 import Notifications from "../pages/notifications";
+import OrderGuard from "../utils/guards/orderGuard";
+import ClientGuard from "../utils/guards/clientGuard";
+import CategoryGuard from "../utils/guards/categoryGuard";
 
 function AppRoutes() {
   return (
     <Routes>
       <Route path="/login" element={<Login />} />
 
-      <Route path="/" element={
+      <Route path="" element={
           <ProtectedRoute>
             <DashboardLayout/>
           </ProtectedRoute>
@@ -54,14 +57,16 @@ function AppRoutes() {
             }
           />
 
-          <Route
-            path="categories/:categoryId"
-            element={
-                <ProtectedRoute>
-                    <CategoryProductsPage />
-                </ProtectedRoute>
-            }
-          />
+          <Route element={<CategoryGuard />}>
+            <Route
+              path="categories/:categoryId"
+              element={
+                  <ProtectedRoute>
+                      <CategoryProductsPage />
+                  </ProtectedRoute>
+              }
+            />
+          </Route>
 
           <Route
             path="clients"
@@ -71,15 +76,17 @@ function AppRoutes() {
               </ProtectedRoute>
             }
           />
-
-          <Route
-            path="clients/:clientId"
-            element={
-                <ProtectedRoute>
-                    <ClientPage />
-                </ProtectedRoute>
-            }
-          />
+          
+          <Route element={<ClientGuard />}>
+            <Route
+              path="clients/:clientId"
+              element={
+                  <ProtectedRoute>
+                      <ClientPage />
+                  </ProtectedRoute>
+              }
+            />
+          </Route>
 
           <Route
             path="orders"
@@ -90,14 +97,16 @@ function AppRoutes() {
             }
           />
 
-          <Route
-            path="orders/:orderId"
-            element={
-              <ProtectedRoute>
-                <OrderPage />
-              </ProtectedRoute>
-            }
-          />
+          <Route element={<OrderGuard />}>
+              <Route
+                path="orders/:orderId"
+                element={
+                  <ProtectedRoute>
+                    <OrderPage />
+                  </ProtectedRoute>
+                }
+              />
+          </Route>
 
           <Route
             path="notifications"
@@ -117,15 +126,16 @@ function AppRoutes() {
             }
           />
 
-          <Route
-            path="error"
-            element={
-              <ProtectedRoute>
-                <ErrorPage />
-              </ProtectedRoute>
-            }
-          />
       </Route>
+
+      <Route
+        path="/error/:type"
+        element={
+          <ProtectedRoute>
+            <ErrorPage />
+          </ProtectedRoute>
+        }
+      />
       
     </Routes>
   );

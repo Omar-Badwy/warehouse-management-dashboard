@@ -66,7 +66,7 @@ export default function SearchInput ({search,setSearch,setFilter,setSort,filterB
 
     const renderInputs = 
 
-        useMemo( () => {
+         () => {
 
             switch(type) {
                 case "twoInputsPro":
@@ -128,7 +128,7 @@ export default function SearchInput ({search,setSearch,setFilter,setSort,filterB
                     return null
             }
 
-        },[type,filterBy,sortBy,handleSortChange])
+        }
 
     return (
         <>

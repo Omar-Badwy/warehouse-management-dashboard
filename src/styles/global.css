@@ -221,6 +221,14 @@
 
     --not-error-bg: #fef3f2;
     --not-error-color: #b42318;
+
+    /* ? Error Page */
+    --errorPage-bg: #f8fafc;
+    --errorPage-title: #172033;
+    --errorPage-code: #2563eb;
+    --errorPage-border: #2563eb;
+    --errorPage-btn-border: #2563eb;
+    --errorPage-hover: #1d4ed8;
 }
 
 .darkMode {
@@ -431,7 +439,6 @@
     --not-success-color: #6ee7b7;
 
     --not-warning-bg: #fcd34d;
-    /* --not-warning-bg: #; */
     --not-warning-color: #451a03;
 
     --not-info-bg: #172554;
@@ -439,4 +446,12 @@
 
     --not-error-bg: #ce2b2b;
     --not-error-color: #fca5a5;
+
+    /* ? Error Page */
+    --errorPage-bg: #111827;
+    --errorPage-title: #f8fafcbf;
+    --errorPage-code: #005b8c;
+    --errorPage-border: #005b8c;
+    --errorPage-btn-border: #005b8c;
+    --errorPage-hover: #074363;
 }

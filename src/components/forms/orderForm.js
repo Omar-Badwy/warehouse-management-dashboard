@@ -1,4 +1,4 @@
-import { useContext, useEffect, useMemo } from "react";
+import { useContext, useMemo } from "react";
 import styles from '../../styles/orderModal.module.css'
 import { orderModalContext } from "../../providers/orderModalProvider";
 import { Input } from "@mantine/core";
@@ -135,9 +135,9 @@ return(
 
                         : <Input.Wrapper classNames={{error: styles.error}} error={orderErrors.clientId}>
                         <select className={styles.select} name="clientId" onChange={orderInputOnChange} value={orderInput.clientId}>
-                            <option key={"select category"} value="select client" selected>{"select client"}</option>
+                            <option key={"select category"} value="select client">{"select client"}</option>
                             {clients.map(client => <option key={client.id} value={client.id}>{client.name}</option> )}
-                            <option key={"select category"} value="others" selected>{"others"}</option> )
+                            <option key={"select category"} value="others">{"others"}</option> )
                         </select>
                         </Input.Wrapper>
                         }

@@ -71,8 +71,6 @@ export default function TopCategoriesChart ({filteredDate})  {
     ];
 
 
-    console.log("topCategories: ",topCategories)
-    
     return (
         <section className={`${styles.chartContainer} ${styles.topCategories}`}>
             <h2>Top Categories This Week</h2>

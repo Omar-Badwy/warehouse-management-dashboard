@@ -8,13 +8,13 @@ export default function ErrorPage() {
     let title;
 
     if(type === "clients"){
-        title = "Client"
+        title = "This Client"
     }
     if(type === "categories"){
-        title = "Category"
+        title = "This Category"
     }
     if(type === "orders"){
-        title = "Order"
+        title = "This Order"
     }
 
     return (
