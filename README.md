@@ -481,8 +481,6 @@ for smaller screens.
 ## UI Libraries
 
 * Mantine
-* Bootstrap
-* MUI
 
 ## Data Visualization
 
