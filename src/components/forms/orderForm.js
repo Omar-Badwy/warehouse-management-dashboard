@@ -129,7 +129,7 @@ return(
 
                 <label className={styles.field}>
                     <span>Client</span>
-                        {orderModal.type === "editOrder" || orderModal.type === "addOrder" && orderModal.data ? 
+                        {orderModal.type === "editOrder" || (orderModal.type === "addOrder" && orderModal.data) ? 
 
                         <input className={styles.select} value={clientOfEditOrder?.name} disabled />
 

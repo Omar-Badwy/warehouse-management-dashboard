@@ -1,6 +1,5 @@
-import { Link, NavLink, useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { Drawer } from "@mantine/core";
 import styles from "../../styles/dashboard.module.css";
 import { useContext } from "react";
 import { ModalsContext } from "../../providers/modalsProvider";

@@ -46,7 +46,7 @@ function Modals () {
             default:         
         }
 
-    }, [modalData,modalType]);
+    }, [modalData,modalType,setCategoryInput,setClientInput,setProductInput,setUserInput]);
 
     useEffect(() => {
         if (modalType === "addProduct" && modalOption?.categoryId) {
@@ -55,7 +55,7 @@ function Modals () {
                 categoryId: modalOption.categoryId,
             }));
         }
-    }, [modalOption, modalType]);
+    }, [modalOption, modalType,setProductInput]);
 
     // ? Functions
 

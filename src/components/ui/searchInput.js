@@ -1,4 +1,3 @@
-import { useMemo } from 'react'
 import styles from '../../styles/products.module.css'
 import SelectInputSearch from '../inputs/selectInputSearch'
 
@@ -136,10 +135,7 @@ export default function SearchInput ({search,setSearch,setFilter,setSort,filterB
                 <input type='search' placeholder='search' className={styles.search}
                     value={search} onChange={(e) => setSearch(e.target.value)}/>
 
-                {/* <div className={styles.searchInputs}> */}
                     {renderInputs}
-                {/* </div> */}
-
             </>
         </>
     )
